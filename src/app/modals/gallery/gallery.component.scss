@@ -1,0 +1,37 @@
+.containerDesignModal{
+    width: 500px;
+    height:350px;
+}
+.circleClose{
+  font-size: 20px;
+  right: 0;
+  position: fixed;
+  margin-right: 10px;
+}
+
+.imageContainerModal{
+  width: 500px;
+  height: 300px;
+}
+
+.nextImage{
+  font-size: 100px;
+  top: 0;
+  right: 0;
+  position: fixed;
+  margin-top: 115px;
+}
+.nextImage:hover{
+  color: white;
+}
+.previousImage:hover{
+  color: white;
+}
+
+.previousImage{
+  font-size: 100px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  margin-top: 115px;
+}
