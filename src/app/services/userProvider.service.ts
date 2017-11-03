@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {providerInterface} from "../interfaces/perfil_ps.interface";
 import {aboutServiceProviderInterface} from "../interfaces/acerca_de.interface";
 import {photoGalleryInterface} from "../interfaces/galeria.interface";
+import {MULTIMEDIA} from "../enums/enums";
 
 @Injectable()
 export class userProviderService {
@@ -49,36 +50,43 @@ export class userProviderService {
     }
 
     getGalleryPhotos() {
-        let galeriaFotos: photoGalleryInterface [] = [{
-                imageUrl:'../../../../assets/images/trabajoAlbanileria2.JPG',
-            // ../../../assets/images/trabajoAlbanileria2.JPG
+        let galeriaFotos: photoGalleryInterface [] = [
+            {
+                adjuntoUrl: '../../../../assets/images/trabajoAlbanileria2.JPG',
+                // ../../../assets/images/trabajoAlbanileria2.JPG
                 id: 'albanileria1',
-                titulo: 'Casa casi terminada'
+                titulo: 'Casa casi terminada',
+                tipo: MULTIMEDIA.IMAGE
             },
             {
-                imageUrl:'../../../../assets/images/trabajoAlbanileria3.JPG',
+                adjuntoUrl: '../../../../assets/images/trabajoAlbanileria3.JPG',
                 id: 'albanileria2',
-                titulo: 'Cocina terminada'
+                titulo: 'Cocina terminada',
+                tipo: MULTIMEDIA.IMAGE
             },
             {
-                imageUrl:'../../../../assets/images/trabajoCarpinteria1.jpg',
+                adjuntoUrl: '../../../../assets/images/trabajoCarpinteria1.jpg',
                 id: 'carpinteria1',
-                titulo: 'Puertas terminadas '
+                titulo: 'Puertas terminadas ',
+                tipo: MULTIMEDIA.IMAGE
             },
             {
-                imageUrl:'../../../../assets/images/ciudad.png',
+                adjuntoUrl: '../../../../assets/images/ciudad.png',
                 id: 'costura1',
-                titulo: 'Ciudad?'
+                titulo: 'Ciudad?',
+                tipo: MULTIMEDIA.IMAGE
             },
             {
-                imageUrl:'../../../../assets/images/trabajoHerreria.jpg',
+                adjuntoUrl: '../../../../assets/images/trabajoHerreria.jpg',
                 id: 'herreria1',
-                titulo: 'Cerco'
+                titulo: 'Cerco',
+                tipo: MULTIMEDIA.IMAGE
             },
             {
-                imageUrl:'../../../../assets/images/trabajoHerreria2.jpg',
+                adjuntoUrl: '../../../../assets/images/trabajoHerreria2.jpg',
                 id: 'herreria2',
-                titulo: 'Soporte de escalera'
+                titulo: 'Soporte de escalera',
+                tipo: MULTIMEDIA.IMAGE
             }]
 
         return galeriaFotos;
