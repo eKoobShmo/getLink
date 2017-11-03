@@ -24,7 +24,7 @@ import {PerfilPSComponent} from "../pages/perfil-ps/perfil-ps.component";
 
 import {alertService} from "../services/alert.service";
 import {userProviderService} from "../services/userProvider.service";
-
+import{CargaImagenesService} from "../services/carga-archivos.service.";
 
 import {ComentarioComponent} from "../pages/perfil-ps/tab-comentario/comentario/comentario.component";
 import {TabComentarioComponent} from "../pages/perfil-ps/tab-comentario/tab-comentario.component";
@@ -38,6 +38,8 @@ import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase} from "angularfire2/database";
 import {FormatDatePipe} from "../pipes/formatDate.pipe";
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {CargaComponent} from "../modals/carga/carga.component";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -62,7 +64,9 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         FiltrosComponent,
         ListaPrestadoresServiciosComponent,
         EnviarComentarioComponent,
-        FormatDatePipe
+        FormatDatePipe,
+        CargaComponent
+
 
     ],
     imports: [
@@ -73,12 +77,14 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         BsDropdownModule.forRoot(),
         ProgressbarModule.forRoot(),
         ButtonsModule.forRoot(),
+        NgbModule.forRoot(),
         PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
     ],
     providers: [
         alertService,
         AngularFireDatabase,
-        userProviderService
+        userProviderService,
+        CargaImagenesService
     ]
 })
 
