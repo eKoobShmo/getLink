@@ -17,7 +17,7 @@ export class GaleriaComponent implements OnInit {
 
   ngOnInit() {
       this.galeriaFotos=this.psService.getGalleryPhotos();
-      console.log(this.galeriaFotos);
+      // console.log(this.galeriaFotos);
   }
 
 

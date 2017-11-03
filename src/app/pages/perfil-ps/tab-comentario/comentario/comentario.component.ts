@@ -4,6 +4,7 @@ import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database
 import {observable} from "rxjs/symbol/observable";
 
 
+
 @Component({
     selector: 'app-comentario',
     templateUrl: './comentario.component.html',

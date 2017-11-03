@@ -9,6 +9,7 @@ import {aboutServiceProviderInterface} from "../../interfaces/acerca_de.interfac
 import {userProviderService} from "../../services/userProvider.service";
 import {alertService} from "../../services/alert.service";
 import {photoGalleryInterface} from "../../interfaces/galeria.interface";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-perfil-ps',
@@ -17,21 +18,28 @@ import {photoGalleryInterface} from "../../interfaces/galeria.interface";
 })
 export class PerfilPSComponent implements OnInit {
 
-    //variable para mandar a llamar el servicio tipo []
+
     datosPsServicio: providerInterface;
 
     showHeart:boolean=false;
     showHeartFull:boolean = true;
     // showHeart:boolean=true;
 
-
+    static serviceProviderKey:string;
     tab: string = 'acercaDe';
 
     constructor(private psService: userProviderService,
-                private swal: alertService) {
+                private swal: alertService,
+                private route:ActivatedRoute) {
     }
 
     ngOnInit() {
+        this.route.params.subscribe(params => {
+
+            PerfilPSComponent.serviceProviderKey= params['serviceProviderKey']; // (+) converts string 'id' to a number
+
+            // In a real app: dispatch action to load the details here.
+        });
         this.datosPsServicio = this.psService.getProviderInfo();
 
     }
