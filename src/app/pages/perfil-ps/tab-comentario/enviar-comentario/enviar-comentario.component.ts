@@ -2,7 +2,9 @@ import {Component, OnInit, ElementRef} from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 import {commentInterface} from "../../../../interfaces/comentario.interface";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import{DatePipe} from "@angular/common";
+import {CargaComponent} from "../../../../modals/carga/carga.component";
 
 @Component({
   selector: 'app-enviar-comentario',
@@ -16,12 +18,14 @@ export class EnviarComentarioComponent implements OnInit {
     userPhoto: string;
     comments: FirebaseListObservable<any>;
     currentDate = new Date();
+    private firebaseApp: any;
 
     constructor(db: AngularFireDatabase,
                 private  afAuth: AngularFireAuth,
-                private elementRef: ElementRef) {
+                private elementRef: ElementRef,
+                private modalCargaImagenes:NgbModal) {
         this.getUserData();
-        this.comments = db.list('prestadoresServicios/servicios/comentarios')
+        this.comments = db.list('prestadoresServicios/0/servicios/0/comentarios')
     }
 
     ngOnInit() {
@@ -40,7 +44,7 @@ export class EnviarComentarioComponent implements OnInit {
 
     sendComment(txtcomment:string){
 
-       let comment:commentInterface={
+       let comment: commentInterface={
             nombreUsuario:this.username,
             foto:this.userPhoto,
             comentario:txtcomment,
@@ -48,6 +52,12 @@ export class EnviarComentarioComponent implements OnInit {
             fecha: this.currentDate.toString()
         };
         this.comments.push(comment);
+    }
+    upload(){
+
+    }
+    abrirCargaImagenes(){
+        const modalCargaRef = this.modalCargaImagenes.open(CargaComponent);
     }
 
 }

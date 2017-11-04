@@ -8,6 +8,9 @@ import {providerInterface} from '../../interfaces/perfil_ps.interface';
 import {userProviderService} from "../../services/userProvider.service";
 import {ReportComponent} from "../../modals/report/report.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {alertService} from "../../services/alert.service";
+import {photoGalleryInterface} from "../../interfaces/galeria.interface";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-perfil-ps',
@@ -16,21 +19,28 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class PerfilPSComponent implements OnInit {
 
-    //variable para mandar a llamar el servicio tipo []
+
     datosPsServicio: providerInterface;
 
     showHeart:boolean=false;
     showHeartFull:boolean = true;
     // showHeart:boolean=true;
 
-
+    static serviceProviderKey:string;
     tab: string = 'acercaDe';
 
     constructor(private psService: userProviderService,
                 private modalService: NgbModal) {
+                private route:ActivatedRoute) {
     }
 
     ngOnInit() {
+        this.route.params.subscribe(params => {
+
+            PerfilPSComponent.serviceProviderKey= params['serviceProviderKey']; // (+) converts string 'id' to a number
+
+            // In a real app: dispatch action to load the details here.
+        });
         this.datosPsServicio = this.psService.getProviderInfo();
 
     }

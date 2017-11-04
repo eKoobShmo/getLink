@@ -29,13 +29,15 @@ export class GaleriaComponent implements OnInit {
 
     open(index: number) {
         let arrayImages = this.multimediaService.getMultimediaFromArray(this.galeriaFotos);
-
         //mandando un input a GalleryComponent
         const modalRef = this.modalService.open(GalleryComponent);
         modalRef.componentInstance.index = index;
         modalRef.componentInstance.arrayImages = arrayImages;
-
-
     }
+  ngOnInit() {
+      this.galeriaFotos=this.psService.getGalleryPhotos();
+      // console.log(this.galeriaFotos);
+ 
+  }
 
 }
