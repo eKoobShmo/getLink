@@ -5,7 +5,7 @@ export const environment = {
         authDomain: "citylink-9412a.firebaseapp.com",
         databaseURL: "https://citylink-9412a.firebaseio.com",
         projectId: "citylink-9412a",
-        storageBucket: "",
+        storageBucket: "citylink-9412a.appspot.com",
         messagingSenderId: "380042811965"
     }
 };

@@ -20,8 +20,7 @@ import { CargaComponent } from './modals/carga/carga.component';
 @NgModule({
     declarations: [
         AppComponent,
-        GalleryComponent,
-        DropImagesDirective
+        GalleryComponent
     ],
     imports: [
         FormsModule,

@@ -20,7 +20,7 @@
 
                     <div class="row">
                         <div class="col-10">
-                            <span class="d-block" style="font-size: 14px">{{ userName }}</span>
+                            <span class="d-block" style="font-size: 14px">{{ userName}}</span>
                             <span style="font-size: 10px; color: lightslategrey;">{{ date | formatDate }}</span>
                         </div>
                         <div class="col-2">
@@ -31,18 +31,17 @@
             </div>
             <div class="row">
                 <div class="col-12 m-t-15">
-                        <!--<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad deleniti distinctio-->
-                        <!--doloremque earum excepturi exercitationem illum incidunt iste laudantium magnam molestiae, molestias-->
-                        <!--necessitatibus quam quas ratione tempora temporibus voluptate.-->
-                        <!--Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, architecto beatae cum dolore-->
-                        <!--enim fugit hic illo maiores quis quo velit voluptatem. Alias atque cumque dolor dolore, facilis-->
-                        <!--labore reiciendis.</P>-->
                     <p>{{ comment }}</p>
-
                 </div>
-
-
             </div>
+            <div class="containerImageComment" *ngIf="adjuntos.length > 0">
+                <div class="row rowImageContainer">
+                    <div class="col-1" style="padding: 0;margin: 0" align="center" *ngFor="let adjunto of adjuntos">
+                        <img src="{{adjunto.url}}" alt="Adjunto" style="width: 30px; height: 30px;margin-bottom: 10px">
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
               <div class="col-12" align="left">
                 <span class="cursor-pointer m-l-5" style="color:cadetblue"> <i class="zmdi zmdi-comment-more m-r-5" ></i> Ver 5 comentarios más</span>

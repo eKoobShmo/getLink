@@ -12,7 +12,6 @@ import {PerfilPSComponent} from "../perfil-ps.component";
 export class TabComentarioComponent implements OnInit {
 
     comments:FirebaseListObservable<any[]>;
-    comments2:string[]=['hola'];
     id:string;
     constructor(private af:AngularFireDatabase,
                 private route:ActivatedRoute) {
