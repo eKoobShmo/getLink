@@ -3,17 +3,58 @@
         <div class="row">
             <div class="col-12">
                 <div class="m-t-20" align="center">
-                    <span class="" style="font-size: 30px; color: #2ABB9B">Reportar</span>
+                    <span class="f-s-30" style="color: #2ABB9B">Reportar</span>
                     <!--<i class="zmdi zmdi-close-circle-o"></i>-->
                 </div>
-                <div class="m-l-30 m-t-30"><input type="checkbox"><span class="m-l-10" style="font-size: 14px">Utilizo palabras atisonantes</span>
+                <!--CheckBoxs-->
+                <label class="custom-control custom-checkbox m-l-30 m-t-30">
+                    <input class="custom-control-input" type="checkbox">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description m-l-10 f-s-14"
+                    >Utilizo palabras atisonantes</span>
+                </label>
+                <label class="custom-control custom-checkbox m-l-30 m-t-15">
+                    <input class="custom-control-input" type="checkbox">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description m-l-10 f-s-14"
+                    >Me realizo un mal servicio</span>
+                </label>
+                <label class="custom-control custom-checkbox m-l-30 m-t-15">
+                    <input class="custom-control-input" type="checkbox">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description m-l-10 f-s-14"
+                    >No se presento/comunicó a realizar el servicio</span>
+                </label>
+                <div class="m-t-45">
+                    <!--<span class="m-l-30" style="font-size: 20px">Motivo:</span>-->
+                    <!--Escribe un comentario-->
+                    <div class="row">
+                        <div class="col-9" style="margin-top: 2%;">
+                            <textarea class="form-control m-l-30" placeholder="Escribe el motivo..." cols="30"
+                                      rows="5"></textarea>
+                        </div>
+                        <div class="col-1" style="margin-top: 5%" align="center">
+                            <div class="btnAdd m-l-30 m-t-15">
+                                <i class="zmdi zmdi-attachment-alt mt-25"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="m-l-30 m-t-15"><input type="checkbox"><span class="m-l-10" style="font-size: 14px">Me realizo un mal servicio</span>
+                <!--Imagenes adjuntas-->
+                <div class="m-l-15 m-r-15">
+                    <div class="row attachedImagesContainer">
+                        <div class="col-1 m-t-30" *ngFor="let images of listImage">
+                            <img class="miniatureImage" src="{{images.image}}" alt="">
+                            <!--<img class="miniatureImage" src="../../../assets/images/plomero2.PNG" alt="">-->
+                        </div>
+                    </div>
                 </div>
-                <div class="m-l-30 m-t-15"><input type="checkbox"><span class="m-l-10" style="font-size: 14px">No se presento/comunicó a realizar el servicio</span>
-                </div>
-                <div class="m-t-20">
-                    <span class="m-l-30" style="font-size: 18px">Motivo</span>
+                <!--Boton enviar-->
+                <div align="center">
+                    <button class="btn btn-success btn-lg m-t-30 m-b-20"
+                            style="border-radius: 5px 5px 5px 5px">
+                        Enviar
+                    </button>
                 </div>
             </div>
         </div>
