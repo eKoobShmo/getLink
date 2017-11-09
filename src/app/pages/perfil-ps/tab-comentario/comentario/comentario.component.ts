@@ -21,7 +21,6 @@ export class ComentarioComponent implements OnInit {
     ngOnInit() {
         this.response = this.af.list('prestadoresServicios/0/servicios/0/comentarios/' + this.key + '/adjuntos/', {preserveSnapshot: true})
             .subscribe(snapshots => {
-                // console.log("snapshots "+snapshots.values())
                 snapshots.forEach(snapshot => {
                     this.adjuntos.push(snapshot.val());
                 })

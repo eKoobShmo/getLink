@@ -1,5 +1,6 @@
 export interface photoGalleryInterface {
-    imageUrl:string;
+    adjuntoUrl:string;
     id:string;
     titulo:string;
+    tipo:number;
 }

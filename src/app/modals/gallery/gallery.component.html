@@ -1,3 +1,16 @@
-<p>
-  gallery works!
-</p>
+<section class="animated fadeIn">
+    <div class="containerDesignModal">
+        <div class="row">
+            <div class="col-12">
+                <div class="imageContainerModal " align="center" >
+                    <img class="animated" src="{{arrayImages[index].adjuntoUrl}}" style="width: 500px; height: 350px" alt="">
+                    <!--<i class="zmdi zmdi-close cursor-pointer" data-dismiss="modal" #closeBtn (click)="closeModal()"></i>-->
+                    <i class="zmdi zmdi-chevron-left cursor-pointer previousImage" (click)="previousAttached()"></i>
+                    <i class="zmdi zmdi-chevron-right cursor-pointer nextImage" (click)="nextAttached()"></i>
+                </div>
+            </div>
+        </div>
+        <!--Index de la foto {{index}}-->
+        <!--{{ arrayImages | json }}-->
+    </div>
+</section>

@@ -7,20 +7,16 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { SharedService } from "./shared/services/shared.service";
 
-
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
-import { GalleryComponent } from './modals/gallery/gallery.component';
 import { DropImagesDirective } from './directives/drop-images.directive';
-import { CargaComponent } from './modals/carga/carga.component';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        GalleryComponent
+        AppComponent
     ],
     imports: [
         FormsModule,
@@ -30,6 +26,7 @@ import { CargaComponent } from './modals/carga/carga.component';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, // imports firebase/database, only needed for database features
         AngularFireAuthModule
+
 
     ],
     providers: [

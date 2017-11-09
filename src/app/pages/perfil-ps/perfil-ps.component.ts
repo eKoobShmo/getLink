@@ -1,15 +1,15 @@
 //componentes
-import {Component, OnInit} from '@angular/core';
 
 //interfaces
 import {providerInterface} from '../../interfaces/perfil_ps.interface';
-import {aboutServiceProviderInterface} from "../../interfaces/acerca_de.interface";
 
 // servicios
 import {userProviderService} from "../../services/userProvider.service";
-import {alertService} from "../../services/alert.service";
-import {photoGalleryInterface} from "../../interfaces/galeria.interface";
+import {ReportComponent} from "../../modals/report/report.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+
 
 @Component({
     selector: 'app-perfil-ps',
@@ -29,9 +29,11 @@ export class PerfilPSComponent implements OnInit {
     tab: string = 'acercaDe';
 
     constructor(private psService: userProviderService,
-                private swal: alertService,
-                private route:ActivatedRoute) {
+                private modalService: NgbModal,
+                private route:ActivatedRoute){
+
     }
+
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -41,6 +43,13 @@ export class PerfilPSComponent implements OnInit {
             // In a real app: dispatch action to load the details here.
         });
         this.datosPsServicio = this.psService.getProviderInfo();
+
+    }
+
+    open() {
+        //mandando un input a ReportComponent
+        const modalRef = this.modalService.open(ReportComponent);
+
 
     }
 
