@@ -1,0 +1,27 @@
+@import "../../pages/login/login.component";
+@import "../../pages/perfil-ps/tab-comentario/enviar-comentario/enviar-comentario.component";
+
+.containerDesignModalReport {
+  width: 500px;
+  height: 550px;
+}
+
+.miniatureImage {
+  width: 30px;
+  height: 30px;
+}
+
+.attachedImagesContainer {
+  width: 480px;
+  height: 80px;
+  overflow-x: auto;
+  flex-wrap: unset
+}
+
+.f-s-30 {
+  font-size: 30px;
+}
+
+.f-s-14 {
+  font-size: 14px;
+}

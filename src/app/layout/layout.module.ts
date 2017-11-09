@@ -5,7 +5,7 @@ import { NgModule } from "@angular/core";
 import { LayoutRouting } from "./layout.routing";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
-import { ButtonsModule } from 'ngx-bootstrap';
+import {ButtonsModule, Ng2BootstrapModule} from 'ngx-bootstrap';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
@@ -38,6 +38,12 @@ import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase} from "angularfire2/database";
 import {FormatDatePipe} from "../pipes/formatDate.pipe";
 
+import {NgbModule, NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {GalleryComponent} from "../modals/gallery/gallery.component";
+import {ModalMultimediaService} from "../services/modal-multimedia.service";
+import {ReportComponent} from "../modals/report/report.component";
+
+
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -62,7 +68,9 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         FiltrosComponent,
         ListaPrestadoresServiciosComponent,
         EnviarComentarioComponent,
-        FormatDatePipe
+        FormatDatePipe,
+        GalleryComponent,
+        ReportComponent
 
     ],
     imports: [
@@ -73,12 +81,18 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         BsDropdownModule.forRoot(),
         ProgressbarModule.forRoot(),
         ButtonsModule.forRoot(),
-        PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
+        PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
+        NgbModule.forRoot(),
+        NgbModule
     ],
     providers: [
         alertService,
         AngularFireDatabase,
-        userProviderService
+        userProviderService,
+        NgbModal,
+        ModalMultimediaService,
+        NgbActiveModal
+
     ]
 })
 
