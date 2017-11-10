@@ -36,8 +36,8 @@
             </div>
             <div class="containerImageComment" *ngIf="adjuntos.length > 0">
                 <div class="row rowImageContainer">
-                    <div class="col-1" style="padding: 0;margin: 0" align="center" *ngFor="let adjunto of adjuntos">
-                        <img src="{{adjunto.url}}" alt="Adjunto" style="width: 30px; height: 30px;margin-bottom: 10px">
+                    <div  class="col-1" style="padding: 0;margin: 0" align="center" *ngFor="let adjunto of adjuntos;let i=index">
+                        <img  (click)="openImageModal(i)" src="{{adjunto.adjuntoUrl}}" alt="Adjunto" style="width: 30px; height: 30px;cursor: pointer;margin-bottom: 10px">
                     </div>
                 </div>
             </div>

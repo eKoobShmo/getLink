@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 import {FileItem} from "../models/fileItem";
 import * as firebase from 'firebase';
+import {MULTIMEDIA} from "../enums/enums";
 
 @Injectable()
 export class CargaMultimediaService {
@@ -38,7 +39,7 @@ export class CargaMultimediaService {
                   item.url = uploadTask.snapshot.downloadURL;
                   item.tamañoArchivo = uploadTask.snapshot.totalBytes;
                   item.estaSubiendo = false;
-                  this.guardarImagen({nombre: item.nombreArchivo, url: item.url}, key);
+                  this.guardarImagen({nombre: item.nombreArchivo, adjuntoUrl: item.url,tipo:MULTIMEDIA.IMAGE }, key);
               }
           )
 
