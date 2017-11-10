@@ -2,7 +2,7 @@
 <div class="body">
     <app-comentario *ngFor="let comment of comments | async" photo="{{ comment.foto }}"
                     userName="{{ comment.nombreUsuario }}" comment="{{ comment.comentario }}"
-                    date="{{ comment.fecha }}" hola="{{comments2}}">
+                    date="{{ comment.fecha }}" key="{{comment.key}}">
     </app-comentario>
 </div>
 <div class="footer">

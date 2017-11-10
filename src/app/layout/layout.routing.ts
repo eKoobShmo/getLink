@@ -8,6 +8,8 @@ import {TabComentarioComponent} from "../pages/perfil-ps/tab-comentario/tab-come
 import {PrestadoresServiciosComponent} from "../pages/prestadores-servicios/prestadores-servicios.component";
 import {GalleryComponent} from "../modals/gallery/gallery.component";
 import {ReportComponent} from "../modals/report/report.component";
+import {EnviarComentarioComponent} from "../pages/perfil-ps/tab-comentario/enviar-comentario/enviar-comentario.component";
+import {CargaComponent} from "../modals/carga/carga.component";
 
 const LAYOUT_ROUTES: Routes = [
     {
@@ -18,7 +20,7 @@ const LAYOUT_ROUTES: Routes = [
         {path: 'usuarios', loadChildren: '../pages/usuarios/usuarios.module#UsuariosModule'},
         {path: 'categorias', loadChildren: '../pages/categorias/categorias.module#CategoriasModule'},
         {
-            path: 'perfil-ps/:id',
+            path: 'perfil-ps/:serviceProviderKey',
             component: PerfilPSComponent,
             children: [
                 { path: 'acercaDe', component: AcercaDeComponent},
@@ -26,6 +28,7 @@ const LAYOUT_ROUTES: Routes = [
                 { path: 'comentarios', component: TabComentarioComponent},
                 { path: 'galeria', component: GaleriaComponent},
                 { path: 'ubicacion', component: UbicacionComponent},
+                {path: 'cargarMultimedia', component: CargaComponent},
                 { path: '**', component: AcercaDeComponent}
 
             ]

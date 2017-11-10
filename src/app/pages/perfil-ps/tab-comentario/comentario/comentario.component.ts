@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef} from '@angular/core';
+import {Component, OnInit, ElementRef, Input} from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 import {observable} from "rxjs/symbol/observable";
@@ -8,17 +8,22 @@ import {observable} from "rxjs/symbol/observable";
     selector: 'app-comentario',
     templateUrl: './comentario.component.html',
     styleUrls: ['./comentario.component.scss'],
-    inputs: ['photo', 'userName', 'comment', 'date','hola']
+    inputs: ['photo', 'userName', 'comment', 'date']
 })
 export class ComentarioComponent implements OnInit {
+    @Input() key;
+    response: FirebaseListObservable<any[]>;
+    adjuntos:any[] = [];
 
-    comments:FirebaseListObservable<any[]>;
-
-    constructor(private af:AngularFireDatabase) {
-
+    constructor(private af: AngularFireDatabase) {
     }
 
     ngOnInit() {
-        this.comments=this.af.list('prestadoresServicios/servicios/comentarios');
+        this.response = this.af.list('prestadoresServicios/0/servicios/0/comentarios/' + this.key + '/adjuntos/', {preserveSnapshot: true})
+            .subscribe(snapshots => {
+                snapshots.forEach(snapshot => {
+                    this.adjuntos.push(snapshot.val());
+                })
+            })
     }
 }
