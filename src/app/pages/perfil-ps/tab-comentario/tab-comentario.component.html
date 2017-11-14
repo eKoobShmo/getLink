@@ -1,5 +1,5 @@
-
-<div class="body" id="scrollbar">
+<div class="body" >
+    <span style="margin-left: 30px;">Numero de comentarios: {{lenghtComments}}</span>
     <app-comentario *ngFor="let comment of comments | async" photo="{{ comment.foto }}"
                     userName="{{ comment.nombreUsuario }}" comment="{{ comment.comentario }}"
                     date="{{ comment.fecha }}" key="{{comment.key}}">

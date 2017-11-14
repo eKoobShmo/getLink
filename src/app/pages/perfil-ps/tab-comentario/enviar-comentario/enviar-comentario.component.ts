@@ -66,11 +66,15 @@ export class EnviarComentarioComponent implements OnInit {
     }
 
     abrirCargaImagenes() {
-        const modalCargaRef = this.modalCargaImagenes.open(CargaComponent).result
-            .then((result) => {
+        const modalCargaRef = this.modalCargaImagenes.open(CargaComponent)
+            .result.then((result) => {
                 this.imagenesComentarios = result;
-                console.log("imagenes comentarios = ", this.imagenesComentarios)
+                // console.log("imagenes comentarios = ", this.imagenesComentarios)
+            },error =>{
+                console.log("se devolvio en promesa: " , this.imagenesComentarios)
+                // console.log("no devolvio nada")
             })
+
     }
 
     borrarImagen(index: number) {
