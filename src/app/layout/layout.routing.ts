@@ -10,13 +10,14 @@ import {GalleryComponent} from "../modals/gallery/gallery.component";
 import {ReportComponent} from "../modals/report/report.component";
 import {EnviarComentarioComponent} from "../pages/perfil-ps/tab-comentario/enviar-comentario/enviar-comentario.component";
 import {CargaComponent} from "../modals/carga/carga.component";
+import {LoginComponent} from "../pages/login/login.component";
 
 const LAYOUT_ROUTES: Routes = [
     {
         path: '', component: LayoutComponent, children: [
         //Home
-
         {path: '', redirectTo: 'usuarios', pathMatch: 'full'},
+
         {path: 'usuarios', loadChildren: '../pages/usuarios/usuarios.module#UsuariosModule'},
         {path: 'categorias', loadChildren: '../pages/categorias/categorias.module#CategoriasModule'},
         {

@@ -18,6 +18,7 @@ export class ComentarioComponent implements OnInit {
     @Input() key;
     response: FirebaseListObservable<any[]>;
     adjuntos:any[] = [];
+    favorite:boolean=false;
 
     constructor(private af: AngularFireDatabase,
                 private multimediaService:ModalMultimediaService,
@@ -43,4 +44,6 @@ export class ComentarioComponent implements OnInit {
         modalRef.componentInstance.index = index;
         modalRef.componentInstance.arrayImages = arrayImages;
     }
+
+
 }

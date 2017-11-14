@@ -3,6 +3,7 @@ import {commentInterface} from "../../../interfaces/comentario.interface";
 import{AngularFireDatabase,FirebaseListObservable} from "angularfire2/database";
 import{ActivatedRoute} from "@angular/router";
 import {PerfilPSComponent} from "../perfil-ps.component";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'app-tab-comentario',
@@ -11,8 +12,10 @@ import {PerfilPSComponent} from "../perfil-ps.component";
 })
 export class TabComentarioComponent implements OnInit {
 
-    comments:FirebaseListObservable<any[]>;
+    comments:Observable<any[]>;
     id:string;
+    lenghtComments:number;
+
     constructor(private af:AngularFireDatabase,
                 private route:ActivatedRoute) {
 
@@ -21,7 +24,9 @@ export class TabComentarioComponent implements OnInit {
     ngOnInit() {
 
            this.comments=this.af.list('prestadoresServicios/'+ PerfilPSComponent.serviceProviderKey +'/servicios/0/comentarios');
-
+           this.comments.subscribe((response)=>{
+               this.lenghtComments=response.length;
+           })
     }
 
 }

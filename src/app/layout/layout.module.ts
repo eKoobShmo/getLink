@@ -38,6 +38,9 @@ import {ReportComponent} from "../modals/report/report.component";
 import {CargaComponent} from "../modals/carga/carga.component";
 import {DropImagesDirective} from "../directives/drop-images.directive";
 import {AbbreviateNamePipe} from "../pipes/abbreviateName";
+import {LoginModalComponent} from "../pages/login/login-modal/login-modal.component";
+import {UserService} from "../services/user.service";
+import {LoginComponent} from "../pages/login/login.component";
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -68,7 +71,9 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         AbbreviateNamePipe,
         GalleryComponent,
         ReportComponent,
-        CargaComponent
+        CargaComponent,
+        LoginModalComponent
+
     ],
     imports: [
         CommonModule,
@@ -90,7 +95,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         CargaComponent,
         NgbActiveModal,
         NgbModal,
-        ModalMultimediaService
+        ModalMultimediaService,
+        UserService
     ]
 })
 
