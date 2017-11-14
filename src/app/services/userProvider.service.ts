@@ -2,12 +2,13 @@ import {Injectable} from "@angular/core";
 import {providerInterface} from "../interfaces/perfil_ps.interface";
 import {aboutServiceProviderInterface} from "../interfaces/acerca_de.interface";
 import {photoGalleryInterface} from "../interfaces/galeria.interface";
+import {AngularFireDatabase} from "angularfire2/database";
 
 @Injectable()
 export class userProviderService {
 
 
-    constructor() {
+    constructor(private db: AngularFireDatabase) {
 
     }
 
@@ -82,6 +83,10 @@ export class userProviderService {
             }]
 
         return galeriaFotos;
+    }
+
+    getServices(){
+        return this.db.list('servicios');
     }
 
 }
