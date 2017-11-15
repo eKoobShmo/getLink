@@ -58,7 +58,7 @@ l
                             <div align="center">
 
                                 <button class="btn btn-danger btn-lg m-t-30 m-b-20"
-                                        style=" border-radius: 5px 5px 5px 5px"><i
+                                        style=" border-radius: 5px 5px 5px 5px" (click)="open()"><i
                                         class="zmdi zmdi-alert-circle"></i>
                                     Reportar
                                 </button>
@@ -127,7 +127,7 @@ l
                             </ul>
                         </div>
                         <div class="card-body"
-                             style="overflow-y: auto; overflow-x: hidden; height: 500px; width: 100%; padding-right: 5%">
+                             style="overflow-y: auto; overflow-x: hidden; height: 500px; width: 100%; padding-right: 5%" id="scrollbar">
                             <router-outlet></router-outlet>
                         </div>
                     </div>

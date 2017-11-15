@@ -4,4 +4,5 @@ export interface commentInterface{
     comentario:string;
     fecha:string;
     poderComentar:boolean;
+    adjuntosUrl?:any;
 }

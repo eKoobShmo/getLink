@@ -26,6 +26,7 @@
 
 }
 
+
 .mt-25{
   margin-top:25%;
 }
@@ -52,4 +53,20 @@
   margin-top: 8%;
   width: 100px;
   position: absolute;
+}
+
+.deleteImageIcon{
+  font-size: 15px;
+  color: red;
+  top: 0;
+  cursor: pointer;
+  position: absolute;
+}
+
+.previousViewImages{
+  height: 60px;
+  width: 600px;
+  overflow-x: auto;
+  flex-wrap: unset;
+  margin-left: 60px;
 }
