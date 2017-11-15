@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AngularFireDatabase} from "angularfire2/database";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-lista-prestadores-servicios',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaPrestadoresServiciosComponent implements OnInit {
 
-  constructor() { }
+    servicesProviders:Observable<any[]>;
 
-  ngOnInit() {
-  }
+    constructor(private db: AngularFireDatabase) {
+        this.servicesProviders = db.list('prestadoresServicios', ref => ref.orderByChild().equalTo({key: 'informacionBasica'}));
+        // this.servicesProviders = db.list('prestadoresServicios');
+
+        console.log(this.servicesProviders);
+    }
+
+    ngOnInit() {
+    }
+
 
 }
