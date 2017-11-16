@@ -64,7 +64,6 @@ export class EnviarComentarioComponent implements OnInit {
         this.imagenesComentarios = [];
 
     }
-
     abrirCargaImagenes() {
         const modalCargaRef = this.modalCargaImagenes.open(CargaComponent)
             .result.then((result) => {

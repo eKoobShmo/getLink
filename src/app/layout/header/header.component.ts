@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
 
     showHeader() {
         this.userService.isAuthenticated()
-            .then(response => {
+            .then((response:any) => {
                 this.userLogged = true;
                 this.userEmail = response.email;
                 this.userName = response.displayName;

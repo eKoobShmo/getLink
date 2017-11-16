@@ -12,13 +12,18 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
     servicesProviders:Observable<any[]>;
 
     constructor(private db: AngularFireDatabase) {
-        this.servicesProviders = db.list('prestadoresServicios', ref => ref.orderByChild().equalTo({key: 'informacionBasica'}));
-        // this.servicesProviders = db.list('prestadoresServicios');
+        // this.servicesProviders = db.list('prestadoresServicios', ref => ref.orderByChild().equalTo({key: 'informacionBasica'}));
+        this.servicesProviders = db.list('servicios');
 
-        console.log(this.servicesProviders);
+        // console.log("prestadores: ",this.servicesProviders);
+        console.log(this.servicesProviders)
+        this.servicesProviders.subscribe((result:any)=>{
+            console.log("KeyResult: "+result.key)
+        })
     }
 
     ngOnInit() {
+
     }
 
 
