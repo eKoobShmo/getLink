@@ -1,8 +1,6 @@
 <section class="section-provedores">
 
-    <div class="card p-20" *ngFor="let service of servicesProviders | async" (click)="goToService(service.key)" >
-
-        <div class="row">
+        <div class="row"  *ngFor="let service of servicesProviders">
 
             <div class="col-2" align="center">
 
@@ -57,7 +55,7 @@
                 </div>
 
                 <div class="" align="right">
-                    <button class="btn btn-outline-success provedor-ver-perfil m-t-25" style="font-size: 14px">
+                    <button class="btn btn-outline-success provedor-ver-perfil m-t-25" style="font-size: 14px" (click)="open()">
                         Contratar ahora
                     </button>
                 </div>
@@ -66,6 +64,5 @@
 
         </div>
 
-    </div>
-
 </section>
+

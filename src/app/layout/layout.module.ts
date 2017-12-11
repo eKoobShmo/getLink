@@ -19,7 +19,7 @@ import {UbicacionComponent} from "../pages/perfil-ps/ubicacion/ubicacion.compone
 import {PerfilPSComponent, ProviderInfo} from "../pages/perfil-ps/perfil-ps.component";
 import {alertService} from "../services/alert.service";
 import {userProviderService} from "../services/userProvider.service";
-import{CargaMultimediaService} from "../services/carga-archivos.service.";
+import {CargaMultimediaService} from "../services/carga-archivos.service.";
 import {ComentarioComponent} from "../pages/perfil-ps/tab-comentario/comentario/comentario.component";
 import {TabComentarioComponent} from "../pages/perfil-ps/tab-comentario/tab-comentario.component";
 import {PrestadoresServiciosComponent} from "../pages/prestadores-servicios/prestadores-servicios.component";
@@ -41,6 +41,8 @@ import {AbbreviateNamePipe} from "../pipes/abbreviateName";
 import {LoginModalComponent} from "../pages/login/login-modal/login-modal.component";
 import {UserService} from "../services/user.service";
 import {LoginComponent} from "../pages/login/login.component";
+import {HireServiceComponent} from "../modals/hire-service/hire-service.component";
+
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -72,7 +74,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         GalleryComponent,
         ReportComponent,
         CargaComponent,
-        LoginModalComponent
+        LoginModalComponent,
+        HireServiceComponent
 
     ],
     imports: [
