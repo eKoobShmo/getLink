@@ -38,6 +38,7 @@ import {ReportComponent} from "../modals/report/report.component";
 import {CargaComponent} from "../modals/carga/carga.component";
 import {DropImagesDirective} from "../directives/drop-images.directive";
 import {AbbreviateNamePipe} from "../pipes/abbreviateName";
+import {HireServiceComponent} from "../modals/hire-service/hire-service.component";
 
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -68,7 +69,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         AbbreviateNamePipe,
         GalleryComponent,
         ReportComponent,
-        CargaComponent
+        CargaComponent,
+        HireServiceComponent
     ],
     imports: [
         CommonModule,

@@ -13,6 +13,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { DropImagesDirective } from './directives/drop-images.directive';
+import { HireServiceComponent } from './modals/hire-service/hire-service.component';
 
 @NgModule({
     declarations: [

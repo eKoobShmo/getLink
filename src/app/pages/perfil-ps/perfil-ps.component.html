@@ -56,12 +56,20 @@
                                 <label>{{datosPsServicio.horario}}</label>
                             </div>
                             <div align="center">
-
-                                <button class="btn btn-danger btn-lg m-t-30 m-b-20"
-                                        style=" border-radius: 5px 5px 5px 5px" (click)="open()"><i
-                                        class="zmdi zmdi-alert-circle"></i>
-                                    Reportar
+                                <div><button class="btn btn-success btn-lg m-t-20 m-b-10"
+                                             style=" border-radius: 5px 5px 5px 5px" (click)="openHire()">
+                                    <!--<i class="zmdi zmdi-alert-circle"></i>-->
+                                    Contratar
                                 </button>
+                                </div>
+                                <div>
+                                    <button class="btn btn-danger btn-lg"
+                                            style=" border-radius: 5px 5px 5px 5px" (click)="openReport()">
+                                        <!--<i class="zmdi zmdi-alert-circle"></i>-->
+                                        Reportar
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     </div>

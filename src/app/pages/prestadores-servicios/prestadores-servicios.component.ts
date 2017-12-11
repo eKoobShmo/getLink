@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HireServiceComponent} from "../../modals/hire-service/hire-service.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-prestadores-servicios',

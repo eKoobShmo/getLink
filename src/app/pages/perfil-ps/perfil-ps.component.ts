@@ -9,6 +9,7 @@ import {ReportComponent} from "../../modals/report/report.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ActivatedRoute} from "@angular/router";
 import {Component, OnInit} from '@angular/core';
+import {HireServiceComponent} from "../../modals/hire-service/hire-service.component";
 
 
 @Component({
@@ -46,11 +47,13 @@ export class PerfilPSComponent implements OnInit {
 
     }
 
-    open() {
+    openReport() {
         //mandando un input a ReportComponent
-        const modalRef = this.modalService.open(ReportComponent);
-
-
+        this.modalService.open(ReportComponent);
+    }
+    openHire() {
+        //mandando un input a ReportComponent
+        this.modalService.open(HireServiceComponent);
     }
 
 }
