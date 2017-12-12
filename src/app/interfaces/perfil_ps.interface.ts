@@ -1,6 +1,11 @@
 export interface providerInterface {
-    nombrePrestador: string;
+    nombre: string;
     puntuacion: string;
     telefono: number;
-    horario: string;
+    horario: object;
+    direccion:object;
+    descripcion:string;
+    email:string;
+    fotoUrl:string;
+    trabajos:object;
 }

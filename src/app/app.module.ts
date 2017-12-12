@@ -7,6 +7,7 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { SharedService } from "./shared/services/shared.service";
 
+
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';

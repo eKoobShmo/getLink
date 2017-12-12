@@ -2,62 +2,50 @@ import {Injectable} from "@angular/core";
 import {providerInterface} from "../interfaces/perfil_ps.interface";
 import {aboutServiceProviderInterface} from "../interfaces/acerca_de.interface";
 import {photoGalleryInterface} from "../interfaces/galeria.interface";
+import {AngularFireDatabase} from "angularfire2/database";
 import {MULTIMEDIA} from "../enums/enums";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class userProviderService {
 
 
-    constructor() {
+    constructor(private db: AngularFireDatabase) {
 
     }
 
-    getProviderInfo() {
-        let DatosPsServicio: providerInterface = {
-            nombrePrestador: 'Paola Gama',
-            puntuacion: '',
-            telefono: 6621501365,
-            horario: 'L M Mi J V'
-        };
+    getProviderInfo(key: string) {
+        let respuesta = this.db.object(`prestadoresServicios/${key}/informacionBasica`);
 
-        return DatosPsServicio;
+        return respuesta;
     }
 
-    getServiceInfo() {
-        let datosAcercaDe: aboutServiceProviderInterface = {
-            descripcionServicio: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate distinctio doloremque ea facere inventore iusto, magnam maiores, nam nisi officiis quas reiciendis sequi similique sint suscipit temporibus tenetur voluptatibus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate distinctio doloremque ea facere inventore iusto, magnam maiores, nam nisi officiis quas reiciendis sequi similique sint suscipit temporibus tenetur voluptatibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate distinctio doloremque ea facere inventore iusto, magnam maiores, nam nisi officiis quas reiciendis sequi similique sint suscipit temporibus tenetur voluptatibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            trabajosRealizados: [
-                {
-                    trabajo: "Reparar Fugas"
-                },
-                {
-                    trabajo: "Reparar Tuberias"
-                },
-                {
-                    trabajo: "Reparar Llaves de paso"
-                }],
-            telefono: 6621501365,
-            whatsapp: 6623397376,
-            email: 'paolaggd@gmail.com ',
-            calle: 'Navojoa',
-            numero: '1231',
-            colonia: 'Camino Real',
-            cp: 83178,
-            horario: 'L M M J V'
-        };
+    searchProviderServiceByTittle(tittle: string) {
 
-        return datosAcercaDe;
+        let providerServicesFound: any[] = [];
+        this.db.list('servicios/').subscribe((result: any) => {
+            if (!result) {
+                providerServicesFound = []
+            } else {
+                providerServicesFound = result.filter(it => it.titulo.toLowerCase().indexOf(tittle.toLowerCase()) >= 0);
+                console.log(providerServicesFound[0].titulo);
+            }
+        })
+        // return providerServicesFound;
+    }
+
+    getServiceInfo(key: string) { 
+        return this.db.object(`prestadoresServicios/${key}/trabajos`);
     }
 
     getGalleryPhotos() {
-        let galeriaFotos: photoGalleryInterface [] = [
-            {
-                adjuntoUrl: '../../../../assets/images/trabajoAlbanileria2.JPG',
-                // ../../../assets/images/trabajoAlbanileria2.JPG
-                id: 'albanileria1',
-                titulo: 'Casa casi terminada',
-                tipo: MULTIMEDIA.IMAGE
-            },
+        let galeriaFotos: photoGalleryInterface [] = [{
+            adjuntoUrl: '../../../../assets/images/trabajoAlbanileria2.JPG',
+            // ../../../assets/images/trabajoAlbanileria2.JPG
+            id: 'albanileria1',
+            titulo: 'Casa casi terminada',
+            tipo: MULTIMEDIA.IMAGE
+        },
             {
                 adjuntoUrl: '../../../../assets/images/trabajoAlbanileria3.JPG',
                 id: 'albanileria2',
@@ -90,6 +78,24 @@ export class userProviderService {
             }]
 
         return galeriaFotos;
+    }
+
+
+    getServices() {
+        return this.db.list('servicios')
+    }
+
+    addUserProviderToFavorites(uidUser: string, providerKey: string) {
+        this.db.list('usuarios/' + uidUser + '/favoritos').set(providerKey, 'true');
+    }
+
+    checkFavorites(uidUser: string, providerKey: string) {
+
+        return this.db.object('usuarios/' + uidUser + '/favoritos/' + providerKey);
+    }
+
+    removeUserProviderToFavorites(uidUser: string, providerKey: string) {
+        this.db.object('usuarios/' + uidUser + '/favoritos/' + providerKey).remove();
     }
 
 }

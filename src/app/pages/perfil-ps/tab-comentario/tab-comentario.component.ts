@@ -4,6 +4,7 @@ import{AngularFireDatabase,FirebaseListObservable} from "angularfire2/database";
 import{ActivatedRoute} from "@angular/router";
 import {PerfilPSComponent} from "../perfil-ps.component";
 import {Observable} from "rxjs/Observable";
+import{ProviderInfo} from "../perfil-ps.component";
 
 @Component({
     selector: 'app-tab-comentario',
@@ -23,7 +24,7 @@ export class TabComentarioComponent implements OnInit {
 
     ngOnInit() {
 
-           this.comments=this.af.list('prestadoresServicios/'+ PerfilPSComponent.serviceProviderKey +'/servicios/0/comentarios');
+           this.comments=this.af.list('prestadoresServicios/'+ ProviderInfo.serviceProviderKey +'/servicios/0/comentarios');
            this.comments.subscribe((response)=>{
                this.lenghtComments=response.length;
            })

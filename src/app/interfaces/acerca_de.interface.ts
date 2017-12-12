@@ -1,12 +1,6 @@
 export interface aboutServiceProviderInterface {
     descripcionServicio: string;
-    trabajosRealizados: any;
-    telefono:number;
-    whatsapp:number;
+    trabajos: any;
+    direccion: any;
     email: string;
-    calle: string;
-    numero: string;
-    colonia: string;
-    cp: number;
-    horario: string;
 }

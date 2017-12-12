@@ -19,6 +19,7 @@ const LOGIN_ROUTE = [
 
 @NgModule ({
   declarations: [
+      LoginComponent
 
   ],
   imports: [

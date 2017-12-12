@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireDatabase} from "angularfire2/database";
 import {Observable} from "rxjs/Observable";
+import {userProviderService} from "../../../services/userProvider.service";
+import {Router} from "@angular/router";
+import {SearchValues} from "../../../layout/header/search/search.component";
 
 @Component({
   selector: 'app-lista-prestadores-servicios',
@@ -11,20 +14,23 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
 
     servicesProviders:Observable<any[]>;
 
-    constructor(private db: AngularFireDatabase) {
-        // this.servicesProviders = db.list('prestadoresServicios', ref => ref.orderByChild().equalTo({key: 'informacionBasica'}));
-        this.servicesProviders = db.list('servicios');
+    constructor(private db: AngularFireDatabase,
+                private _userProvider:userProviderService,
+                private router:Router) {
 
-        // console.log("prestadores: ",this.servicesProviders);
-        console.log(this.servicesProviders)
-        this.servicesProviders.subscribe((result:any)=>{
-            console.log("KeyResult: "+result.key)
-        })
     }
 
     ngOnInit() {
-
+        this.servicesProviders=this._userProvider.getServices();
     }
 
+    goToService(key:string){
+        this.router.navigate([`/perfil-ps/${key}/acercaDe`]);
+    }
+
+    searchServiceProviders(textoAbuscar:string){
+        debugger
+        this._userProvider.searchProviderServiceByTittle(textoAbuscar);
+    }
 
 }
