@@ -3,7 +3,7 @@
 
     <div class="card p-20" *ngFor="let service of servicesProviders | async" (click)="goToService(service.$key)">
 
-        <div class="row" >
+        <div class="row" style="cursor: pointer;" >
 
             <div class="col-2" align="center">
 
