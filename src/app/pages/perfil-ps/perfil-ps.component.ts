@@ -1,20 +1,19 @@
 //componentes
+import {Component, OnInit} from '@angular/core';
+import {ReportComponent} from "../../modals/report/report.component";
+import {HireServiceComponent} from "../../modals/hire-service/hire-service.component";
 
 //interfaces
 import {providerInterface} from '../../interfaces/perfil_ps.interface';
 
 // servicios
 import {userProviderService} from "../../services/userProvider.service";
-import {ReportComponent} from "../../modals/report/report.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ActivatedRoute} from "@angular/router";
-
 import {Observable} from "rxjs/Observable";
 import {AcercaDeComponent} from "./acerca-de/acerca-de.component";
 import {UserService} from "../../services/user.service";
 import {AngularFireAuth} from "angularfire2/auth";
-import {Component, OnInit} from '@angular/core';
-import {HireServiceComponent} from "../../modals/hire-service/hire-service.component";
 
 @Component({
     selector: 'app-perfil-ps',
