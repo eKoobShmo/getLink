@@ -1,21 +1,19 @@
 //componentes
+import {Component, OnInit} from '@angular/core';
+import {ReportComponent} from "../../modals/report/report.component";
+import {HireServiceComponent} from "../../modals/hire-service/hire-service.component";
 
 //interfaces
 import {providerInterface} from '../../interfaces/perfil_ps.interface';
 
 // servicios
 import {userProviderService} from "../../services/userProvider.service";
-import {ReportComponent} from "../../modals/report/report.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ActivatedRoute} from "@angular/router";
-import {Component, OnInit, Output, Provider, ViewChild} from '@angular/core';
-import {FirebaseListObservable} from "angularfire2/database";
-import {observableToBeFn} from "rxjs/testing/TestScheduler";
 import {Observable} from "rxjs/Observable";
 import {AcercaDeComponent} from "./acerca-de/acerca-de.component";
 import {UserService} from "../../services/user.service";
 import {AngularFireAuth} from "angularfire2/auth";
-
 
 @Component({
     selector: 'app-perfil-ps',
@@ -79,9 +77,17 @@ export class PerfilPSComponent implements OnInit {
         this.psService.checkFavorites(this.idUser, ProviderInfo.serviceProviderKey).subscribe(result => {
             this.isFavorite = result.$value;
         });
-
     }
 
+    openReport() {
+        //mandando un input a ReportComponent
+        this.modalService.open(ReportComponent);
+    }
+
+    openHire() {
+        //mandando un input a ReportComponent
+        this.modalService.open(HireServiceComponent);
+    }
 
 }
 

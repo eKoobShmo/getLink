@@ -7,24 +7,38 @@
                     <!--<i class="zmdi zmdi-close-circle-o"></i>-->
                 </div>
                 <!--CheckBoxs-->
-                <label class="custom-control custom-checkbox m-l-30 m-t-30">
-                    <input class="custom-control-input" type="checkbox">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description m-l-10 f-s-14"
-                    >Utilizo palabras atisonantes</span>
-                </label>
-                <label class="custom-control custom-checkbox m-l-30 m-t-15">
-                    <input class="custom-control-input" type="checkbox">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description m-l-10 f-s-14"
-                    >Me realizo un mal servicio</span>
-                </label>
-                <label class="custom-control custom-checkbox m-l-30 m-t-15">
-                    <input class="custom-control-input" type="checkbox">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description m-l-10 f-s-14"
-                    >No se presento/comunicó a realizar el servicio</span>
-                </label>
+                <div>
+                    <label class="custom-control custom-checkbox m-l-30 m-t-30">
+                        <input class="custom-control-input" type="checkbox">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description m-l-10 f-s-14"
+                        >Utilizo palabras atisonantes</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="custom-control custom-checkbox m-l-30 m-t-15">
+                        <input class="custom-control-input" type="checkbox">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description m-l-10 f-s-14"
+                        >Me realizo un mal servicio</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="custom-control custom-checkbox m-l-30 m-t-15">
+                        <input class="custom-control-input" type="checkbox">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description m-l-10 f-s-14"
+                        >No se presento/comunicó a realizar el servicio</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="custom-control custom-checkbox m-l-30 m-t-15">
+                        <input class="custom-control-input" type="checkbox">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description m-l-10 f-s-14"
+                        >Otro...</span>
+                    </label>
+                </div>
                 <div class="m-t-45">
                     <!--<span class="m-l-30" style="font-size: 20px">Motivo:</span>-->
                     <!--Escribe un comentario-->
@@ -34,18 +48,35 @@
                                       rows="5"></textarea>
                         </div>
                         <div class="col-1" style="margin-top: 5%" align="center">
-                            <div class="btnAdd m-l-30 m-t-15">
+                            <div class="btnAdd m-l-30 m-t-15" (click)="abrirCargaImagenes()">
                                 <i class="zmdi zmdi-attachment-alt mt-25"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--Imagenes adjuntas-->
+
+                <!--<div class="m-l-15 m-r-15">-->
+                    <!--<div class="row attachedImagesContainer">-->
+                        <!--<div class="col-1 m-t-30" *ngFor="let images of listImage">-->
+                            <!--<img class="miniatureImage" src="{{images.image}}" alt="">-->
+                            <!--&lt;!&ndash;<img class="miniatureImage" src="../../../assets/images/plomero2.PNG" alt="">&ndash;&gt;-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!-- -&#45;&#45;&#45;&#45;&#45;&#45;-->
                 <div class="m-l-15 m-r-15">
                     <div class="row attachedImagesContainer">
-                        <div class="col-1 m-t-30" *ngFor="let images of listImage">
-                            <img class="miniatureImage" src="{{images.image}}" alt="">
-                            <!--<img class="miniatureImage" src="../../../assets/images/plomero2.PNG" alt="">-->
+                        <div class="col-3 m-t-30" align="center" *ngFor="let imagenes of imageReport; let i = index">
+                            <i class="zmdi zmdi-image-o" style="font-size: 20px">
+                                <i class="zmdi zmdi-close-circle deleteImageIcon" (click)="borrarImagen(i)"></i>
+                            </i>
+                            <div class="row">
+                                <div class="col-12">
+                                    {{imagenes.nombreArchivo | abbreviateName}}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

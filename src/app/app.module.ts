@@ -16,6 +16,10 @@ import { environment } from '../environments/environment';
 import {LoginComponent} from "./pages/login/login.component";
 import {alertService} from "./services/alert.service";
 
+import { DropImagesDirective } from './directives/drop-images.directive';
+import { HireServiceComponent } from './modals/hire-service/hire-service.component';
+
+
 @NgModule({
     declarations: [
         AppComponent,

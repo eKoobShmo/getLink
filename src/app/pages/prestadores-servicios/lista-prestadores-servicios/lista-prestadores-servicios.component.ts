@@ -3,7 +3,8 @@ import {AngularFireDatabase} from "angularfire2/database";
 import {Observable} from "rxjs/Observable";
 import {userProviderService} from "../../../services/userProvider.service";
 import {Router} from "@angular/router";
-import {SearchValues} from "../../../layout/header/search/search.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {HireServiceComponent} from "../../../modals/hire-service/hire-service.component";
 
 @Component({
   selector: 'app-lista-prestadores-servicios',
@@ -16,7 +17,8 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
 
     constructor(private db: AngularFireDatabase,
                 private _userProvider:userProviderService,
-                private router:Router) {
+                private router:Router,
+                private modalService:NgbModal) {
 
     }
 
@@ -30,6 +32,11 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
 
     searchServiceProviders(textoAbuscar:string){
         this._userProvider.searchProviderServiceByTittle(textoAbuscar);
+    }
+
+
+    open() {
+        this.modalService.open(HireServiceComponent);
     }
 
 }
