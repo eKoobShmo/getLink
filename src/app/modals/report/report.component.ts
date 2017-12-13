@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CargaComponent} from "../carga/carga.component";
+import {FileItem} from "../../models/fileItem";
 
 @Component({
     selector: 'app-report',
@@ -7,6 +9,8 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
     styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
+    imageReport:FileItem[];
+
     listImage: any[] = [
         {
             image: "../../../assets/images/plomero2.PNG"
@@ -34,7 +38,8 @@ export class ReportComponent implements OnInit {
         }
     ];
 
-    constructor(public activeModal: NgbActiveModal) {
+    constructor(public activeModal: NgbActiveModal,
+                private modalCargaImagenes: NgbModal,) {
 
     }
 
@@ -43,6 +48,18 @@ export class ReportComponent implements OnInit {
 
     closeModal() {
         this.activeModal.dismiss();
+    }
+
+    abrirCargaImagenes() {
+
+            this.modalCargaImagenes.open(CargaComponent).result
+            .then((result) => {
+                this.imageReport= result;
+            })
+    }
+
+    borrarImagen(index: number) {
+        this.imageReport.splice(index, 1);
     }
 
 

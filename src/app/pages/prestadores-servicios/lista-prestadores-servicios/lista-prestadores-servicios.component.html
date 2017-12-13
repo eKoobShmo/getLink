@@ -1,23 +1,26 @@
 <section class="section-provedores">
-
-
     <div class="card p-20" *ngFor="let service of servicesProviders | async" (click)="goToService(service.$key)">
-
-        <div class="row" style="cursor: pointer;" >
-
-            <div class="col-2" align="center">
-
+       <div class="row" style="cursor: pointer;" >
                 <div class="cursor-pointer">
 
                     <img [src]="service.imagenUrl" style="width: 100%;" alt="">
                     <label>Ver perfil</label>
                 </div>
 
-            </div>
+                <div class="col-2" align="center">
 
-            <div class="col-7">
+                    <div class="cursor-pointer">
+                        <img [src]="service.imagenUrl" style="width: 60px;height: 60px" alt="">
+                    </div>
+                    <div class="provedor-nombre">
+                        Ver Perfil
+                    </div>
 
-                <div class="p-r-0">
+                </div>
+
+                <div class="col-7">
+
+                    <div class="p-r-0">
                     <span style="font-size: 18px; cursor: pointer;">
                         {{ service.titulo }}
                     </span>
@@ -26,47 +29,43 @@
                 <div style="text-align: justify">
                     {{service.descripcion}}
                 </div>
-
-                <div class="m-t-10 p-l-0 provedor-estrellas">
-                    <i class="zmdi zmdi-star"></i>
-                    <i class="zmdi zmdi-star"></i>
-                    <i class="zmdi zmdi-star"></i>
-                    <i class="zmdi zmdi-star-half"></i>
-                    <i class="zmdi zmdi-star-outline"></i>
-                </div>
+                    <div class="m-t-10 p-l-0 provedor-estrellas">
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star"></i>
+                        <i class="zmdi zmdi-star-half"></i>
+                        <i class="zmdi zmdi-star-outline"></i>
+                    </div>
 
                 <div class="m-t-10" style="color: #3498db;">
-
                     Trabajos realizados ({{ service.trabajosRealizados }})
-
                 </div>
-            </div>
 
-            <div class="col-3">
-
-                <div class="" align="right">
-                    <div class="" style="    margin-right: 20px;
+                <div class="col-3">
+                    <div class="" align="right">
+                        <div class="" style="    margin-right: 20px;
     margin-top: -5px;
     margin-bottom: 5px;    color: #e74c3c; cursor: pointer;
     font-size: 25px;">
-                        <i class="zmdi zmdi-favorite"></i>
+                            <i class="zmdi zmdi-favorite"></i>
+                        </div>
                     </div>
-                </div>
 
-                <div style="font-size: 24px; color: #535353; font-weight: 400;" align="right">
-                    Desde $100
-                </div>
+                    <div style="font-size: 24px; color: #535353; font-weight: 400;" align="right">
+                        Desde $100
+                    </div>
 
-                <div class="" align="right">
-                    <button class="btn btn-outline-success provedor-ver-perfil m-t-25" style="font-size: 14px">
-                        Contratar ahora
-                    </button>
+                    <div class="" align="right">
+                        <button class="btn btn-outline-success provedor-ver-perfil m-t-25" style="font-size: 14px"
+                                (click)="open()">
+                            Contratar ahora
+                        </button>
+                    </div>
+
                 </div>
 
             </div>
-
-        </div>
-
     </div>
 
 </section>
+
