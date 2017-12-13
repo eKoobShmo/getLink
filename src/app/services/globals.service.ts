@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class GlobalsService {
 
   constructor() { }
 
-  static arrayProvidersFound:string[]=[];
+  static arrayProvidersFound:Observable<any[]>;
 
 
 }

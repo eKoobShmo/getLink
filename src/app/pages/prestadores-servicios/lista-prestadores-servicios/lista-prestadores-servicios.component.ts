@@ -5,6 +5,8 @@ import {userProviderService} from "../../../services/userProvider.service";
 import {Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {HireServiceComponent} from "../../../modals/hire-service/hire-service.component";
+import {GlobalsService} from "../../../services/globals.service";
+import {Broadcaster} from "../../../../assets/js/broadcaster";
 
 @Component({
   selector: 'app-lista-prestadores-servicios',
@@ -13,25 +15,36 @@ import {HireServiceComponent} from "../../../modals/hire-service/hire-service.co
 })
 export class ListaPrestadoresServiciosComponent implements OnInit {
 
-    servicesProviders:Observable<any[]>;
+    servicesProviders:any[];
+    servicesProvidersTmp:any[];
 
     constructor(private db: AngularFireDatabase,
                 private _userProvider:userProviderService,
                 private router:Router,
-                private modalService:NgbModal) {
+                private modalService:NgbModal,
+                private broadcaster: Broadcaster) {
 
     }
 
     ngOnInit() {
-        this.servicesProviders=this._userProvider.getServices();
+        this.getListOfProviders();
+
+        this.broadcaster.on<string>('busqueda')
+            .subscribe(message => {
+                this.servicesProvidersTmp = this.servicesProviders.filter((it:any) => it.titulo.toLowerCase().indexOf(message.toLowerCase()) >= 0);
+            });
+
+    }
+
+    getListOfProviders(){
+        this._userProvider.getServices().subscribe(result=>{
+            this.servicesProviders = result;
+            this.servicesProvidersTmp = result;
+        })
     }
 
     goToService(key:string){
         this.router.navigate([`/perfil-ps/${key}/acercaDe`]);
-    }
-
-    searchServiceProviders(textoAbuscar:string){
-        this._userProvider.searchProviderServiceByTittle(textoAbuscar);
     }
 
     openHire(keyPrestador:string) {
