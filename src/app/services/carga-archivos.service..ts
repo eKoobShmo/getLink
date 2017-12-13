@@ -9,7 +9,7 @@ export class CargaMultimediaService {
 
   //direccion donde se guardaran las imagenes del storage
   private  CARPETA_IMAGENES:string='img';
-  private  CARPETA_IMAGENES_COMENTARIOS:string="img/comentarios"
+  // private  CARPETA_IMAGENES_COMENTARIOS:string="img/comentarios";
 
   constructor(public af:AngularFireDatabase) { }
 
@@ -30,7 +30,7 @@ export class CargaMultimediaService {
 
           // referencia a una tarea de carga de firebase
           let uploadTask: firebase.storage.UploadTask =
-              storageRef.child(`${this.CARPETA_IMAGENES_COMENTARIOS}/${ item.nombreArchivo }`).put(item.archivo);
+              storageRef.child(`${this.CARPETA_IMAGENES}/${ item.nombreArchivo }`).put(item.archivo);
           uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
               (snapshot: any) => item.progreso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
               (error) => console.error("Error al subir", error),
@@ -50,8 +50,6 @@ export class CargaMultimediaService {
   private guardarImagen(imagen:any, key:string){
     this.af.list("prestadoresServicios/0/servicios/0/comentarios/" + key+"/adjuntos/").push(imagen);
   }
-   private guardarImagenComentario(imagen:any){
-    this.af.list(`/${this.CARPETA_IMAGENES_COMENTARIOS}`).push(imagen);
-  }
+
 
 }

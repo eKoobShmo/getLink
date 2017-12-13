@@ -9,7 +9,9 @@ import { LoginComponent } from "./login.component";
 //import {LoginComponent} from '../login/login.component'
 
 //Services
-import {alertService} from '../../services/alert.service'
+import {alertService} from '../../services/alert.service';
+import { LoginModalComponent } from './login-modal/login-modal.component'
+import {UserService} from "../../services/user.service";
 
 const LOGIN_ROUTE = [
   { path: '', component: LoginComponent }
@@ -17,7 +19,8 @@ const LOGIN_ROUTE = [
 
 @NgModule ({
   declarations: [
-    LoginComponent
+      LoginComponent
+
   ],
   imports: [
     FormsModule,

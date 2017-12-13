@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import {ListaPrestadoresServiciosComponent} from "../../../pages/prestadores-servicios/lista-prestadores-servicios/lista-prestadores-servicios.component";
 
 @Component({
   selector: 'header-search',
@@ -10,6 +11,12 @@ export class SearchComponent implements OnInit {
   searchActive:boolean = false;
   searchValue:string = '';
   searchFocused:boolean = false;
+  static searchService:string;
+
+    constructor(private _listaPrestadoresServicios:ListaPrestadoresServiciosComponent) { }
+
+    ngOnInit() {
+    }
 
   closeSearch() {
     this.searchActive = false; // Close the search block
@@ -17,8 +24,12 @@ export class SearchComponent implements OnInit {
     this.searchFocused = false;
   }
 
-  constructor() { }
+    sendSearchValue(texto:string){
+      SearchValues.stringToSearch = texto;
+      this._listaPrestadoresServicios.searchServiceProviders(SearchValues.stringToSearch);
+    }
 
-  ngOnInit() {
-  }
+}
+export class SearchValues {
+    public static stringToSearch: string;
 }

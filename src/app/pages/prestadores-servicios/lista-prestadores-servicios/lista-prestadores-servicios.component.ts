@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {AngularFireDatabase} from "angularfire2/database";
+import {Observable} from "rxjs/Observable";
+import {userProviderService} from "../../../services/userProvider.service";
+import {Router} from "@angular/router";
+import {SearchValues} from "../../../layout/header/search/search.component";
 
 @Component({
   selector: 'app-lista-prestadores-servicios',
@@ -7,9 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaPrestadoresServiciosComponent implements OnInit {
 
-  constructor() { }
+    servicesProviders:Observable<any[]>;
 
-  ngOnInit() {
-  }
+    constructor(private db: AngularFireDatabase,
+                private _userProvider:userProviderService,
+                private router:Router) {
+
+    }
+
+    ngOnInit() {
+        this.servicesProviders=this._userProvider.getServices();
+    }
+
+    goToService(key:string){
+        this.router.navigate([`/perfil-ps/${key}/acercaDe`]);
+    }
+
+    searchServiceProviders(textoAbuscar:string){
+        debugger
+        this._userProvider.searchProviderServiceByTittle(textoAbuscar);
+    }
 
 }

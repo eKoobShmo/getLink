@@ -8,7 +8,13 @@ import {userProviderService} from "../../services/userProvider.service";
 import {ReportComponent} from "../../modals/report/report.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ActivatedRoute} from "@angular/router";
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, Provider, ViewChild} from '@angular/core';
+import {FirebaseListObservable} from "angularfire2/database";
+import {observableToBeFn} from "rxjs/testing/TestScheduler";
+import {Observable} from "rxjs/Observable";
+import {AcercaDeComponent} from "./acerca-de/acerca-de.component";
+import {UserService} from "../../services/user.service";
+import {AngularFireAuth} from "angularfire2/auth";
 
 
 @Component({
@@ -17,40 +23,69 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./perfil-ps.component.scss']
 })
 export class PerfilPSComponent implements OnInit {
+    // serviceProviderKey: string;
+    datosPsServicio: Observable<providerInterface>;
 
-
-    datosPsServicio: providerInterface;
-
-    showHeart:boolean=false;
-    showHeartFull:boolean = true;
-    // showHeart:boolean=true;
-
-    static serviceProviderKey:string;
+    showHeart: boolean = false;
+    showHeartFull: boolean = false;
     tab: string = 'acercaDe';
+    idUser: string;
+    isFavorite: boolean;
+    arrayFavorites: any[] = [];
 
     constructor(private psService: userProviderService,
                 private modalService: NgbModal,
-                private route:ActivatedRoute){
+                private route: ActivatedRoute,
+                private userService: UserService,
+                private afAuth: AngularFireAuth) {
 
+        this.afAuth.auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.idUser = user.uid;
+                // this.psService.addUserProviderToFavorites(this.idUser,ProviderInfo.serviceProviderKey)
+                this.checkFavorite();
+            }
+        });
     }
-
 
     ngOnInit() {
         this.route.params.subscribe(params => {
-
-            PerfilPSComponent.serviceProviderKey= params['serviceProviderKey']; // (+) converts string 'id' to a number
-
-            // In a real app: dispatch action to load the details here.
+            ProviderInfo.serviceProviderKey = params['serviceProviderKey'];
         });
-        this.datosPsServicio = this.psService.getProviderInfo();
-
+        this.psService.getProviderInfo(ProviderInfo.serviceProviderKey)
+            .subscribe((result: any) => {
+                this.datosPsServicio = result;
+                ProviderInfo.datosPsServicio = result;
+            })
     }
 
     open() {
-        //mandando un input a ReportComponent
-        const modalRef = this.modalService.open(ReportComponent);
+        this.modalService.open(ReportComponent);
+    }
 
+    addToFavoriteUserProvider() {
+        if(this.showHeartFull){
+            this.psService.removeUserProviderToFavorites(this.idUser,ProviderInfo.serviceProviderKey);
+            this.checkFavorite();
+            this.showHeartFull= false;
+        }else{
+            this.psService.addUserProviderToFavorites(this.idUser,ProviderInfo.serviceProviderKey);
+            this.checkFavorite();
+            this.showHeartFull = true;
+        }
+    }
+
+    checkFavorite() {
+        this.psService.checkFavorites(this.idUser, ProviderInfo.serviceProviderKey).subscribe(result => {
+            this.isFavorite = result.$value;
+        });
 
     }
 
+
+}
+
+export class ProviderInfo {
+    public static serviceProviderKey: string;
+    public static datosPsServicio: any;
 }

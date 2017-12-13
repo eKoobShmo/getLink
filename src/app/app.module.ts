@@ -7,16 +7,19 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { SharedService } from "./shared/services/shared.service";
 
+
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
-import { DropImagesDirective } from './directives/drop-images.directive';
+import {LoginComponent} from "./pages/login/login.component";
+import {alertService} from "./services/alert.service";
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        LoginComponent
     ],
     imports: [
         FormsModule,
@@ -34,7 +37,8 @@ import { DropImagesDirective } from './directives/drop-images.directive';
         {
             provide: LocationStrategy,
             useClass: HashLocationStrategy
-        }
+        },
+        alertService
     ],
     bootstrap: [AppComponent]
 })

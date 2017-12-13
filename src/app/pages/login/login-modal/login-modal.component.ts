@@ -1,20 +1,18 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {userAuthInterface} from "../../interfaces/user.interface";
-import {Observable} from 'rxjs/Observable';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import {AngularFireAuth} from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-import {alertService} from '../../services/alert.service'
-import {error} from "util";
+import {Component,ElementRef,OnInit,ViewChild} from "@angular/core";
+import {userAuthInterface} from "../../../interfaces/user.interface";
 
+import {Observable} from 'rxjs/observable';
+import {AngularFireDatabase,FirebaseListObservable} from "angularfire2/database";
+import {AngularFireAuth} from "angularfire2/auth";
+import * as firebase from 'firebase/app';
+import {alertService} from "../../../services/alert.service";
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+  selector: 'app-login-modal',
+  templateUrl: './login-modal.component.html',
+  styleUrls: ['./login-modal.component.scss']
 })
-
-export class LoginComponent implements OnInit {
+export class LoginModalComponent implements OnInit {
 
     // Declaracion de variables
     ShowVerifyPass: boolean = false;
@@ -51,8 +49,8 @@ export class LoginComponent implements OnInit {
                 private afAuth: AngularFireAuth,
                 private alertService: alertService) {
 
-        afAuth.auth.onAuthStateChanged((user) => {
-            if (user) {
+        afAuth.auth.onAuthStateChanged((user)=> {
+            if(user){
                 window.location.href = '#/categorias';
             }
         });
@@ -69,10 +67,7 @@ export class LoginComponent implements OnInit {
     // Metodos
 
     authFacebook() {
-        this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-            .catch((error: any)=>{
-                this.getErrorAuth(error.code);
-            });
+        this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
     }
 
     authGoogle() {
@@ -88,16 +83,16 @@ export class LoginComponent implements OnInit {
     registerUser(user: userAuthInterface) {
 
         if (!this.errorInRegisterFields(user)) {
-            this.isLoading = true;
+            this.isLoading=true;
             this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.pass).then((response: any) => {
-                this.afAuth.auth.currentUser.sendEmailVerification().then(response => {
-                    console.log("Resuelto " + response)
+                this.afAuth.auth.currentUser.sendEmailVerification().then(response=>{
+                    console.log("Resuelto "+response)
                     // response.emailVerified=true;
-                }).catch(error => {
+                }).catch(error=>{
                     console.log(error)
                 })
-                this.isLoading = false;
-                this.alertService.confirmSuccess("Usuario Registrado Correctamente", "Te hemos enviado un link a tu correo" +
+                this.isLoading=false;
+                this.alertService.confirmSuccess("Usuario Registrado Correctamente","Te hemos enviado un link a tu correo" +
                     " da click en el para entrar a la app");
                 this.userInfo.set(response.uid, {
                     'email': user.email,
@@ -105,7 +100,7 @@ export class LoginComponent implements OnInit {
                 });
 
             }).catch((error: any) => {
-                this.isLoading = false;
+                this.isLoading=false;
                 this.getErrorAuth(error.code);
 
             })
@@ -273,16 +268,6 @@ export class LoginComponent implements OnInit {
 
             case 'auth/weak-password':
                 this.alertService.confirmError("Contraseña débil", "La contraseña debe contener al menos 6 digitos")
-
-                    .then((response) => {
-                        this.passRef.nativeElement.focus();
-                        this.errorPass = true;
-                        this.errorVerifyPass = true;
-                    });
-                break;
-
-            case 'auth/account-exists-with-different-credential':
-                this.alertService.confirmError("Cuenta duplicada", "El correo que deseas utilizar ya es utilizado en otra forma de iniciar sesión (Redes Sociales o Correo Electrónico)")
 
                     .then((response) => {
                         this.passRef.nativeElement.focus();

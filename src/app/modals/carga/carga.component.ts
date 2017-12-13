@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'
 import {FileItem} from "../../models/fileItem";
 import {CargaMultimediaService} from "../../services/carga-archivos.service.";
@@ -16,7 +16,21 @@ export class CargaComponent implements OnInit {
   archivos:FileItem[]=[];
 
   constructor(private activeModal:NgbActiveModal,
-             private _cargaMultimediaService : CargaMultimediaService) { }
+             private _cargaMultimediaService : CargaMultimediaService) {
+
+
+  }
+  @HostListener('click',['$event.target'])
+
+  public onClick(event:any){
+
+      if(event.className=="modal-backdrop"){
+          this.activeModal.close(this.archivos);
+          console.log("hola")
+      }else{
+        console.log("algo")
+      }
+  }
 
   ngOnInit() {
   }
@@ -38,5 +52,6 @@ export class CargaComponent implements OnInit {
   closeModal(){
     this.activeModal.close(this.archivos);
   }
+
 
 }
