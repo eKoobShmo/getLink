@@ -5,6 +5,7 @@ import {photoGalleryInterface} from "../interfaces/galeria.interface";
 import {AngularFireDatabase} from "angularfire2/database";
 import {MULTIMEDIA} from "../enums/enums";
 import {Observable} from "rxjs/Observable";
+import {GlobalsService} from "./globals.service";
 
 @Injectable()
 export class userProviderService {
@@ -28,7 +29,7 @@ export class userProviderService {
                 providerServicesFound = []
             } else {
                 providerServicesFound = result.filter(it => it.titulo.toLowerCase().indexOf(tittle.toLowerCase()) >= 0);
-                console.log(providerServicesFound[0].titulo);
+                GlobalsService.arrayProvidersFound = providerServicesFound;
             }
         })
         // return providerServicesFound;

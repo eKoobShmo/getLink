@@ -29,7 +29,6 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
     }
 
     searchServiceProviders(textoAbuscar:string){
-        debugger
         this._userProvider.searchProviderServiceByTittle(textoAbuscar);
     }
 
