@@ -34,9 +34,10 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
         this._userProvider.searchProviderServiceByTittle(textoAbuscar);
     }
 
-
-    open() {
+    openHire() {
+        //mandando un input a ReportComponent
         this.modalService.open(HireServiceComponent);
     }
+
 
 }
