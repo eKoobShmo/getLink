@@ -42,6 +42,9 @@ import {LoginModalComponent} from "../pages/login/login-modal/login-modal.compon
 import {UserService} from "../services/user.service";
 import {LoginComponent} from "../pages/login/login.component";
 import {HireServiceComponent} from "../modals/hire-service/hire-service.component";
+import Global = NodeJS.Global;
+import {GlobalsService} from "../services/globals.service";
+import {Broadcaster} from "../../assets/js/broadcaster";
 
 
 
@@ -101,8 +104,10 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ModalMultimediaService,
         UserService,
         ProviderInfo,
+        GlobalsService,
         SearchValues,
-        ListaPrestadoresServiciosComponent
+        ListaPrestadoresServiciosComponent,
+        Broadcaster
     ]
 })
 

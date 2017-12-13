@@ -22,17 +22,21 @@ export class userProviderService {
     }
 
     searchProviderServiceByTittle(tittle: string) {
-
-        let providerServicesFound: any[] = [];
-        this.db.list('servicios/').subscribe((result: any) => {
-            if (!result) {
-                providerServicesFound = []
-            } else {
-                providerServicesFound = result.filter(it => it.titulo.toLowerCase().indexOf(tittle.toLowerCase()) >= 0);
-                GlobalsService.arrayProvidersFound = providerServicesFound;
-            }
+        debugger
+        return new Promise((resolve,reject)=>{
+            let providerServicesFound: Observable<any[]>;
+            this.db.list('servicios/').subscribe((result: any) => {
+                if (!result) {
+                    providerServicesFound = null;
+                    reject()
+                } else {
+                    providerServicesFound = result.filter(it => it.titulo.toLowerCase().indexOf(tittle.toLowerCase()) >= 0);
+                    GlobalsService.arrayProvidersFound = providerServicesFound;
+                }
+            });
+            resolve(GlobalsService.arrayProvidersFound);
         })
-        // return providerServicesFound;
+
     }
 
     getServiceInfo(key: string) { 
