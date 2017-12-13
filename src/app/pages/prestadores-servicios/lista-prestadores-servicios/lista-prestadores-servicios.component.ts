@@ -34,9 +34,12 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
         this._userProvider.searchProviderServiceByTittle(textoAbuscar);
     }
 
-    openHire() {
+    openHire(keyPrestador:string) {
         //mandando un input a ReportComponent
-        this.modalService.open(HireServiceComponent);
+
+        const modalRef=this.modalService.open(HireServiceComponent);
+        modalRef.componentInstance.keyPrestador=keyPrestador;
+
     }
 
 

@@ -42,6 +42,7 @@ import {LoginModalComponent} from "../pages/login/login-modal/login-modal.compon
 import {UserService} from "../services/user.service";
 import {LoginComponent} from "../pages/login/login.component";
 import {HireServiceComponent} from "../modals/hire-service/hire-service.component";
+import {UpdateInfoComponent} from "../modals/update-info/update-info.component";
 
 
 
@@ -75,7 +76,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ReportComponent,
         CargaComponent,
         LoginModalComponent,
-        HireServiceComponent
+        HireServiceComponent,
+        UpdateInfoComponent
 
     ],
     imports: [
@@ -103,6 +105,9 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ProviderInfo,
         SearchValues,
         ListaPrestadoresServiciosComponent
+    ],
+    entryComponents:[
+        UpdateInfoComponent
     ]
 })
 

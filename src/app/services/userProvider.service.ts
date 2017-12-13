@@ -35,6 +35,9 @@ export class userProviderService {
         // return providerServicesFound;
     }
 
+    getProviderInfoHire(key: string){
+      return  this.db.object('servicios/'+key)
+    }
     getServiceInfo(key: string) { 
         return this.db.object(`prestadoresServicios/${key}/trabajos`);
     }
