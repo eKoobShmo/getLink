@@ -17,12 +17,12 @@
                                 </div>
                             </div>
                             
-                            <div class="heartBackground" style="cursor: pointer" (click)="addToFavoriteUserProvider()">
+                            <div class="heartBackground" style="cursor: pointer" (click)="addOrRemoveToFavoriteUserProvider()">
 
                                 <i class="zmdi zmdi-favorite heartPosition" align="center"
                                    *ngIf="isFavorite"></i>
                                 <i class="zmdi zmdi-favorite-outline heartPosition" align="center"
-                                   *ngIf="isFavorite==null"></i>
+                                   *ngIf="!isFavorite"></i>
 
                             </div>
                             <!--<i class="zmdi zmdi-circle-o zmdi-hc-5x"></i>-->

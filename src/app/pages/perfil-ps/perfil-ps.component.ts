@@ -8,12 +8,12 @@ import {providerInterface} from '../../interfaces/perfil_ps.interface';
 
 // servicios
 import {userProviderService} from "../../services/userProvider.service";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import {AcercaDeComponent} from "./acerca-de/acerca-de.component";
 import {UserService} from "../../services/user.service";
 import {AngularFireAuth} from "angularfire2/auth";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap"
 
 @Component({
     selector: 'app-perfil-ps',
@@ -22,7 +22,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 })
 export class PerfilPSComponent implements OnInit {
     // serviceProviderKey: string;
-    datosPsServicio: Observable<providerInterface>;
+    datosPsServicio: providerInterface;
 
     showHeart: boolean = false;
     showHeartFull: boolean = false;
@@ -37,13 +37,7 @@ export class PerfilPSComponent implements OnInit {
                 private userService: UserService,
                 private afAuth: AngularFireAuth) {
 
-        this.afAuth.auth.onAuthStateChanged((user) => {
-            if (user) {
-                this.idUser = user.uid;
-                // this.psService.addUserProviderToFavorites(this.idUser,ProviderInfo.serviceProviderKey)
-                this.checkFavorite();
-            }
-        });
+
     }
 
     ngOnInit() {
@@ -55,28 +49,36 @@ export class PerfilPSComponent implements OnInit {
                 this.datosPsServicio = result;
                 ProviderInfo.datosPsServicio = result;
             })
+        this.afAuth.auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.idUser = user.uid;
+                this.checkFavorite(user.uid);
+            }
+        });
+
     }
 
     open() {
         this.modalService.open(ReportComponent);
     }
 
-    addToFavoriteUserProvider() {
-        if(this.showHeartFull){
-            this.psService.removeUserProviderToFavorites(this.idUser,ProviderInfo.serviceProviderKey);
-            this.checkFavorite();
-            this.showHeartFull= false;
-        }else{
-            this.psService.addUserProviderToFavorites(this.idUser,ProviderInfo.serviceProviderKey);
-            this.checkFavorite();
-            this.showHeartFull = true;
+    addOrRemoveToFavoriteUserProvider() {
+        if (this.isFavorite) {
+            this.psService.removeUserProviderToFavorites(this.idUser, ProviderInfo.serviceProviderKey);
+        } else {
+            this.psService.addUserProviderToFavorites(this.idUser, ProviderInfo.serviceProviderKey);
         }
     }
 
-    checkFavorite() {
-        this.psService.checkFavorites(this.idUser, ProviderInfo.serviceProviderKey).subscribe(result => {
-            this.isFavorite = result.$value;
-        });
+    checkFavorite(uid:string) {
+        this.psService.checkFavorites(uid, ProviderInfo.serviceProviderKey)
+            .subscribe(result => {
+                if(result.$value != null){
+                    this.isFavorite = result.$value;
+                }else{
+                    this.isFavorite = false;
+                }
+            })
     }
 
     openReport() {
