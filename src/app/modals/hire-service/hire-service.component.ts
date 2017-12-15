@@ -51,7 +51,6 @@ export class HireServiceComponent implements OnInit {
 
         this._userProviderService.getProviderInfoHire(this.keyPrestador).subscribe((result: any) => {
             this.infoProviderTemp = result;
-
         });
 
 
@@ -86,7 +85,7 @@ export class HireServiceComponent implements OnInit {
 
 
     verifyFieldsUser(field: userInfoInterface) {
-        debugger
+
         if ((field.nombre == "") || (field.telefono == null) || (field.domicilio.numero == null)
             || (field.domicilio.colonia == "") || (field.domicilio.calle == "")
         ) {
@@ -105,7 +104,9 @@ export class HireServiceComponent implements OnInit {
         })
     }
 
-    sendMessageToProviderService() {
+    sendMessageToProviderService(providerKey:string,servicio:string,userKey:string) {
+        debugger
+        this._userService.sendNotificationUserProvider(providerKey,this.infoUser,servicio,this.uid);
         this.showMessage();
     }
 
