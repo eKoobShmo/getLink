@@ -1,6 +1,6 @@
 .card-size{
   height:300px;
-  width: 100%;
+  width: 300px;
   cursor: pointer;
 }
 .style-CardHeader{
@@ -36,4 +36,11 @@
   width: 50%;
   margin-top: 3%;
   background-size: cover;
+}
+.shadow{
+  box-shadow: 10px 10px 5px -6px rgba(148,148,148,1);
+}
+
+.displayAlgo{
+  flex-wrap: unset;
 }
