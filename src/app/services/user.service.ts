@@ -25,11 +25,16 @@ export class UserService {
     }
 
     updateUserInfo(uid:string,infoUser:userInfoInterface){
-        return this.db.list('usuarios/').update(uid,infoUser)
+         this.db.list('usuarios/').update(uid,infoUser)
+    }
+
+    getUserFavorites(uid:string){
+        return this.db.list('usuarios/'+uid+"/favoritos")
     }
 
     getInfoUser(uid:string){
         return this.db.object('usuarios/'+uid)
     }
+
 
 }

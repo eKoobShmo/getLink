@@ -9,6 +9,7 @@ import {userInfoInterface} from "../../interfaces/userInfo";
 import {UpdateInfoComponent} from "../update-info/update-info.component";
 import {Globals} from "../../services/globals.service";
 import set = Reflect.set;
+import {setTime} from "ngx-bootstrap/timepicker/timepicker.utils";
 
 
 @Component({
@@ -23,7 +24,7 @@ export class HireServiceComponent implements OnInit {
     viewMessage: boolean = false;
     closeMessage: boolean = false;
     emptyFields: boolean = false;
-    uid:string;
+    uid: string;
     infoUser: userInfoInterface = {
         nombre: "",
         domicilio: {
@@ -38,10 +39,10 @@ export class HireServiceComponent implements OnInit {
     constructor(private _userProviderService: userProviderService,
                 private _userService: UserService,
                 private _modalService: NgbModal,
-                private _activeModal:NgbActiveModal) {
+                private _activeModal: NgbActiveModal) {
 
         this._userService.isAuthenticated().then((response: any) => {
-            this.uid=response.uid;
+            this.uid = response.uid;
         });
 
     }
@@ -50,55 +51,65 @@ export class HireServiceComponent implements OnInit {
 
         this._userProviderService.getProviderInfoHire(this.keyPrestador).subscribe((result: any) => {
             this.infoProviderTemp = result;
+
         });
-        this._userService.getInfoUser(this.uid).subscribe((result:any)=>{
 
-            if(result!=null){
-                this.infoUser.telefono=result.telefono;
-                this.infoUser.nombre=result.nombre;
-                this.infoUser.domicilio.calle=result.domicilio.calle;
-                this.infoUser.domicilio.colonia=result.domicilio.colonia;
-                this.infoUser.domicilio.cp=result.domicilio.cp;
-                this.infoUser.domicilio.numero=result.domicilio.numero;
 
-            }else{
-                this.infoUser.nombre="";
-                this.infoUser.telefono=null;
-                this.infoUser.domicilio.calle="";
-                this.infoUser.domicilio.cp=null;
-                this.infoUser.domicilio.colonia="";
-                this.infoUser.domicilio.numero=null;
+
+        this._userService.getInfoUser(this.uid).subscribe((result: any) => {
+
+            if (result != null) {
+                this.infoUser.telefono = result.telefono;
+                this.infoUser.nombre = result.nombre;
+                this.infoUser.domicilio.calle = result.domicilio.calle;
+                this.infoUser.domicilio.colonia = result.domicilio.colonia;
+                this.infoUser.domicilio.cp = result.domicilio.cp;
+                this.infoUser.domicilio.numero = result.domicilio.numero;
+
+            } else {
+                this.infoUser.nombre = "";
+                this.infoUser.telefono = null;
+                this.infoUser.domicilio.calle = "";
+                this.infoUser.domicilio.cp = null;
+                this.infoUser.domicilio.colonia = "";
+                this.infoUser.domicilio.numero = null;
             }
 
         });
-        debugger
-        this.verifyFieldsUser(this.infoUser);
+
+        setTimeout(()=>{
+            this.verifyFieldsUser(this.infoUser);
+        },100)
+
     }
 
+
+
     verifyFieldsUser(field: userInfoInterface) {
+        debugger
         if ((field.nombre == "") || (field.telefono == null) || (field.domicilio.numero == null)
-            || (field.domicilio.colonia == "")|| (field.domicilio.calle == "")
+            || (field.domicilio.colonia == "") || (field.domicilio.calle == "")
         ) {
             this.emptyFields = true;
-        }else{
+        } else {
             this.emptyFields = false;
         }
     }
 
     openUpdateInfo() {
-       const modalUpdateInfoRef = this._modalService.open(UpdateInfoComponent, Globals.optionModalLg);
-       modalUpdateInfoRef.componentInstance.uid = this.uid;
-       modalUpdateInfoRef.result.then((response:any)=>{
-           this.infoUser=response;
-           this.verifyFieldsUser(this.infoUser);
-       })
+        const modalUpdateInfoRef = this._modalService.open(UpdateInfoComponent, Globals.optionModalLg);
+        modalUpdateInfoRef.componentInstance.uid = this.uid;
+        modalUpdateInfoRef.result.then((response: any) => {
+            this.infoUser = response;
+            this.verifyFieldsUser(this.infoUser);
+        })
     }
 
-    sendMessageToProviderService(){
+    sendMessageToProviderService() {
         this.showMessage();
     }
 
-    showMessage(){
+    showMessage() {
         this.viewMessage = true;
         this.closeMessage = false;
         setTimeout(() => {
