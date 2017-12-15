@@ -29,7 +29,7 @@
                     <div class="col-lg-3 col-md-5 col-sm-12 col-12" *ngFor="let c of categoria">
                         <div class="card card-size cardCategorinasStyle" (click)="verServicio(c.id)"
                              align="center">
-                            <div class="card-body style-CardBody shadow" style="">
+                            <div class=" style-CardBody shadow" style="">
                                 <img src="{{ c.img }}" class="imagen" alt="">
                             </div>
                             <div class="card-footer p-b-0 style-CardFooter" (click)="verServicio(c.id)" align="center"
@@ -41,4 +41,47 @@
                 </div>
             <!--</div>-->
         <!--</div>-->
+    <div>
+        <span class="">
+            Contrata el servicio que desees en ? pasos !
+        </span>
+    </div>
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-3">
+            <!--<div class="card border-primary mb-3" style="max-width: 20rem;">-->
+                <!--<h3 class="card-header">Paso 1</h3>-->
+                <!--<div class="card-body text-primary">-->
+                    <!--<h4 class="card-title" style="padding: 0px 15px 10px 15px;">Busca el servcio que necesitas</h4>-->
+                    <!--<p align="justify" class="card-text" style="padding: 0px 15px 15px 15px;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="cardContainer">
+                <div class="card cardPasos otherCard">
+                    <!--card side-->
+                    <div class="side m-t-30" align="center">
+                        <i class="zmdi zmdi-search zmdi-hc-4x"></i>
+                        <h3 style="color: darkgray">Paso 1</h3>
+                    </div>
+                    <!--card back-->
+                    <div class="side back">
+                        <span style="color: gray;">Busca el servicio que desees</span>
+                        <p>
+                            Realiza la busqueda del servicio que necesite y elija la de su agrado.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+             <!-- -&#45;&#45;&#45;&#45;&#45;&#45;-->
+        </div>
+        <div class="col-3">
+
+        </div>
+        <div class="col-3">
+
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
 </section>
