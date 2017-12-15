@@ -246,7 +246,6 @@ export class LoginComponent implements OnInit {
                     .then((response) => {
                         this.emailRef.nativeElement.focus();
                         this.errorEmail = true;
-                        console.log(response);
                     });
 
                 break;
@@ -257,7 +256,6 @@ export class LoginComponent implements OnInit {
                     .then((response) => {
                         this.passRef.nativeElement.focus();
                         this.errorPass = true;
-                        console.log(response);
                     });
 
                 break;

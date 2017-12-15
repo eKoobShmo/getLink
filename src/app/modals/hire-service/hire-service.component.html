@@ -25,7 +25,7 @@
                         <!--nombre del usuario-->
                         <div class="m-t-10">
                             <strong>Usuario:</strong>
-                            <span>{{infoUser.email}}</span>
+                            <span>{{infoUser.nombre}}</span>
                         </div>
                         <!--telefono del usuario-->
                         <div class="m-t-10">
@@ -35,13 +35,15 @@
                         <!--direccion del usuario-->
                         <div class="m-t-10">
                             <strong>Dirección:</strong>
-                            <span>Navojoa 1231</span>
+                            <span>{{infoUser.domicilio.colonia}} {{infoUser.domicilio.calle}} {{infoUser.domicilio.numero}}</span>
                         </div>
 
                     </div>
                 </div>
                 <!--alerta de envio de inf-->
-                <div *ngIf="viewMessage" class="alert alert-warning div-size m-t-30 m-l-25" role="alert">
+                <div *ngIf="viewMessage"
+                     class="alert alert-warning div-size m-t-30 m-l-25 animated {{ viewMessage ? 'fadeIn':'' }}  {{ closeMessage ? 'fadeOut' : '' }}"
+                     role="alert">
                     La Inf. usuario será enviada al prestador para ponerse en contacto contigo!
                 </div>
 
@@ -53,7 +55,7 @@
                         Actualiza Tus Datos
                     </button>
                     <button *ngIf="!emptyFields" class="btn btn-success btn-lg m-t-20"
-                            style="border-radius: 5px 5px 5px 5px">
+                            style="border-radius: 5px 5px 5px 5px" (click)="sendMessageToProviderService()">
                         Contratar
                     </button>
                 </div>
