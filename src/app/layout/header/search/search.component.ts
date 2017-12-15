@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ListaPrestadoresServiciosComponent} from "../../../pages/prestadores-servicios/lista-prestadores-servicios/lista-prestadores-servicios.component";
-import {GlobalsService} from "../../../services/globals.service";
+import {Globals} from "../../../services/globals.service";
 import {userProviderService} from "../../../services/userProvider.service";
 import {Broadcaster} from "../../../../assets/js/broadcaster";
 

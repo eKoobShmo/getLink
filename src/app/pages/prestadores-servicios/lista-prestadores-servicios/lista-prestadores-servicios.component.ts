@@ -5,7 +5,7 @@ import {userProviderService} from "../../../services/userProvider.service";
 import {Router} from "@angular/router";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {HireServiceComponent} from "../../../modals/hire-service/hire-service.component";
-import {GlobalsService} from "../../../services/globals.service";
+import {Globals} from "../../../services/globals.service";
 import {Broadcaster} from "../../../../assets/js/broadcaster";
 
 @Component({

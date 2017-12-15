@@ -1,3 +1,154 @@
-<p>
-  update-info works!
-</p>
+<section>
+    <div class="card-UpdateInfo">
+
+
+        <div class="row m-t-20" align="center">
+            <div class="col-12">
+                <h2 class="" style="color:#2ABB9B">Actualiza Tu Información</h2>
+            </div>
+        </div>
+        <div class="info-Container">
+
+            <!--nombre-->
+            <div class="row">
+                <div class="offset-1 col-2">
+                    <label *ngIf="!isEdit">Nombre:</label>
+                    <label *ngIf="isEdit" class="mt-10 {{ errorNombre? 'errorColorRed' : '' }} ">Nombre:</label>
+                </div>
+                <div class="col-5">
+                    <label *ngIf="!isEdit">{{infoUser.nombre}}</label>
+                    <div class="form-group">
+                        <input class="form-control form-control-line"
+                               *ngIf="isEdit" type="text" placeholder="ej. Juan Perez"
+                               [(ngModel)]="infoUser.nombre" (keyup)="errorNombre=false"
+                        >
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--telefono-->
+            <div class="row">
+                <div class="offset-1 col-2">
+                    <label *ngIf="!isEdit">Telefono:</label>
+                    <label *ngIf="isEdit" class="mt-10 {{ errorTelefono? 'errorColorRed' : '' }} ">Telefono:</label>
+                </div>
+                <div class="col-5">
+                    <label *ngIf="!isEdit">{{infoUser.telefono}}</label>
+                    <div class="form-group">
+
+                        <input class="form-control form-control-line" *ngIf="isEdit"
+                               placeholder="ej: (000) 000-0000" type="text" ng-reflect-text-mask-config="[object Object]"
+                               [(ngModel)]="infoUser.telefono"
+                               (keypress)="_validationService.restrictNumeric($event)"
+                               (keyup)="errorTelefono=false"
+                        >
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" align="center">
+                <div class="col-12">
+                    <strong style="color:#328bc7;">Dirección</strong>
+                </div>
+            </div>
+
+            <!--calle-->
+            <div class="row">
+                <div class="offset-1 col-2">
+                    <label *ngIf="!isEdit">Calle:</label>
+                    <label *ngIf="isEdit" class="mt-10 {{errorCalle? 'errorColorRed' : '' }}">Calle:</label>
+                </div>
+                <div class="col-5">
+                    <label *ngIf="!isEdit">{{infoUser.domicilio.calle}}</label>
+                    <div class="form-group">
+                        <input class="form-control form-control-line" *ngIf="isEdit" type="text"
+                               placeholder="ej. Navojoa" [(ngModel)]="infoUser.domicilio.calle"
+                               (keyup)="errorCalle=false"
+                        >
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+            <!--numero de casa-->
+            <div class="row">
+                <div class="offset-1 col-2">
+                    <label *ngIf="!isEdit">Número:</label>
+                    <label *ngIf="isEdit" class="mt-10 {{errorNumero? 'errorColorRed' : '' }}">Número:</label>
+                </div>
+                <div class="col-5">
+                    <label *ngIf="!isEdit">{{infoUser.domicilio.numero}}</label>
+                    <div class="form-group">
+                        <input class="form-control form-control-line " *ngIf="isEdit" type="text"
+                               placeholder="ej. 20" [(ngModel)]="infoUser.domicilio.numero"
+                               (keypress)="_validationService.restrictNumeric($event)"
+                               (keyup)="errorNumero=false"
+                        >
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!--Colonia-->
+            <div class="row">
+                <div class="offset-1 col-2">
+                    <label *ngIf="!isEdit">Colonia:</label>
+                    <label *ngIf="isEdit" class="mt-10 {{errorColonia? 'errorColorRed' : '' }}">Colonia:</label>
+                </div>
+                <div class="col-5">
+                    <label *ngIf="!isEdit">{{infoUser.domicilio.colonia}}</label>
+                    <div class="form-group">
+                        <input class="form-control form-control-line" *ngIf="isEdit" type="text"
+                               placeholder="ej. La choya" [(ngModel)]="infoUser.domicilio.colonia"
+                               (keyup)="errorColonia=false"
+                        >
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!--cp-->
+            <div class="row">
+                <div class="offset-1 col-2">
+                    <label *ngIf="!isEdit">CP:</label>
+                    <label *ngIf="isEdit" class="mt-10 {{errorCP? 'errorColorRed' : '' }}">CP:</label>
+                </div>
+                <div class="col-5">
+                    <label *ngIf="!isEdit">{{infoUser.domicilio.cp}}</label>
+                    <div class="form-group">
+                        <input class="form-control form-control-line" *ngIf="isEdit" type="text"
+                               placeholder="ej. 83240" [(ngModel)]="infoUser.domicilio.cp"
+                               (keyup)="errorCP=false"
+                        >
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="!isUpdating" align="center">
+
+            <!--button Update-->
+            <div class="col-6">
+                <button class="btn btn-info" (click)="updateUser()">Actualizar</button>
+            </div>
+            <!--button Close-->
+            <div class="col-6">
+                <button class="btn btn-danger" (click)="closeModal()">Cerrar</button>
+            </div>
+        </div>
+
+        <!--button save-->
+        <div class="row" align="center" *ngIf="isUpdating">
+            <div class="col-6">
+                <button class="btn btn-success" (click)="validateFields(infoUser)">Guardar Cambios</button>
+            </div>
+            <!--button Close-->
+            <div class="col-6">
+                <button class="btn btn-danger" (click)="closeModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</section>

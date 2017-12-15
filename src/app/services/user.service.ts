@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFireAuth} from "angularfire2/auth";
 import {reject} from "q";
 import {AngularFireDatabase} from "angularfire2/database";
+import {userInfoInterface} from "../interfaces/userInfo";
 
 @Injectable()
 export class UserService {
@@ -11,7 +12,6 @@ export class UserService {
     }
 
     isAuthenticated() {
-        // this.af.authState
         return new Promise(((resolve, reject) => {
             this.af.auth.onAuthStateChanged(
                 response => {
@@ -24,8 +24,12 @@ export class UserService {
         }));
     }
 
-    getUserInfo(){
-         return this.db.list('usuarios');
+    updateUserInfo(uid:string,infoUser:userInfoInterface){
+        return this.db.list('usuarios/').update(uid,infoUser)
+    }
+
+    getInfoUser(uid:string){
+        return this.db.object('usuarios/'+uid)
     }
 
 }
