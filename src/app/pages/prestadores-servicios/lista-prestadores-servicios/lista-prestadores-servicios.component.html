@@ -1,7 +1,7 @@
 <section class="section-provedores">
 
 
-    <div class="card p-20" *ngFor="let service of servicesProvidersTmp">
+    <div class="card p-20"  *ngFor="let service of servicesProvidersTmp" >
 
         <div class="row" style="cursor: pointer;" >
 
@@ -10,7 +10,8 @@
                 <div class="cursor-pointer" (click)="goToService(service.$key)">
 
                     <img [src]="service.imagenUrl" style="width: 100%;" alt="">
-                    <label>Ver perfil</label>
+                    <!--<label>Ver perfil</label>-->
+                    {{service.nombre}}
                 </div>
 
             </div>
@@ -46,7 +47,8 @@
 
                 <div class="" align="right">
                     <div class="provedor-posicion-corazon">
-                        <i class="zmdi zmdi-favorite"></i>
+                        <i *ngIf="!checkFavorite(service.$key)" class="zmdi zmdi-favorite-outline"></i>
+                        <i *ngIf="checkFavorite(service.$key)" class="zmdi zmdi-favorite"></i>
                     </div>
                 </div>
 

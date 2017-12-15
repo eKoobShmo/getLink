@@ -15,21 +15,40 @@ export class UserService {
         return new Promise(((resolve, reject) => {
             this.af.auth.onAuthStateChanged(
                 response => {
-                    if(response){
+                    if (response) {
                         resolve(response);
-                    }else{
+                    } else {
                         reject();
                     }
                 });
         }));
     }
 
-    updateUserInfo(uid:string,infoUser:userInfoInterface){
-        return this.db.list('usuarios/').update(uid,infoUser)
+    updateUserInfo(uid: string, infoUser: userInfoInterface) {
+        this.db.list('usuarios/').update(uid, infoUser)
     }
 
-    getInfoUser(uid:string){
-        return this.db.object('usuarios/'+uid)
+    getUserFavorites(uid: string) {
+        return this.db.list('usuarios/' + uid + "/favoritos")
     }
+
+    getInfoUser(uid: string) {
+        return this.db.object('usuarios/' + uid)
+    }
+
+    sendNotificationUserProvider(keyProvider: string, userInfo: userInfoInterface, servicio:string, userKey:string) {
+        
+        this.db.list('prestadoresServicios/' + keyProvider + '/notificaciones').push(
+            {
+                usuario: userInfo.nombre,
+                servicioSolicitado:servicio,
+                telefono:userInfo.telefono,
+                keyUsuario:userKey
+
+            }
+        )
+
+    }
+
 
 }

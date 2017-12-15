@@ -55,7 +55,7 @@
                         Actualiza Tus Datos
                     </button>
                     <button *ngIf="!emptyFields" class="btn btn-success btn-lg m-t-20"
-                            style="border-radius: 5px 5px 5px 5px" (click)="sendMessageToProviderService()">
+                            style="border-radius: 5px 5px 5px 5px" (click)="sendMessageToProviderService(infoProviderTemp.$key,infoProviderTemp.titulo)">
                         Contratar
                     </button>
                 </div>
@@ -63,3 +63,4 @@
         </div>
     </div>
 </section>
+
