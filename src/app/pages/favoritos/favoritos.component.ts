@@ -68,7 +68,7 @@ export class FavoritosComponent implements OnInit {
     }
 
     getFavorites(uid: string) {
-        this._usrService.getInfoUser(uid).subscribe((result: any) => {
+        this._usrService.getUserFavorites(uid).subscribe((result: any) => {
             this.myFavorites = result;
         })
     }
