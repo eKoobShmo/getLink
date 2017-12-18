@@ -81,9 +81,9 @@ div.foo{
   transition: all 0.3s ease-in-out;
 }
 .letter:before{
-  color: #fff;
+  color: rgb(189, 195, 199);
   text-shadow:
-          -1px 0px 1px rgba(255,255,255,.8),
+          -1px 0px 1px rgb(189, 195, 199),
           1px 0px 1px rgba(0,0,0,.8);
   z-index: 3;
   transform:
@@ -102,7 +102,7 @@ div.foo{
           skew(0deg,1deg);
 }
 .letter:hover:before{
-  color: #fafafa;
+  color: rgb(189, 195, 199);
   transform:
           rotateX(0deg)
           rotateY(-40deg)
@@ -116,80 +116,14 @@ div.foo{
           rotateZ(0deg)
           skew(0deg,22deg);
 }
+//--------
 
-//-------------Efecto Relieve
-
-.tuclase2 {
-  text-align: left;
-  font-family: Roboto;
-  font-style: italic;
-  font-weight: bold; font-size: 30px;
-  background: #328bc7;
-  -webkit-background-clip: text;
-  //-moz-background-clip: ;
-  //background-clip: text;
-  color: transparent;
-  text-shadow: 0px 3px 3px rgba(255,255,255,0.4),0px -1px 1px rgba(0,0,0,0.3);
+.m-l-35{
+  margin-left: 35px;
 }
 
-.tuclase {
-  text-align: left;
-  font-family: Roboto;
-  font-weight: bold;
-  font-size: 40px;
-  color: #fff;
-  text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 0 #328bc7, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15);
+.c-gray{
+color: rgb(189, 195, 199)
 }
 
-.borderPrimary{
-  border-color: #007bff;
-}
-
-.body{
-  margin: 0;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  text-align: left;
-  background-color: #fff;
-}
-
-//--------card flip
-body {
-  font: 600 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
-  margin: 12px 0;
-}
-.cardContainer {
-  cursor: pointer;
-  height: 200px;
-  perspective: 600;
-  position: relative;
-  width: 220px;
-}
-.otherCard {
-  height: 100%;
-  position: absolute;
-  transform-style: preserve-3d;
-  transition: all 1s ease-in-out;
-  width: 100%;
-}
-.cardPasos:hover {
-  transform: rotateY(180deg);
-}
-.card .side {
-  backface-visibility: hidden;
-  border-radius: 6px;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-}
-.card .back {
-  background: #eaeaed;
-  color: #0087cc;
-  line-height: 150px;
-  text-align: justify;
-  transform: rotateY(180deg);
-}
+//font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;

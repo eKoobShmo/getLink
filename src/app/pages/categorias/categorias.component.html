@@ -21,67 +21,75 @@
         <span class="letter" data-letter="n">n</span>
         <span class="letter" data-letter="k">k</span>
     </div>
-        <!--<div class="row">-->
-            <!--<div class="col-12">-->
-                <!-- -&#45;&#45;&#45;&#45;-->
-                <div class="row displayFlezWrap"
-                     style="margin-left: 90px; margin-top: 30px; width: 100%; height: 320px; overflow-x: auto; margin-left: 0">
-                    <div class="col-lg-3 col-md-5 col-sm-12 col-12" *ngFor="let c of categoria">
-                        <div class="card card-size cardCategorinasStyle" (click)="verServicio(c.id)"
-                             align="center">
-                            <div class=" style-CardBody shadow" style="">
-                                <img src="{{ c.img }}" class="imagen" alt="">
-                            </div>
-                            <div class="card-footer p-b-0 style-CardFooter" (click)="verServicio(c.id)" align="center"
-                                 [style.backgroundColor]="c.color">
-                                <span style="color: white; font-size: 26px;margin-top:50%!important;">{{ c.nombreServicio }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!--</div>-->
-        <!--</div>-->
-    <div>
-        <span class="">
-            Contrata el servicio que desees en ? pasos !
-        </span>
-    </div>
-    <div class="row" style="margin-top: 50px;">
-        <div class="col-3">
-            <!--<div class="card border-primary mb-3" style="max-width: 20rem;">-->
-                <!--<h3 class="card-header">Paso 1</h3>-->
-                <!--<div class="card-body text-primary">-->
-                    <!--<h4 class="card-title" style="padding: 0px 15px 10px 15px;">Busca el servcio que necesitas</h4>-->
-                    <!--<p align="justify" class="card-text" style="padding: 0px 15px 15px 15px;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-                <!--</div>-->
-            <!--</div>-->
-            <div class="cardContainer">
-                <div class="card cardPasos otherCard">
-                    <!--card side-->
-                    <div class="side m-t-30" align="center">
-                        <i class="zmdi zmdi-search zmdi-hc-4x"></i>
-                        <h3 style="color: darkgray">Paso 1</h3>
-                    </div>
-                    <!--card back-->
-                    <div class="side back">
-                        <span style="color: gray;">Busca el servicio que desees</span>
-                        <p>
-                            Realiza la busqueda del servicio que necesite y elija la de su agrado.
-                        </p>
+    <!--<div class="row">-->
+    <!--<div class="col-12">-->
+    <!-- -&#45;&#45;&#45;&#45;-->
 
+        <div class="row displayFlezWrap" id="scrollbar"
+             style="margin-left: 90px; margin-top: 30px; width: 100%; height: 320px; overflow-x: auto; margin-left: 0">
+
+            <div class="col-lg-3 col-md-5 col-sm-12 col-12" *ngFor="let c of categoria">
+                <div class="card card-size cardCategorinasStyle" (click)="verServicio(c.id)"
+                     align="center">
+                    <div class=" style-CardBody shadow" style="">
+                        <img src="{{ c.img }}" class="imagen" alt="">
+                    </div>
+                    <div class="card-footer p-b-0 style-CardFooter" (click)="verServicio(c.id)" align="center"
+                         [style.backgroundColor]="c.color">
+                        <span style="color: white; font-size: 26px;margin-top:50%!important;">{{ c.nombreServicio }}</span>
                     </div>
                 </div>
             </div>
-             <!-- -&#45;&#45;&#45;&#45;&#45;&#45;-->
-        </div>
-        <div class="col-3">
 
         </div>
-        <div class="col-3">
 
+    <!--</div>-->
+    <!--</div>-->
+    <div class="m-t-30" align="center" style="font-size: 30px">
+        <!--<img src="../../../assets/images/getLink.jpg" alt="">-->
+        <strong>
+            CONTRATA EL SERVICIO QUE DESEES EN
+            <span style="color: #328bc7; font-size: 36px">5</span> PASOS
+        </strong>
+    </div>
+    <div class="row" style=" margin-top: 50px; margin-bottom: 110px;">
+        <div class="col-2 m-l-35" align="center" style="height: 200px">
+            <i class="zmdi zmdi-arrow-right-top zmdi-hc-5x c-gray"></i>
+            <div>
+                <strong style="font-size: 18px">1. Selecciona un servicio</strong>
+                <p style="font-size: 16px">Da clic en el servicio deseado</p>
+            </div>
         </div>
-        <div class="col-3">
-
+        <div class="col-2 m-l-35" align="center" style="height: 200px">
+            <i class="zmdi zmdi-search zmdi-hc-5x c-gray"></i>
+            <div>
+                <strong style="font-size: 18px">2. Elige o busca el servicio</strong>
+                <p style="font-size: 16px;">Para encontrar a los mejores prestadores de servicio utilice las opciones de filtrado</p>
+            </div>
+        </div>
+        <div class="col-2 m-l-35" align="center" style="height: 200px">
+            <i class="zmdi zmdi-account zmdi-hc-5x c-gray"></i>
+            <div>
+                <strong style="font-size: 18px">3. Visualiza el perfil del prestador</strong>
+                <p style="font-size: 16px">Si deseas conocer más a cerca del prestador da clic en Ver perfil o si deseas contrata</p>
+            </div>
+        </div>
+        <div class="col-2 m-l-35" align="center" style="height: 200px">
+            <i class="zmdi zmdi-shopping-cart zmdi-hc-5x c-gray"></i>
+            <div>
+                <strong style="font-size: 18px">4. Contrata ya</strong>
+                <p style="font-size: 16px">Da clic en el boton de Contratar, se mostraran los datos del servicio y prestador asi como tu inf
+                personal para que el prestador se ponga en contacto contigo</p>
+            </div>
+        </div>
+        <div class="col-2 m-l-35" align="center" style="height: 200px">
+            <i class="zmdi zmdi-time zmdi-hc-5x c-gray"></i>
+            <div>
+                <strong style="font-size: 18px">5. Espera respuesta del prestador de servicio</strong>
+                <p style="font-size: 16px">El prestador de servicio recibirá tu solicitud y él se pondra en contacto contigo</p>
+            </div>
         </div>
     </div>
 </section>
+
+<!--rgb(189, 195, 199);-->
