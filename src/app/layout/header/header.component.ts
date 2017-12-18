@@ -58,7 +58,12 @@ export class HeaderComponent implements OnInit {
                 this.userLogged = true;
                 this.userEmail = response.email;
                 this.userName = response.displayName;
-                this.userPhoto = response.photoURL;
+                if(response.photoURL!=null){
+                    this.userPhoto = response.photoURL;
+                }else{
+                    this.userPhoto==null;
+                }
+
             })
             .catch(error => {
                 this.userLogged = false;

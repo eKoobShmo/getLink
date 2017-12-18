@@ -77,8 +77,8 @@
             <li>
                 <!--<a><i class="zmdi zmdi-account-circle" style="font-size: 45px" (click)="showMenu=!showMenu;"></i></a>-->
 
-                <i class=" list-group-item zmdi zmdi-account-circle iconUserMenu" style="font-size: 45px"
-                   (click)="showMenu=!showMenu;" *ngIf="!userPhoto==null"></i>
+                <i class="zmdi zmdi-account-circle normalUser"
+                   (click)="showMenu=!showMenu;" *ngIf="userPhoto==null"></i>
                 <a (click)="showMenu=!showMenu;"> <img class="iconUserMenu" src="{{userPhoto}}" style="font-size: 45px"
                                                        alt="" *ngIf="userPhoto!=null"></a>
 
@@ -87,8 +87,8 @@
                     <div class="row cursor-pointer itemHeaderMenu">
                         <div class="col-2">
                             <ul class="list-group">
-                                <i class=" list-group-item zmdi zmdi-account-circle iconUserMenu"
-                                   *ngIf="!userPhoto==null"></i>
+                                <i class=" zmdi zmdi-account-circle normalUserMenuCard"
+                                   *ngIf="userPhoto==null"></i>
                                 <img class="iconUserMenuCard" src="{{userPhoto}}" alt="" *ngIf="userPhoto!=null">
 
                             </ul>
@@ -96,7 +96,7 @@
                         <div class="col-10">
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    {{userName != null? userName:userEmail}}
+                                    {{userName != null? userName:userEmail | abbreviateName}}
                                     <!--juanbracamonte@gmail.com-->
                                     {{userEmail | abbreviateText}}
                                 </li>

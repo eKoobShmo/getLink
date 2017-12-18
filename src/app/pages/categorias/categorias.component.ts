@@ -21,7 +21,7 @@ export class CategoriasComponent implements OnInit {
       if(user == null){
         window.location.href = '#/login';
       }
-    })
+    });
 
       this.categoria=this.ServicioCategorias.getCategoriasServicio();
 
@@ -29,6 +29,10 @@ export class CategoriasComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  goTohire(){
+    window.location.href ="#/prestadores-servicios"
   }
 
   verServicio(id:string){
