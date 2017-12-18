@@ -6,26 +6,25 @@ import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { SharedService } from "./shared/services/shared.service";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {alertService} from "./services/alert.service";
 
+import { TerminosCondicionesComponent } from './pages/terminos-condiciones/terminos-condiciones.component';
+import {LoginComponent} from "./pages/login/login.component";
 
 // Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
-import {LoginComponent} from "./pages/login/login.component";
-import {alertService} from "./services/alert.service";
 
-import { DropImagesDirective } from './directives/drop-images.directive';
-import { HireServiceComponent } from './modals/hire-service/hire-service.component';
-import { UpdateInfoComponent } from './modals/update-info/update-info.component';
-import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent
+        LoginComponent,
+        TerminosCondicionesComponent
 
     ],
     imports: [
@@ -35,7 +34,9 @@ import { FavoritosComponent } from './pages/favoritos/favoritos.component';
         routing,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, // imports firebase/database, only needed for database features
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        NgbModule.forRoot(),
+        NgbModule
 
 
     ],
@@ -46,6 +47,9 @@ import { FavoritosComponent } from './pages/favoritos/favoritos.component';
             useClass: HashLocationStrategy
         },
         alertService
+    ],
+    entryComponents:[
+        TerminosCondicionesComponent
     ],
     bootstrap: [AppComponent]
 })
