@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFireDatabase} from "angularfire2/database";
-import {Observable} from "rxjs/Observable";
-import {userProviderService} from "../../../services/userProvider.service";
-import {Router} from "@angular/router";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {HireServiceComponent} from "../../../modals/hire-service/hire-service.component";
-import {Globals} from "../../../services/globals.service";
-import {Broadcaster} from "../../../../assets/js/broadcaster";
-import {AngularFireAuth} from "angularfire2/auth";
-import {UserService} from "../../../services/user.service";
+import {AngularFireDatabase} from 'angularfire2/database';
+import {Observable} from 'rxjs/Observable';
+import {userProviderService} from '../../../services/userProvider.service';
+import {Router} from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {HireServiceComponent} from '../../../modals/hire-service/hire-service.component';
+import {Globals} from '../../../services/globals.service';
+import {Broadcaster} from '../../../../assets/js/broadcaster';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {UserService} from '../../../services/user.service';
 
 @Component({
     selector: 'app-lista-prestadores-servicios',
@@ -43,6 +43,23 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
                 this.servicesProvidersTmp = this.servicesProviders.filter((it: any) => it.titulo.toLowerCase().indexOf(message.toLowerCase()) >= 0);
             });
 
+
+        // filtro de trabajos Realizados con radiobuttons
+        this.broadcaster.on<string>('filtroTrabajosRealizados')
+            .subscribe(message => {
+
+                //  this.db.list('services', {
+                //     query: {
+                //         orderByChild: 'trabajosRealizados',
+                //         startAt: '1000000',
+                //         endAt: '0'
+                //     }
+                // }).subscribe((result:any)=>{
+                //     debugger;
+                //      this.servicesProvidersTmp=result;
+                //  })
+            });
+
     }
 
 
@@ -74,11 +91,11 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
         let favorite: boolean = false;
         if (this.myFavorites != null) {
             for (let j = 0; j < this.myFavorites.length; j++) {
-                if (key ==  this.myFavorites[j].$key) {
-                   if(this.myFavorites[j].$value){
-                       favorite = true;
-                       break;
-                   }
+                if (key == this.myFavorites[j].$key) {
+                    if (this.myFavorites[j].$value) {
+                        favorite = true;
+                        break;
+                    }
                 }
             }
         }
