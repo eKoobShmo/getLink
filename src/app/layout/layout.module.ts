@@ -47,6 +47,7 @@ import Global = NodeJS.Global;
 import {Globals} from "../services/globals.service";
 import {Broadcaster} from "../../assets/js/broadcaster";
 import {ValidationService} from "../services/validation.service";
+import {FavoritosComponent} from "../pages/favoritos/favoritos.component";
 
 
 
@@ -81,7 +82,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         CargaComponent,
         LoginModalComponent,
         HireServiceComponent,
-        UpdateInfoComponent
+        UpdateInfoComponent,
+        FavoritosComponent
 
     ],
     imports: [
@@ -112,6 +114,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ListaPrestadoresServiciosComponent,
         Broadcaster,
         ValidationService
+
     ],
     entryComponents:[
         UpdateInfoComponent

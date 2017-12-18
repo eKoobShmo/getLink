@@ -9,6 +9,14 @@ export class alertService {
     constructor() {
     }
 
+    successMessage(tittle:string,message:string){
+        swal(
+            tittle,
+            message,
+            'success'
+        )
+    }
+
     error(title:string, message:string){
         swal(
             title,

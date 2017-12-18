@@ -9,43 +9,42 @@
                 <!--CheckBoxs-->
                 <div>
                     <label class="custom-control custom-checkbox m-l-30 m-t-30">
-                        <input class="custom-control-input" type="checkbox">
+                        <input class="custom-control-input" type="checkbox"
+                               [(ngModel)]="optionInapropiate"
+                        >
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description m-l-10 f-s-14"
-                        >Utilizo palabras atisonantes</span>
+                        >Fue inapropiado y/o utilizó palabras atisonantes</span>
                     </label>
                 </div>
                 <div>
                     <label class="custom-control custom-checkbox m-l-30 m-t-15">
-                        <input class="custom-control-input" type="checkbox">
+                        <input class="custom-control-input" type="checkbox"
+                               [(ngModel)]="optionBadService"
+                        >
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description m-l-10 f-s-14"
-                        >Me realizo un mal servicio</span>
+                        >Me realizó un mal servicio</span>
                     </label>
                 </div>
                 <div>
                     <label class="custom-control custom-checkbox m-l-30 m-t-15">
-                        <input class="custom-control-input" type="checkbox">
+                        <input class="custom-control-input" type="checkbox"
+                               [(ngModel)]="optionServiceNotDone"
+                        >
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description m-l-10 f-s-14"
-                        >No se presento/comunicó a realizar el servicio</span>
+                        >No se presentó/comunicó a realizar el servicio</span>
                     </label>
                 </div>
-                <div>
-                    <label class="custom-control custom-checkbox m-l-30 m-t-15">
-                        <input class="custom-control-input" type="checkbox">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description m-l-10 f-s-14"
-                        >Otro...</span>
-                    </label>
-                </div>
+
                 <div class="m-t-45">
-                    <!--<span class="m-l-30" style="font-size: 20px">Motivo:</span>-->
+                    <!--<span class="m-l-30" style="font-size: 20px">reportReason:</span>-->
                     <!--Escribe un comentario-->
                     <div class="row">
                         <div class="col-9" style="margin-top: 2%;">
-                            <textarea class="form-control m-l-30" placeholder="Escribe el motivo..." cols="30"
-                                      rows="5"></textarea>
+                            <textarea class="form-control form-control-line m-l-30" placeholder="Escribe el motivo..." cols="30"
+                                      rows="5" [(ngModel)]="description"></textarea>
                         </div>
                         <div class="col-1" style="margin-top: 5%" align="center">
                             <div class="btnAdd m-l-30 m-t-15" (click)="abrirCargaImagenes()">
@@ -83,7 +82,7 @@
                 <!--Boton enviar-->
                 <div align="center">
                     <button class="btn btn-success btn-lg m-t-30 m-b-20"
-                            style="border-radius: 5px 5px 5px 5px">
+                            style="border-radius: 5px 5px 5px 5px" (click)="generateReport()">
                         Enviar
                     </button>
                 </div>

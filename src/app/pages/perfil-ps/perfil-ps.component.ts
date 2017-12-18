@@ -83,7 +83,8 @@ export class PerfilPSComponent implements OnInit {
 
     openReport() {
         //mandando un input a ReportComponent
-        this.modalService.open(ReportComponent);
+        const modalReportRef = this.modalService.open(ReportComponent);
+        modalReportRef.componentInstance.serviceProviderKey = ProviderInfo.serviceProviderKey;
     }
 
     openHire() {
