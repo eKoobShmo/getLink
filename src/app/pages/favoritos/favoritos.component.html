@@ -1,0 +1,73 @@
+<section class="section-provedores">
+
+  <div *ngFor="let service of servicesProvidersTmp">
+
+    <div class="card p-20" *ngIf="checkFavorite(service.$key)"  >
+
+      <div class="row" style="cursor: pointer;" >
+
+        <div class="col-2" align="center">
+
+          <div class="cursor-pointer" (click)="goToService(service.$key)">
+
+            <img [src]="service.imagenUrl" style="width: 100%;" alt="">
+            <!--<label>Ver perfil</label>-->
+            {{service.nombre}}
+          </div>
+
+        </div>
+
+        <div class="col-7">
+
+          <div class="p-r-0">
+                    <span style="font-size: 18px; cursor: pointer;">
+                        {{ service.titulo }}
+                    </span>
+          </div>
+
+          <div style="text-align: justify">
+            {{service.descripcion}}
+          </div>
+
+          <div class="m-t-10 p-l-0 provedor-estrellas">
+            <i class="zmdi zmdi-star"></i>
+            <i class="zmdi zmdi-star"></i>
+            <i class="zmdi zmdi-star"></i>
+            <i class="zmdi zmdi-star-half"></i>
+            <i class="zmdi zmdi-star-outline"></i>
+          </div>
+
+          <div class="m-t-10" style="color: #3498db;">
+
+            Trabajos realizados ({{ service.trabajosRealizados }})
+
+          </div>
+        </div>
+
+        <div class="col-3">
+
+          <div class="" align="right">
+            <div class="provedor-posicion-corazon">
+              <i *ngIf="!checkFavorite(service.$key)" class="zmdi zmdi-favorite-outline"></i>
+              <i *ngIf="checkFavorite(service.$key)" class="zmdi zmdi-favorite"></i>
+            </div>
+          </div>
+
+          <div style="font-size: 24px; color: #535353; font-weight: 400;" align="right">
+            Desde $100
+          </div>
+
+          <div class="" align="right">
+            <button class="btn btn-outline-success provedor-ver-perfil m-t-25" (click)="openHire(service.$key)" style="font-size: 14px">
+              Contratar ahora
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>

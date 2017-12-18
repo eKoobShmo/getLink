@@ -42,6 +42,16 @@ export class HeaderComponent implements OnInit {
         window.location.href = '#/login';
     }
 
+    goToHire(){
+        window.location.href='#/prestadores-servicios';
+        this.showMenu=false;
+    }
+
+    goToFavorites(){
+        window.location.href='#/favoritos';
+        this.showMenu=false;
+    }
+
     showHeader() {
         this.userService.isAuthenticated()
             .then((response:any) => {

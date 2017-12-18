@@ -12,6 +12,8 @@ import {EnviarComentarioComponent} from "../pages/perfil-ps/tab-comentario/envia
 import {CargaComponent} from "../modals/carga/carga.component";
 import {LoginComponent} from "../pages/login/login.component";
 import {HireServiceComponent} from "../modals/hire-service/hire-service.component";
+import {FavoritosComponent} from "../pages/favoritos/favoritos.component";
+
 
 
 const LAYOUT_ROUTES: Routes = [
@@ -37,6 +39,7 @@ const LAYOUT_ROUTES: Routes = [
             ]
         },
         {path: 'prestadores-servicios', component: PrestadoresServiciosComponent},
+        {path: 'favoritos', component: FavoritosComponent},
         {path: 'galleryModal', component: GalleryComponent},
         {path: 'reportar', component:ReportComponent},
         {path: 'contratarServicio', component: HireServiceComponent}

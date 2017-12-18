@@ -52,5 +52,9 @@ export class FiltrosComponent {
         this.broadcaster.broadcast('filtroTrabajosRealizados')
     }
 
+    filterProvidersByScore() {
+        this.broadcaster.broadcast('filterByScore')
+    }
+
 
 }

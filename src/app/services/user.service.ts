@@ -56,7 +56,6 @@ export class UserService {
             //
             //     }
             // );
-            debugger
             let report = {
                 lenguajeInapropiate: optionInapropiate,
                 badService: optionBadService,

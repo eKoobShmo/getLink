@@ -16,34 +16,34 @@
         <ul class="top-nav" *ngIf="userLogged">
             <li class="hidden-xl-up"><a (click)="search.searchActive = true"><i class="zmdi zmdi-search"></i></a></li>
 
-            <li dropdown>
-                <a dropdownToggle><i class="zmdi zmdi-email"></i></a>
-                <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu--block" role="menu">
-                    <div class="listview listview--hover">
-                        <div class="listview__header">
-                            Messages
+            <!--<li dropdown>-->
+                <!--<a dropdownToggle><i class="zmdi zmdi-email"></i></a>-->
+                <!--<div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu&#45;&#45;block" role="menu">-->
+                    <!--<div class="listview listview&#45;&#45;hover">-->
+                        <!--<div class="listview__header">-->
+                            <!--Messages-->
 
-                            <div class="actions">
-                                <a href="messages.html" class="actions__item zmdi zmdi-plus"></a>
-                            </div>
-                        </div>
+                            <!--<div class="actions">-->
+                                <!--<a href="messages.html" class="actions__item zmdi zmdi-plus"></a>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                        <a *ngFor="let message of messagesData" href="" class="listview__item">
-                            <img [src]="message.image" class="listview__img" alt="">
+                        <!--<a *ngFor="let message of messagesData" href="" class="listview__item">-->
+                            <!--<img [src]="message.image" class="listview__img" alt="">-->
 
-                            <div class="listview__content">
-                                <h3 class="listview__heading">
-                                    {{ message.name }}
-                                    <small>{{ message.date }}</small>
-                                </h3>
-                                <p>{{ message.message }}</p>
-                            </div>
-                        </a>
+                            <!--<div class="listview__content">-->
+                                <!--<h3 class="listview__heading">-->
+                                    <!--{{ message.name }}-->
+                                    <!--<small>{{ message.date }}</small>-->
+                                <!--</h3>-->
+                                <!--<p>{{ message.message }}</p>-->
+                            <!--</div>-->
+                        <!--</a>-->
 
-                        <a href="" class="view-more">Mirar todos los mensajes</a>
-                    </div>
-                </div>
-            </li>
+                        <!--<a href="" class="view-more">Mirar todos los mensajes</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
 
             <li dropdown>
                 <a dropdownToggle class="top-nav__notify"><i class="zmdi zmdi-notifications"></i></a>
@@ -129,9 +129,9 @@
                                 <!--</li>-->
                             </ul>
                         </div>
-                        <div class="col-10">
+                        <div class="col-10" (click)="goToHire()">
                             <ul class="list-group">
-                                <li class="list-group-item m-l-20 m-t-5" style="padding: 0px; padding-left: 26px; padding-top: 13px;">Servicios Contratados</li>
+                                <li class="list-group-item m-l-20 m-t-5" style="padding: 0px; padding-left: 26px; padding-top: 13px;">Contratar Un Servicio</li>
                             </ul>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                                 <!--</li>-->
                             </ul>
                         </div>
-                        <div class="col-10">
+                        <div class="col-10" (click)="goToFavorites()">
                             <ul class="list-group ">
                                 <li class="list-group-item m-l-20 m-t-5">Favoritos</li>
                             </ul>
