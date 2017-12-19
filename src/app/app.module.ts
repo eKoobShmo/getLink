@@ -20,6 +20,7 @@ import { DropImagesDirective } from './directives/drop-images.directive';
 import { HireServiceComponent } from './modals/hire-service/hire-service.component';
 import { UpdateInfoComponent } from './modals/update-info/update-info.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
+import { AltaPSComponent } from './pages/alta-ps/alta-ps.component';
 
 
 @NgModule({

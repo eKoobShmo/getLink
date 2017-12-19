@@ -13,37 +13,38 @@ import {CargaComponent} from "../modals/carga/carga.component";
 import {LoginComponent} from "../pages/login/login.component";
 import {HireServiceComponent} from "../modals/hire-service/hire-service.component";
 import {FavoritosComponent} from "../pages/favoritos/favoritos.component";
-
+import {AltaPSComponent} from "../pages/alta-ps/alta-ps.component";
 
 
 const LAYOUT_ROUTES: Routes = [
     {
         path: '', component: LayoutComponent, children: [
-        //Home
-        {path: '', redirectTo: 'categorias', pathMatch: 'full'},
+            //Home
+            {path: '', redirectTo: 'categorias', pathMatch: 'full'},
 
-        // {path: 'usuarios', loadChildren: '../pages/usuarios/usuarios.module#UsuariosModule'},
-        {path: 'categorias', loadChildren: '../pages/categorias/categorias.module#CategoriasModule'},
-        {
-            path: 'perfil-ps/:serviceProviderKey',
-            component: PerfilPSComponent,
-            children: [
-                { path: 'acercaDe', component: AcercaDeComponent},
-                // { path: 'comentarios', component:TabComentariosComponent },
-                { path: 'comentarios', component: TabComentarioComponent},
-                { path: 'galeria', component: GaleriaComponent},
-                { path: 'ubicacion', component: UbicacionComponent},
-                {path: 'cargarMultimedia', component: CargaComponent},
-                { path: '**', component: AcercaDeComponent}
+            // {path: 'usuarios', loadChildren: '../pages/usuarios/usuarios.module#UsuariosModule'},
+            {path: 'categorias', loadChildren: '../pages/categorias/categorias.module#CategoriasModule'},
+            {
+                path: 'perfil-ps/:serviceProviderKey',
+                component: PerfilPSComponent,
+                children: [
+                    {path: 'acercaDe', component: AcercaDeComponent},
+                    // { path: 'comentarios', component:TabComentariosComponent },
+                    {path: 'comentarios', component: TabComentarioComponent},
+                    {path: 'galeria', component: GaleriaComponent},
+                    {path: 'ubicacion', component: UbicacionComponent},
+                    {path: 'cargarMultimedia', component: CargaComponent},
+                    {path: '**', component: AcercaDeComponent}
 
-            ]
-        },
-        {path: 'prestadores-servicios', component: PrestadoresServiciosComponent},
-        {path: 'favoritos', component: FavoritosComponent},
-        {path: 'galleryModal', component: GalleryComponent},
-        {path: 'reportar', component:ReportComponent},
-        {path: 'contratarServicio', component: HireServiceComponent}
-    ]
+                ]
+            },
+            {path: 'prestadores-servicios', component: PrestadoresServiciosComponent},
+            {path: 'favoritos', component: FavoritosComponent},
+            {path: 'galleryModal', component: GalleryComponent},
+            {path: 'reportar', component: ReportComponent},
+            {path: 'contratarServicio', component: HireServiceComponent},
+            {path: 'alta-ps', component: AltaPSComponent}
+        ]
     }
 ];
 

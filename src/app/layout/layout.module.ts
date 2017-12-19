@@ -48,6 +48,7 @@ import {Globals} from "../services/globals.service";
 import {Broadcaster} from "../../assets/js/broadcaster";
 import {ValidationService} from "../services/validation.service";
 import {FavoritosComponent} from "../pages/favoritos/favoritos.component";
+import {AltaPSComponent} from "../pages/alta-ps/alta-ps.component";
 
 
 
@@ -83,7 +84,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         LoginModalComponent,
         HireServiceComponent,
         UpdateInfoComponent,
-        FavoritosComponent
+        FavoritosComponent,
+        AltaPSComponent
 
     ],
     imports: [
