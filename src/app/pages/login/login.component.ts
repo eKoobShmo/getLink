@@ -6,6 +6,9 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {alertService} from '../../services/alert.service'
 import {error} from "util";
+import {NgbModal, NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
+import {TerminosCondicionesComponent} from "../terminos-condiciones/terminos-condiciones.component";
+import {Globals} from "../../services/globals.service";
 
 
 @Component({
@@ -49,7 +52,8 @@ export class LoginComponent implements OnInit {
 
     constructor(db: AngularFireDatabase,
                 private afAuth: AngularFireAuth,
-                private alertService: alertService) {
+                private alertService: alertService,
+                private _modalService:NgbModal) {
 
         afAuth.auth.onAuthStateChanged((user) => {
             if (user) {
@@ -221,9 +225,11 @@ export class LoginComponent implements OnInit {
     }
 
     showInfoTerms(user: userAuthInterface) {
-        this.alertService.infoTerms('Terminos y Condiciones').then(response => {
-            user.terms = true;
-        })
+        // this.alertService.infoTerms('Terminos y Condiciones').then(response => {
+        //     user.terms = true;
+        // })
+        this._modalService.open(TerminosCondicionesComponent, Globals.optionModalLg)
+
     }
 
     getErrorAuth(codeError: string) {
