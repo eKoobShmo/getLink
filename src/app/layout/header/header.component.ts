@@ -4,6 +4,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import{Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {window} from "rxjs/operator/window";
 
 @Component({
     selector: 'app-header',
@@ -39,16 +40,25 @@ export class HeaderComponent implements OnInit {
 
     userSignOut() {
         this.afAuth.auth.signOut();
-        window.location.href = '#/login';
+        this.router.navigate(['/login']);
+        // window.location.href = '#/login';
     }
 
     goToHire(){
-        window.location.href='#/prestadores-servicios';
+        this.router.navigate(['/prestadores-servicios']);
+        // window.location.href='#/prestadores-servicios';
         this.showMenu=false;
     }
 
     goToFavorites(){
-        window.location.href='#/favoritos';
+        // window.location.href='#/favoritos';
+        this.router.navigate(['/favoritos']);
+        this.showMenu=false;
+    }
+
+    goToMyProfile(){
+        // window.location.href='#/configuracionPrestador';
+        this.router.navigate(['/configuracionPrestador/miPerfil']);
         this.showMenu=false;
     }
 

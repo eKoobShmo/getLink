@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AltaPSComponent } from './alta-ps.component';
+import { LoadImagesComponent } from './load-images.component';
 
-describe('AltaPSComponent', () => {
-  let component: AltaPSComponent;
-  let fixture: ComponentFixture<AltaPSComponent>;
+describe('LoadImagesComponent', () => {
+  let component: LoadImagesComponent;
+  let fixture: ComponentFixture<LoadImagesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AltaPSComponent ]
+      declarations: [ LoadImagesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AltaPSComponent);
+    fixture = TestBed.createComponent(LoadImagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,88 @@
+<section>
+    <div class="row" >
+        <div class="col-12">
+            <div class="" style="margin-top: 10px;font-size: 18px">
+
+                <!--inf del servicio-->
+                <div class="row m-t-20">
+                    <div class="offset-1 col-4">
+                        <strong>Información del servicio</strong>
+                    </div>
+                </div>
+                <!--nombre del servicio-->
+                <div class="row m-t-20">
+                    <div class="offset-1 col-2">
+                        <span>Nombre del servicio:</span>
+                    </div>
+                    <div class="col-6">
+                        <span *ngIf="!isEdit">Albañilería</span>
+                        <input type="text" class="form-control-line form-control"
+                               *ngIf="isEdit">
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <!--Titulo-->
+                <div class="row m-t-20">
+                    <div class="offset-1 col-2">
+                        <span>Titulo:</span>
+                    </div>
+                    <div class="col-6">
+                        <span *ngIf="!isEdit">Arreglo tuberias gratis</span>
+                        <input type="text" class="form-control-line form-control"
+                               *ngIf="isEdit">
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <!--descripcion-->
+                <div class="row m-t-20">
+                    <div class="offset-1 col-2">
+                        <span>Descripción:</span>
+                    </div>
+                    <div class="col-6">
+            <span *ngIf="!isEdit">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloremque ducimus est in iure quaerat quia temporibus totam! Animi consequatur
+              ducimus eligendi eveniet expedita laborum, odio quis ratione rem tenetur.</span>
+                        <input type="text" class="form-control-line form-control"
+                               *ngIf="isEdit">
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <!--trabajos realizados-->
+                <div class="row m-t-20">
+                    <div class="offset-1 col-2">
+                        <span>Trabajos realizados:</span>
+                    </div>
+                    <div class="col-6">
+                        <span *ngIf="!isEdit">Muchos</span>
+                        <input type="text" class="form-control-line form-control"
+                               *ngIf="isEdit">
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="" align="center" style="margin-top: 80px;">
+        <div class="row" *ngIf="!isUpdating">
+
+            <!--button Update-->
+            <div class="col-3">
+                <button class="btn btn-info" (click)="updateUser()">Actualizar</button>
+            </div>
+        </div>
+
+        <div class="row" align="center" *ngIf="isUpdating">
+            <div class="col-3">
+                <!--save-->
+                <button class="btn btn-success">Guardar cambios</button>
+            </div>
+            <!--button Close-->
+            <div class="col-1">
+                <button class="btn btn-danger" (click)="cancelEdit()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+</section>

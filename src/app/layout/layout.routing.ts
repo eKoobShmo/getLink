@@ -13,7 +13,10 @@ import {CargaComponent} from "../modals/carga/carga.component";
 import {LoginComponent} from "../pages/login/login.component";
 import {HireServiceComponent} from "../modals/hire-service/hire-service.component";
 import {FavoritosComponent} from "../pages/favoritos/favoritos.component";
-import {AltaPSComponent} from "../pages/alta-ps/alta-ps.component";
+import {ConfigurationProviderServiceComponent} from "../pages/configuration-provider-service/configuration-provider-service.component";
+import {MyProfileComponent} from "../pages/configuration-provider-service/my-profile/my-profile.component";
+import {MyServiceComponent} from "../pages/configuration-provider-service/my-service/my-service.component";
+import {LoadImagesComponent} from "../pages/configuration-provider-service/load-images/load-images.component";
 
 
 const LAYOUT_ROUTES: Routes = [
@@ -38,12 +41,21 @@ const LAYOUT_ROUTES: Routes = [
 
                 ]
             },
+            {
+                path: 'configuracionPrestador',
+                component: ConfigurationProviderServiceComponent,
+                children: [
+                    {path: 'miPerfil', component: MyProfileComponent},
+                    {path: 'miServicio', component: MyServiceComponent},
+                    {path: 'cargarImagenes', component: LoadImagesComponent}
+                ]
+            },
             {path: 'prestadores-servicios', component: PrestadoresServiciosComponent},
             {path: 'favoritos', component: FavoritosComponent},
             {path: 'galleryModal', component: GalleryComponent},
             {path: 'reportar', component: ReportComponent},
             {path: 'contratarServicio', component: HireServiceComponent},
-            {path: 'alta-ps', component: AltaPSComponent}
+            {path: 'configuracionPS', component: ConfigurationProviderServiceComponent}
         ]
     }
 ];
