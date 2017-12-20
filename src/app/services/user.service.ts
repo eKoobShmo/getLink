@@ -47,15 +47,7 @@ export class UserService {
     // metodo para generar el reporte
     sendReport(optionInapropiate: boolean, optionBadService: boolean, optionNotDone: boolean, description?: string, images?:any) {
         return new Promise((resolve,reject) => {
-            // this.db.list('admin/reports').push(
-            //     {
-            //         lenguajeInapropiate: optionInapropiate,
-            //         badService: optionBadService,
-            //         serviceNotDone: optionNotDone,
-            //         descripcion: description
-            //
-            //     }
-            // );
+
             let report = {
                 lenguajeInapropiate: optionInapropiate,
                 badService: optionBadService,

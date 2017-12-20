@@ -105,7 +105,6 @@ export class HireServiceComponent implements OnInit {
     }
 
     sendMessageToProviderService(providerKey:string,servicio:string,userKey:string) {
-        debugger
         this._userService.sendNotificationUserProvider(providerKey,this.infoUser,servicio,this.uid);
         this.showMessage();
     }
