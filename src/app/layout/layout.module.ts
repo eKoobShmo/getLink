@@ -48,6 +48,10 @@ import {Globals} from "../services/globals.service";
 import {Broadcaster} from "../../assets/js/broadcaster";
 import {ValidationService} from "../services/validation.service";
 import {FavoritosComponent} from "../pages/favoritos/favoritos.component";
+import {ConfigurationProviderServiceComponent} from "../pages/configuration-provider-service/configuration-provider-service.component";
+import {MyProfileComponent} from "../pages/configuration-provider-service/my-profile/my-profile.component";
+import {MyServiceComponent} from "../pages/configuration-provider-service/my-service/my-service.component";
+import {LoadImagesComponent} from "../pages/configuration-provider-service/load-images/load-images.component";
 
 
 
@@ -83,7 +87,11 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         LoginModalComponent,
         HireServiceComponent,
         UpdateInfoComponent,
-        FavoritosComponent
+        FavoritosComponent,
+        ConfigurationProviderServiceComponent,
+        MyProfileComponent,
+        MyServiceComponent,
+        LoadImagesComponent
 
     ],
     imports: [

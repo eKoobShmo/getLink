@@ -13,37 +13,50 @@ import {CargaComponent} from "../modals/carga/carga.component";
 import {LoginComponent} from "../pages/login/login.component";
 import {HireServiceComponent} from "../modals/hire-service/hire-service.component";
 import {FavoritosComponent} from "../pages/favoritos/favoritos.component";
-
+import {ConfigurationProviderServiceComponent} from "../pages/configuration-provider-service/configuration-provider-service.component";
+import {MyProfileComponent} from "../pages/configuration-provider-service/my-profile/my-profile.component";
+import {MyServiceComponent} from "../pages/configuration-provider-service/my-service/my-service.component";
+import {LoadImagesComponent} from "../pages/configuration-provider-service/load-images/load-images.component";
 
 
 const LAYOUT_ROUTES: Routes = [
     {
         path: '', component: LayoutComponent, children: [
-        //Home
-        {path: '', redirectTo: 'categorias', pathMatch: 'full'},
+            //Home
+            {path: '', redirectTo: 'categorias', pathMatch: 'full'},
 
-        // {path: 'usuarios', loadChildren: '../pages/usuarios/usuarios.module#UsuariosModule'},
-        {path: 'categorias', loadChildren: '../pages/categorias/categorias.module#CategoriasModule'},
-        {
-            path: 'perfil-ps/:serviceProviderKey',
-            component: PerfilPSComponent,
-            children: [
-                { path: 'acercaDe', component: AcercaDeComponent},
-                // { path: 'comentarios', component:TabComentariosComponent },
-                { path: 'comentarios', component: TabComentarioComponent},
-                { path: 'galeria', component: GaleriaComponent},
-                { path: 'ubicacion', component: UbicacionComponent},
-                {path: 'cargarMultimedia', component: CargaComponent},
-                { path: '**', component: AcercaDeComponent}
+            // {path: 'usuarios', loadChildren: '../pages/usuarios/usuarios.module#UsuariosModule'},
+            {path: 'categorias', loadChildren: '../pages/categorias/categorias.module#CategoriasModule'},
+            {
+                path: 'perfil-ps/:serviceProviderKey',
+                component: PerfilPSComponent,
+                children: [
+                    {path: 'acercaDe', component: AcercaDeComponent},
+                    // { path: 'comentarios', component:TabComentariosComponent },
+                    {path: 'comentarios', component: TabComentarioComponent},
+                    {path: 'galeria', component: GaleriaComponent},
+                    {path: 'ubicacion', component: UbicacionComponent},
+                    {path: 'cargarMultimedia', component: CargaComponent},
+                    {path: '**', component: AcercaDeComponent}
 
-            ]
-        },
-        {path: 'prestadores-servicios', component: PrestadoresServiciosComponent},
-        {path: 'favoritos', component: FavoritosComponent},
-        {path: 'galleryModal', component: GalleryComponent},
-        {path: 'reportar', component:ReportComponent},
-        {path: 'contratarServicio', component: HireServiceComponent}
-    ]
+                ]
+            },
+            {
+                path: 'configuracionPrestador',
+                component: ConfigurationProviderServiceComponent,
+                children: [
+                    {path: 'miPerfil', component: MyProfileComponent},
+                    {path: 'miServicio', component: MyServiceComponent},
+                    {path: 'cargarImagenes', component: LoadImagesComponent}
+                ]
+            },
+            {path: 'prestadores-servicios', component: PrestadoresServiciosComponent},
+            {path: 'favoritos', component: FavoritosComponent},
+            {path: 'galleryModal', component: GalleryComponent},
+            {path: 'reportar', component: ReportComponent},
+            {path: 'contratarServicio', component: HireServiceComponent},
+            {path: 'configuracionPS', component: ConfigurationProviderServiceComponent}
+        ]
     }
 ];
 

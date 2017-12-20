@@ -1,0 +1,147 @@
+<section>
+    <div class="row" style="margin-left: 45px;">
+        <div class="col-6">
+            <div class="" style="margin-top: 10px;font-size: 18px">
+                <!--inf basica-->
+                <div class="row m-t-20" >
+                    <div class="offset-1 col-4">
+                        <strong>Información básica</strong>
+                    </div>
+                </div>
+                <!--nombre-->
+                <div class="row m-t-20" >
+                  <div class="offset-1 col-2">
+                      <span>Nombre:</span>
+                  </div>
+                  <div class="col-6">
+                      <span *ngIf="!isEdit">Paola Gama</span>
+                      <input type="text" class="form-control-line form-control"
+                             *ngIf="isEdit">
+                      <i class="form-group__bar"></i>
+                  </div>
+                </div>
+                <!--email-->
+                <div class="row m-t-20" >
+                  <div class="offset-1 col-2">
+                      <span>Email:</span>
+                  </div>
+                  <div class="col-6">
+                      <span *ngIf="!isEdit">paolaggd@gmail.com</span>
+                      <input type="text" class="form-control-line form-control"
+                             *ngIf="isEdit">
+                      <i class="form-group__bar"></i>
+                  </div>
+                </div>
+                <!--telefono-->
+                <div class="row m-t-20" >
+                  <div class="offset-1 col-2">
+                      <span>Teléfono:</span>
+                  </div>
+                  <div class="col-6">
+                      <span *ngIf="!isEdit">6621501365</span>
+                      <input type="text" class="form-control-line form-control"
+                             *ngIf="isEdit">
+                      <i class="form-group__bar"></i>
+                  </div>
+                </div>
+                <!--whats-->
+                <div class="row m-t-20" >
+                  <div class="offset-1 col-2">
+                      <span>Whatsapp:</span>
+                  </div>
+                  <div class="col-6">
+                      <span *ngIf="!isEdit">6621501365</span>
+                      <input type="text" class="form-control-line form-control"
+                             *ngIf="isEdit">
+                      <i class="form-group__bar"></i>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-6"style="font-size: 18px" >
+            <!--direccion-->
+            <div class="row m-t-20" >
+                <div class="offset-1 col-2">
+                    <strong>Dirección</strong>
+                </div>
+            </div>
+            <!--calle-->
+            <div class="row m-t-20" >
+                <div class="offset-1 col-2">
+                    <span>Calle:</span>
+                </div>
+                <div class="col-6">
+                    <span *ngIf="!isEdit">Navojoa</span>
+                    <input type="text" class="form-control-line form-control"
+                           *ngIf="isEdit">
+                    <i class="form-group__bar"></i>
+                </div>
+            </div>
+            <!--numero-->
+            <div class="row m-t-20" >
+                <div class="offset-1 col-2">
+                    <span>No.:</span>
+                </div>
+                <div class="col-6">
+                    <span *ngIf="!isEdit">1231</span>
+                    <input type="text" class="form-control-line form-control"
+                           *ngIf="isEdit">
+                    <i class="form-group__bar"></i>
+                </div>
+            </div>
+            <!--colonia-->
+            <div class="row m-t-20" >
+                <div class="offset-1 col-2">
+                    <span>Colonia:</span>
+                </div>
+                <div class="col-6">
+                    <span *ngIf="!isEdit">Camino Real</span>
+                    <input type="text" class="form-control-line form-control"
+                           *ngIf="isEdit">
+                    <i class="form-group__bar"></i>
+                </div>
+            </div>
+            <!--cp-->
+            <div class="row m-t-20" >
+                <div class="offset-1 col-2">
+                    <span>CP:</span>
+                </div>
+                <div class="col-6">
+                    <span *ngIf="!isEdit">83178</span>
+                    <input type="text" class="form-control-line form-control"
+                           *ngIf="isEdit">
+                    <i class="form-group__bar"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="" align="center" style="margin-top: 80px;">
+        <div class="row" *ngIf="!isUpdating">
+
+            <!--button Update-->
+            <div class="col-3">
+                <button class="btn btn-info" (click)="updateUser()">Actualizar</button>
+            </div>
+            <!--button Close-->
+            <!--<div class="col-1">-->
+                <!--<button class="btn btn-danger" (click)="closeModal()">Cerrar</button>-->
+            <!--</div>-->
+        </div>
+
+        <div class="row" align="center" *ngIf="isUpdating">
+            <div class="col-3">
+                <!--save-->
+                <button class="btn btn-success">Guardar cambios</button>
+            </div>
+            <!--button Close-->
+            <div class="col-1">
+                <button class="btn btn-danger" (click)="cancelEdit()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+</section>
