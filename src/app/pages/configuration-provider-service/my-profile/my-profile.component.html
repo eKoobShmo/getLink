@@ -73,9 +73,9 @@
                     <span>Calle:</span>
                 </div>
                 <div class="col-6">
-                    <span *ngIf="!isEdit">Navojoa</span>
+                    <span *ngIf="!isEdit">{{infoUser.domicilio.calle}}</span>
                     <input type="text" class="form-control-line form-control"
-                           *ngIf="isEdit">
+                           *ngIf="isEdit" [(ngModel)]="fieldCalle">
                     <i class="form-group__bar"></i>
                 </div>
             </div>
@@ -85,9 +85,9 @@
                     <span>No.:</span>
                 </div>
                 <div class="col-6">
-                    <span *ngIf="!isEdit">1231</span>
+                    <span *ngIf="!isEdit">{{infoUser.domicilio.numero}}</span>
                     <input type="text" class="form-control-line form-control"
-                           *ngIf="isEdit">
+                           *ngIf="isEdit" [(ngModel)]="fieldNumero">
                     <i class="form-group__bar"></i>
                 </div>
             </div>
@@ -97,9 +97,9 @@
                     <span>Colonia:</span>
                 </div>
                 <div class="col-6">
-                    <span *ngIf="!isEdit">Camino Real</span>
+                    <span *ngIf="!isEdit">{{infoUser.domicilio.colonia}}</span>
                     <input type="text" class="form-control-line form-control"
-                           *ngIf="isEdit">
+                           *ngIf="isEdit" [(ngModel)]="fieldColonia">
                     <i class="form-group__bar"></i>
                 </div>
             </div>
@@ -109,9 +109,9 @@
                     <span>CP:</span>
                 </div>
                 <div class="col-6">
-                    <span *ngIf="!isEdit">83178</span>
+                    <span *ngIf="!isEdit">{{infoUser.domicilio.cp}}</span>
                     <input type="text" class="form-control-line form-control"
-                           *ngIf="isEdit">
+                           *ngIf="isEdit" [(ngModel)]="fieldCP">
                     <i class="form-group__bar"></i>
                 </div>
             </div>

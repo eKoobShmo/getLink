@@ -15,9 +15,11 @@ export class MyProfileComponent implements OnInit {
     email: string;
     fieldEmail: string;
     fieldNombre: string;
-    fieldCalle: string;
     fieldTelefono: string;
+    fieldCalle: string;
     fieldColonia: string;
+    fieldNumero: number;
+    fieldCP: number;
     infoUser: userInfoInterface = {
         nombre: "",
         domicilio: {
@@ -39,6 +41,9 @@ export class MyProfileComponent implements OnInit {
                 this.infoUser.nombre = response.displayName;
                 this.fieldNombre = this.infoUser.nombre;
             }
+            if(response.email!=null){
+                this.email = response.email;
+            }
         });
 
     }
@@ -47,10 +52,17 @@ export class MyProfileComponent implements OnInit {
         // obtener la informacion que contiene el usuario
         setTimeout(() => {
             this._usrService.getInfoUser(this.uid).subscribe((response: any) => {
-                this.email = response.email;
                 this.fieldEmail = this.email;
                 this.infoUser.telefono = response.telefono;
                 this.fieldTelefono = this.infoUser.telefono.toString();
+                this.infoUser.domicilio.calle=response.domicilio.calle;
+                this.fieldCalle = this.infoUser.domicilio.calle;
+                this.infoUser.domicilio.numero=response.domicilio.numero;
+                this.fieldNumero = this.infoUser.domicilio.numero;
+                this.infoUser.domicilio.cp=response.domicilio.cp;
+                this.fieldCP = this.infoUser.domicilio.cp;
+                this.infoUser.domicilio.colonia=response.domicilio.colonia;
+                this.fieldColonia = this.infoUser.domicilio.colonia;
             })
         }, 300)
 

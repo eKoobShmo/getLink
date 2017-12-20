@@ -41,6 +41,14 @@ export class UpdateInfoComponent implements OnInit {
                 private _userService: UserService,
                 public _validationService: ValidationService) {
 
+
+        this._userService.isAuthenticated().then((response: any) => {
+            if(response.displayName!=null){
+                this.infoUser.nombre = response.displayName;
+            }
+
+        })
+
     }
 
     ngOnInit() {
