@@ -14,22 +14,22 @@
                       <span>Nombre:</span>
                   </div>
                   <div class="col-6">
-                      <span *ngIf="!isEdit">Paola Gama</span>
+                      <span *ngIf="!isEdit">{{infoUser.nombre}}</span>
                       <input type="text" class="form-control-line form-control"
-                             *ngIf="isEdit">
+                             *ngIf="isEdit" [(ngModel)]="fieldNombre">
                       <i class="form-group__bar"></i>
                   </div>
                 </div>
                 <!--email-->
                 <div class="row m-t-20" >
                   <div class="offset-1 col-2">
-                      <span>Email:</span>
+                      <span *ngIf="!isEdit">Email:</span>
                   </div>
                   <div class="col-6">
-                      <span *ngIf="!isEdit">paolaggd@gmail.com</span>
-                      <input type="text" class="form-control-line form-control"
-                             *ngIf="isEdit">
-                      <i class="form-group__bar"></i>
+                      <span *ngIf="!isEdit">{{email}}</span>
+                      <!--<input type="text" class="form-control-line form-control"-->
+                             <!--[(ngModel)]="email">-->
+                      <!--<i class="form-group__bar"></i>-->
                   </div>
                 </div>
                 <!--telefono-->
@@ -38,24 +38,24 @@
                       <span>Teléfono:</span>
                   </div>
                   <div class="col-6">
-                      <span *ngIf="!isEdit">6621501365</span>
+                      <span *ngIf="!isEdit">{{infoUser.telefono}}</span>
                       <input type="text" class="form-control-line form-control"
-                             *ngIf="isEdit">
+                             *ngIf="isEdit" [(ngModel)]="fieldTelefono">
                       <i class="form-group__bar"></i>
                   </div>
                 </div>
-                <!--whats-->
-                <div class="row m-t-20" >
-                  <div class="offset-1 col-2">
-                      <span>Whatsapp:</span>
-                  </div>
-                  <div class="col-6">
-                      <span *ngIf="!isEdit">6621501365</span>
-                      <input type="text" class="form-control-line form-control"
-                             *ngIf="isEdit">
-                      <i class="form-group__bar"></i>
-                  </div>
-                </div>
+                <!--&lt;!&ndash;whats&ndash;&gt;-->
+                <!--<div class="row m-t-20" >-->
+                  <!--<div class="offset-1 col-2">-->
+                      <!--<span>Whatsapp:</span>-->
+                  <!--</div>-->
+                  <!--<div class="col-6">-->
+                      <!--<span *ngIf="!isEdit">{{infoUser.telefono}}</span>-->
+                      <!--<input type="text" class="form-control-line form-control"-->
+                             <!--*ngIf="isEdit">-->
+                      <!--<i class="form-group__bar"></i>-->
+                  <!--</div>-->
+                <!--</div>-->
 
             </div>
         </div>
@@ -120,16 +120,14 @@
     </div>
 
     <div class="" align="center" style="margin-top: 80px;">
+
         <div class="row" *ngIf="!isUpdating">
 
             <!--button Update-->
-            <div class="col-3">
-                <button class="btn btn-info" (click)="updateUser()">Actualizar</button>
+            <div class="col-12" align="center">
+                <button  style="width: 200px;" class="btn btn-info" (click)="updateUser()">Actualizar</button>
             </div>
-            <!--button Close-->
-            <!--<div class="col-1">-->
-                <!--<button class="btn btn-danger" (click)="closeModal()">Cerrar</button>-->
-            <!--</div>-->
+
         </div>
 
         <div class="row" align="center" *ngIf="isUpdating">
