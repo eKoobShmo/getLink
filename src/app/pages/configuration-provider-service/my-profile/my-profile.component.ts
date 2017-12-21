@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {UserService} from "../../../services/user.service";
-import {userInfoInterface} from "../../../interfaces/userInfo";
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {UserService} from '../../../services/user.service';
+import {userInfoInterface} from '../../../interfaces/userInfo';
+import {ValidationService} from '../../../services/validation.service';
 
 @Component({
     selector: 'app-my-profile',
@@ -27,18 +28,19 @@ export class MyProfileComponent implements OnInit {
     errorColonia: boolean = false;
     errorNumero: boolean = false;
     infoUser: userInfoInterface = {
-        nombre: "",
+        nombre: '',
         domicilio: {
             cp: null,
-            calle: "",
-            colonia: "",
+            calle: '',
+            colonia: '',
             numero: null
         },
         telefono: null
     };
 
     constructor(private _activeModal: NgbActiveModal,
-                private _usrService: UserService) {
+                private _usrService: UserService,
+                public _validationService:ValidationService) {
 
         // obtener uid mediante una promesa
         this._usrService.isAuthenticated().then((response: any) => {
@@ -47,7 +49,7 @@ export class MyProfileComponent implements OnInit {
                 this.infoUser.nombre = response.displayName;
                 this.fieldNombre = this.infoUser.nombre;
             }
-            if(response.email!=null){
+            if (response.email != null) {
                 this.email = response.email;
             }
         });
@@ -58,23 +60,23 @@ export class MyProfileComponent implements OnInit {
         // obtener la informacion que contiene el usuario
         setTimeout(() => {
             this._usrService.getInfoUser(this.uid).subscribe((response: any) => {
-                if(response.nombre!=null){
+                if (response.nombre != null) {
                     this.infoUser.nombre = response.nombre;
                     this.fieldNombre = response.nombre;
                 }
                 this.fieldEmail = this.email;
-                if(response.telefono!=null){
+                if (response.telefono != null) {
                     this.infoUser.telefono = response.telefono;
                     this.fieldTelefono = this.infoUser.telefono.toString();
                 }
-                if(response.domicilio!=null){
-                    this.infoUser.domicilio.calle=response.domicilio.calle;
+                if (response.domicilio != null) {
+                    this.infoUser.domicilio.calle = response.domicilio.calle;
                     this.fieldCalle = this.infoUser.domicilio.calle;
-                    this.infoUser.domicilio.numero=response.domicilio.numero;
+                    this.infoUser.domicilio.numero = response.domicilio.numero;
                     this.fieldNumero = this.infoUser.domicilio.numero;
-                    this.infoUser.domicilio.cp=response.domicilio.cp;
+                    this.infoUser.domicilio.cp = response.domicilio.cp;
                     this.fieldCP = this.infoUser.domicilio.cp;
-                    this.infoUser.domicilio.colonia=response.domicilio.colonia;
+                    this.infoUser.domicilio.colonia = response.domicilio.colonia;
                     this.fieldColonia = this.infoUser.domicilio.colonia;
                 }
 
@@ -98,27 +100,28 @@ export class MyProfileComponent implements OnInit {
     }
 
     validateFields(infoUser: userInfoInterface) {
-        if (this.fieldNombre == "") {
+        debugger;
+        if (this._validationService.errorInField(this.fieldNombre)) {
             this.errorNombre = true;
         } else {
             infoUser.nombre = this.fieldNombre;
-            if (this.fieldTelefono == null) {
+            if (this._validationService.errorInField(this.fieldTelefono)) {
                 this.errorTelefono = true;
-            }else {
-                infoUser.telefono=parseInt(this.fieldTelefono);
-                if (this.fieldColonia == "") {
-                    this.errorColonia = true;
+            } else {
+                infoUser.telefono = parseInt(this.fieldTelefono);
+                if (this._validationService.errorInField(this.fieldCalle)) {
+                    this.errorCalle = true;
                 } else {
                     infoUser.domicilio.colonia = this.fieldColonia;
-                    if (this.fieldCalle == "") {
-                        this.errorCalle = true;
+                    if (this._validationService.errorInField(this.fieldNumero)) {
+                        this.errorNumero = true;
                     } else {
                         infoUser.domicilio.calle = this.fieldCalle;
-                        if (this.fieldNumero == null) {
-                            this.errorNumero = true;
+                        if (this._validationService.errorInField(this.fieldColonia)) {
+                            this.errorColonia = true;
                         } else {
                             infoUser.domicilio.numero = this.fieldNumero;
-                            if (this.fieldCP == null) {
+                            if (this._validationService.errorInField(this.fieldCP)) {
                                 this.errorCP = true;
                             } else {
                                 infoUser.domicilio.cp = this.fieldCP;
@@ -132,7 +135,7 @@ export class MyProfileComponent implements OnInit {
 
     }
 
-    updateInfo(infoUser:userInfoInterface){
+    updateInfo(infoUser: userInfoInterface) {
         debugger
         this._usrService.updateUserInfo(this.uid, infoUser);
         this.isUpdating = false;

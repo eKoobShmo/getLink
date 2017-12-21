@@ -10,6 +10,7 @@ import {UpdateInfoComponent} from "../update-info/update-info.component";
 import {Globals} from "../../services/globals.service";
 import set = Reflect.set;
 import {setTime} from "ngx-bootstrap/timepicker/timepicker.utils";
+import {ValidationService} from '../../services/validation.service';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class HireServiceComponent implements OnInit {
     constructor(private _userProviderService: userProviderService,
                 private _userService: UserService,
                 private _modalService: NgbModal,
-                private _activeModal: NgbActiveModal) {
+                private _activeModal: NgbActiveModal,
+                private _validationService:ValidationService) {
 
 
 
@@ -87,8 +89,8 @@ export class HireServiceComponent implements OnInit {
 
     verifyFieldsUser(field: userInfoInterface) {
 
-        if ((field.nombre == "") || (field.telefono == null) || (field.domicilio.numero == null)
-            || (field.domicilio.colonia == "") || (field.domicilio.calle == "")
+        if ((this._validationService.errorInField(field.nombre)) || this._validationService.errorInField((field.telefono)) || this._validationService.errorInField((field.domicilio.numero))
+            || this._validationService.errorInField((field.domicilio.colonia)) || this._validationService.errorInField((field.domicilio.calle ))
         ) {
             this.emptyFields = true;
         } else {
