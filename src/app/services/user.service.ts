@@ -40,7 +40,6 @@ export class UserService {
     }
 
     getInfoUser(uid: string) {
-        debugger
         return this.db.object('usuarios/' + uid)
     }
 

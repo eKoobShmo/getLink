@@ -39,13 +39,15 @@ export class EnviarComentarioComponent implements OnInit {
         this.getUserData();
 
         setTimeout(()=>{
-            this._userService.getInfoUser(this.uid).subscribe((response:any)=>{
-                if(this._validationService.errorInField(response.nombre)){
-                    this.username = "Usuario";
-                }else{
-                    this.username = response.nombre;
-                }
-            })
+            if(this.username==null){
+                this._userService.getInfoUser(this.uid).subscribe((response:any)=>{
+                    if(this._validationService.errorInField(response.nombre)){
+                        this.username = "Usuario";
+                    }else{
+                        this.username = response.nombre;
+                    }
+                })
+            }
         },500);
 
         this.comments = db.list('prestadoresServicios/0/servicios/0/comentarios')
@@ -75,6 +77,7 @@ export class EnviarComentarioComponent implements OnInit {
 
 
     sendComment(txtcomment: string) {
+        debugger
         let comment: commentInterface =
             {
                 nombreUsuario: this.username,

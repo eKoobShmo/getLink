@@ -100,7 +100,6 @@ export class MyProfileComponent implements OnInit {
     }
 
     validateFields(infoUser: userInfoInterface) {
-        debugger;
         if (this._validationService.errorInField(this.fieldNombre)) {
             this.errorNombre = true;
         } else {
