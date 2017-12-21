@@ -19,7 +19,7 @@ export class CategoriasComponent implements OnInit {
 
     afAuth.auth.onAuthStateChanged( (user) =>{
       if(user == null){
-        window.location.href = '#/login';
+        this.router.navigate(['#/login'])
       }
     });
 
@@ -32,7 +32,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   goTohire(){
-    window.location.href ="#/prestadores-servicios"
+    window.location.href="#/prestadores-servicios";
   }
 
   verServicio(id:string){

@@ -7,6 +7,8 @@ import {CargaMultimediaService} from '../../../../services/carga-archivos.servic
 import {DatePipe} from "@angular/common";
 import {CargaComponent} from "../../../../modals/carga/carga.component";
 import {FileItem} from "../../../../models/fileItem";
+import {UserService} from '../../../../services/user.service';
+import {ValidationService} from '../../../../services/validation.service';
 
 @Component({
     selector: 'app-enviar-comentario',
@@ -15,9 +17,11 @@ import {FileItem} from "../../../../models/fileItem";
 })
 export class EnviarComentarioComponent implements OnInit {
 
+    uid:string;
     userEmail: string;
     username: string;
     userPhoto: string;
+    existPhoto:boolean;
     urlImageComment: string;
     comments: FirebaseListObservable<any>;
     currentDate = new Date();
@@ -29,21 +33,45 @@ export class EnviarComentarioComponent implements OnInit {
                 private elementRef: ElementRef,
                 private modalCargaImagenes: NgbModal,
                 private _componentCarga: CargaComponent,
-                private _cargaMultimediaService: CargaMultimediaService) {
+                private _cargaMultimediaService: CargaMultimediaService,
+                private _userService:UserService,
+                private _validationService:ValidationService) {
         this.getUserData();
+
+        setTimeout(()=>{
+            this._userService.getInfoUser(this.uid).subscribe((response:any)=>{
+                if(this._validationService.errorInField(response.nombre)){
+                    this.username = "Usuario";
+                }else{
+                    this.username = response.nombre;
+                }
+            })
+        },500);
+
         this.comments = db.list('prestadoresServicios/0/servicios/0/comentarios')
     }
 
     ngOnInit() {
+
     }
 
 
     getUserData() {
         this.afAuth.auth.onAuthStateChanged((user) => {
+            debugger;
+            this.uid=user.uid;
             this.userEmail = user.email;
-            this.username = user.displayName;
-            this.userPhoto = user.photoURL;
-            console.log(this.userPhoto)
+            if(user.displayName!=null){
+                this.username = user.displayName;
+            }
+
+            if(user.photoURL!=null){
+                this.userPhoto = user.photoURL;
+                this.existPhoto=true;
+            }else{
+                this.userPhoto = '../../../../assets/images/user.png';
+                this.existPhoto=false;
+            }
         })
     }
 
@@ -68,10 +96,8 @@ export class EnviarComentarioComponent implements OnInit {
         const modalCargaRef = this.modalCargaImagenes.open(CargaComponent)
             .result.then((result) => {
                 this.imagenesComentarios = result;
-                // console.log("imagenes comentarios = ", this.imagenesComentarios)
             },error =>{
                 console.log("se devolvio en promesa: " , this.imagenesComentarios)
-                // console.log("no devolvio nada")
             })
 
     }
