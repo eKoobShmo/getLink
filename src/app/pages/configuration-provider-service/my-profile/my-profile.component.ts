@@ -20,6 +20,12 @@ export class MyProfileComponent implements OnInit {
     fieldColonia: string;
     fieldNumero: number;
     fieldCP: number;
+    errorNombre: boolean = false;
+    errorTelefono: boolean = false;
+    errorCalle: boolean = false;
+    errorCP: boolean = false;
+    errorColonia: boolean = false;
+    errorNumero: boolean = false;
     infoUser: userInfoInterface = {
         nombre: "",
         domicilio: {
@@ -52,17 +58,26 @@ export class MyProfileComponent implements OnInit {
         // obtener la informacion que contiene el usuario
         setTimeout(() => {
             this._usrService.getInfoUser(this.uid).subscribe((response: any) => {
+                if(response.nombre!=null){
+                    this.infoUser.nombre = response.nombre;
+                    this.fieldNombre = response.nombre;
+                }
                 this.fieldEmail = this.email;
-                this.infoUser.telefono = response.telefono;
-                this.fieldTelefono = this.infoUser.telefono.toString();
-                this.infoUser.domicilio.calle=response.domicilio.calle;
-                this.fieldCalle = this.infoUser.domicilio.calle;
-                this.infoUser.domicilio.numero=response.domicilio.numero;
-                this.fieldNumero = this.infoUser.domicilio.numero;
-                this.infoUser.domicilio.cp=response.domicilio.cp;
-                this.fieldCP = this.infoUser.domicilio.cp;
-                this.infoUser.domicilio.colonia=response.domicilio.colonia;
-                this.fieldColonia = this.infoUser.domicilio.colonia;
+                if(response.telefono!=null){
+                    this.infoUser.telefono = response.telefono;
+                    this.fieldTelefono = this.infoUser.telefono.toString();
+                }
+                if(response.domicilio!=null){
+                    this.infoUser.domicilio.calle=response.domicilio.calle;
+                    this.fieldCalle = this.infoUser.domicilio.calle;
+                    this.infoUser.domicilio.numero=response.domicilio.numero;
+                    this.fieldNumero = this.infoUser.domicilio.numero;
+                    this.infoUser.domicilio.cp=response.domicilio.cp;
+                    this.fieldCP = this.infoUser.domicilio.cp;
+                    this.infoUser.domicilio.colonia=response.domicilio.colonia;
+                    this.fieldColonia = this.infoUser.domicilio.colonia;
+                }
+
             })
         }, 300)
 
@@ -79,6 +94,47 @@ export class MyProfileComponent implements OnInit {
 
     cancelEdit() {
         this.isEdit = false;
+        this.isUpdating = false;
+    }
+
+    validateFields(infoUser: userInfoInterface) {
+        if (this.fieldNombre == "") {
+            this.errorNombre = true;
+        } else {
+            infoUser.nombre = this.fieldNombre;
+            if (this.fieldTelefono == null) {
+                this.errorTelefono = true;
+            }else {
+                infoUser.telefono=parseInt(this.fieldTelefono);
+                if (this.fieldColonia == "") {
+                    this.errorColonia = true;
+                } else {
+                    infoUser.domicilio.colonia = this.fieldColonia;
+                    if (this.fieldCalle == "") {
+                        this.errorCalle = true;
+                    } else {
+                        infoUser.domicilio.calle = this.fieldCalle;
+                        if (this.fieldNumero == null) {
+                            this.errorNumero = true;
+                        } else {
+                            infoUser.domicilio.numero = this.fieldNumero;
+                            if (this.fieldCP == null) {
+                                this.errorCP = true;
+                            } else {
+                                infoUser.domicilio.cp = this.fieldCP;
+                                this.updateInfo(infoUser);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    updateInfo(infoUser:userInfoInterface){
+        debugger
+        this._usrService.updateUserInfo(this.uid, infoUser);
         this.isUpdating = false;
     }
 }

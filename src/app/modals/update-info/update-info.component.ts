@@ -21,7 +21,6 @@ export class UpdateInfoComponent implements OnInit {
     errorTelefono: boolean = false;
     errorCalle: boolean = false;
     errorCP: boolean = false;
-    resultNull: boolean = false;
     errorColonia: boolean = false;
     errorNumero: boolean = false;
 
@@ -104,7 +103,7 @@ export class UpdateInfoComponent implements OnInit {
                             this.errorNumero = true;
                         } else {
                             if (infoUser.domicilio.cp == null) {
-                                this.errorColonia = true;
+                                this.errorCP = true;
                             } else {
                                 this.updateInfo(infoUser);
                             }
