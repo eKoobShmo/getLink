@@ -16,13 +16,15 @@ import {Observable} from "rxjs/Observable";
 })
 export class ComentarioComponent implements OnInit {
     @Input() key;
+    existPhoto:boolean;
     response: FirebaseListObservable<any[]>;
     adjuntos:any[] = [];
     favorite:boolean=false;
 
     constructor(private af: AngularFireDatabase,
                 private multimediaService:ModalMultimediaService,
-                private modalService:NgbModal) {
+                private modalService:NgbModal,
+                private afAuth:AngularFireAuth) {
     }
 
     ngOnInit() {
@@ -33,6 +35,9 @@ export class ComentarioComponent implements OnInit {
                 })
             })
     }
+
+
+
     getAttached(): Observable<any>{
         return this.af.list('prestadoresServicios/0/servicios/0/comentarios/' + this.key + '/adjuntos/', {preserveSnapshot: true})
     }

@@ -1,20 +1,11 @@
-<!--<div class="row">-->
-<!--<div class="col-4">-->
-<!--<img [src]="photo" alt="" style="width: 100px">-->
-<!--</div>-->
-<!--<div class="col-4">-->
-<!--{{ userName }}-->
-<!--</div>-->
-<!--<div class="col-4">-->
-<!--{{ comment }}-->
-<!--</div>-->
-<!--</div>-->
+
 <section>
     <div class="row cardComment">
         <div class="col-12">
             <div class="row">
                 <div class="col-1" style="margin-top: 2%;">
-                    <img [src]="photo" class="userPhotoStyle" alt="photoUser">
+                    <!--<i *ngIf="!existPhoto" class="zmdi zmdi-account-circle userPhotoStyle" style="font-size: 40px"></i>-->
+                    <img  [src]="photo" class="userPhotoStyle" alt="photoUser">
                 </div>
                 <div class="col-11" style="margin-top: 23px">
 
@@ -42,12 +33,6 @@
                         <img  (click)="openImageModal(i)" src="{{adjunto.adjuntoUrl}}" alt="Adjunto" style="width: 30px; height: 30px;cursor: pointer;margin-bottom: 10px">
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12" align="left">
-                <span class="cursor-pointer m-l-5" style="color:cadetblue"> <i class="zmdi zmdi-comment-more m-r-5" ></i> Ver 5 comentarios más</span>
-              </div>
             </div>
         </div>
     </div>

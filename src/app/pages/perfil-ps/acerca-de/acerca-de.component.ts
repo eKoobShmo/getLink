@@ -23,9 +23,7 @@ export class AcercaDeComponent implements OnInit {
         this.psService.getProviderInfo(ProviderInfo.serviceProviderKey)
             .subscribe((result: any) => {
                this.serviceProviderInfo=result;
-               console.log(result)
-            })
-        console.log("b : ",ProviderInfo.serviceProviderKey);
+            });
 
     }
 
