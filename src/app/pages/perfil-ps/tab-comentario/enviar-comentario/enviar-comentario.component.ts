@@ -52,13 +52,11 @@ export class EnviarComentarioComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
 
     getUserData() {
         this.afAuth.auth.onAuthStateChanged((user) => {
-            debugger;
             this.uid=user.uid;
             this.userEmail = user.email;
             if(user.displayName!=null){
@@ -77,14 +75,13 @@ export class EnviarComentarioComponent implements OnInit {
 
 
     sendComment(txtcomment: string) {
-
         let comment: commentInterface =
             {
                 nombreUsuario: this.username,
                 foto: this.userPhoto,
                 comentario: txtcomment,
                 poderComentar: false,
-                fecha: this.currentDate.toString()
+                fecha: this.currentDate.toDateString()
             };
         let keyComment: string = this.comments.push(comment).key;
         this.comments.update(keyComment, {key: keyComment});

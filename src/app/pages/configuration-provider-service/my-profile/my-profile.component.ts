@@ -136,8 +136,8 @@ export class MyProfileComponent implements OnInit {
     }
 
     updateInfo(infoUser: userInfoInterface) {
-        debugger
         this._usrService.updateUserInfo(this.uid, infoUser);
+        this.isEdit=false;
         this.isUpdating = false;
     }
 }
