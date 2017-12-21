@@ -9,6 +9,8 @@ import {CargaComponent} from "../../../../modals/carga/carga.component";
 import {FileItem} from "../../../../models/fileItem";
 import {UserService} from '../../../../services/user.service';
 import {ValidationService} from '../../../../services/validation.service';
+import {Broadcaster} from "../../../../../assets/js/broadcaster";
+import {userProviderService} from "../../../../services/userProvider.service";
 
 @Component({
     selector: 'app-enviar-comentario',
@@ -17,58 +19,67 @@ import {ValidationService} from '../../../../services/validation.service';
 })
 export class EnviarComentarioComponent implements OnInit {
 
-    uid:string;
+    keyPrestador: string;
+    uid: string;
     userEmail: string;
     username: string;
     userPhoto: string;
-    existPhoto:boolean;
+    existPhoto: boolean;
     urlImageComment: string;
     comments: FirebaseListObservable<any>;
     currentDate = new Date();
     imagenesComentarios: FileItem[] = [];
     private firebaseApp: any;
 
-    constructor(db: AngularFireDatabase,
+    constructor(private db: AngularFireDatabase,
                 private  afAuth: AngularFireAuth,
                 private elementRef: ElementRef,
                 private modalCargaImagenes: NgbModal,
                 private _componentCarga: CargaComponent,
                 private _cargaMultimediaService: CargaMultimediaService,
-                private _userService:UserService,
-                private _validationService:ValidationService) {
+                private _userService: UserService,
+                private _userProviderService:userProviderService,
+                private _validationService: ValidationService,
+                private broadcaster: Broadcaster) {
         this.getUserData();
 
-        setTimeout(()=>{
-            this._userService.getInfoUser(this.uid).subscribe((response:any)=>{
-                if(this._validationService.errorInField(response.nombre)){
-                    this.username = "Usuario";
-                }else{
-                    this.username = response.nombre;
-                }
-            })
-        },500);
+        setTimeout(() => {
+            if (this.username == null) {
+                this._userService.getInfoUser(this.uid).subscribe((response: any) => {
+                    if (this._validationService.errorInField(response.nombre)) {
+                        this.username = "Usuario";
+                    } else {
+                        this.username = response.nombre;
+                    }
+                })
+            }
+        }, 500);
 
-        this.comments = db.list('prestadoresServicios/0/servicios/0/comentarios')
+        this.keyPrestador = sessionStorage.getItem('keyPrestador');
+        this.comments = this._userProviderService.pushComment(this.keyPrestador);
+
     }
 
     ngOnInit() {
+
     }
 
 
     getUserData() {
         this.afAuth.auth.onAuthStateChanged((user) => {
-            this.uid=user.uid;
+            this.uid = user.uid;
             this.userEmail = user.email;
-            if(user.displayName!=null){
+
+            if (user.displayName != null) {
                 this.username = user.displayName;
             }
 
-            if(user.photoURL!=null){
+            if (user.photoURL != null) {
                 this.userPhoto = user.photoURL;
-                this.existPhoto=true;
-            }else{
+                this.existPhoto = true;
+            } else {
                 this.userPhoto = '../../../../assets/images/user.png';
-                this.existPhoto=false;
+                this.existPhoto = false;
             }
         })
     }
@@ -89,12 +100,13 @@ export class EnviarComentarioComponent implements OnInit {
         this.imagenesComentarios = [];
 
     }
+
     abrirCargaImagenes() {
         const modalCargaRef = this.modalCargaImagenes.open(CargaComponent)
             .result.then((result) => {
                 this.imagenesComentarios = result;
-            },error =>{
-                console.log("se devolvio en promesa: " , this.imagenesComentarios)
+            }, error => {
+                console.log("se devolvio en promesa: ", this.imagenesComentarios)
             })
 
     }
