@@ -41,6 +41,8 @@ export class HireServiceComponent implements OnInit {
                 private _modalService: NgbModal,
                 private _activeModal: NgbActiveModal) {
 
+
+
         this._userService.isAuthenticated().then((response: any) => {
             this.uid = response.uid;
         });
@@ -49,10 +51,11 @@ export class HireServiceComponent implements OnInit {
 
     ngOnInit() {
 
+        console.log("llave enviada desde perfil-ps: " +this.keyPrestador);
+
         this._userProviderService.getProviderInfoHire(this.keyPrestador).subscribe((result: any) => {
             this.infoProviderTemp = result;
         });
-
 
 
         this._userService.getInfoUser(this.uid).subscribe((result: any) => {
@@ -78,7 +81,7 @@ export class HireServiceComponent implements OnInit {
 
         setTimeout(()=>{
             this.verifyFieldsUser(this.infoUser);
-        },100)
+        },200)
 
     }
 

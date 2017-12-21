@@ -44,6 +44,10 @@ export class HeaderComponent implements OnInit {
         // window.location.href = '#/login';
     }
 
+    goToCategories(){
+        this.router.navigate(['/categorias'])
+    }
+
     goToHire(){
         this.router.navigate(['/prestadores-servicios']);
         // window.location.href='#/prestadores-servicios';
