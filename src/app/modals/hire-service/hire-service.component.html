@@ -11,12 +11,12 @@
                         <!--nombre del prestador de servicio-->
                         <div>
                             <strong>Prestador de servicio:</strong>
-                            <span>{{infoProviderTemp.nombre}}</span>
+                            <span>{{infoProviderTemp?.nombre}}</span>
                         </div>
                         <!--servicio publicado-->
                         <div class="m-t-10">
                             <strong>Servicio:</strong>
-                            <span>{{infoProviderTemp.titulo}}</span>
+                            <span>{{infoProviderTemp?.titulo}}</span>
                         </div>
                         <!--inf de usuario-->
                         <div class="m-t-25">
@@ -25,17 +25,17 @@
                         <!--nombre del usuario-->
                         <div class="m-t-10">
                             <strong>Usuario:</strong>
-                            <span>{{infoUser.nombre}}</span>
+                            <span>{{infoUser?.nombre}}</span>
                         </div>
                         <!--telefono del usuario-->
                         <div class="m-t-10">
                             <strong>Teléfono:</strong>
-                            <span>{{infoUser.telefono}}</span>
+                            <span>{{infoUser?.telefono}}</span>
                         </div>
                         <!--direccion del usuario-->
                         <div class="m-t-10">
                             <strong>Dirección:</strong>
-                            <span>{{infoUser.domicilio.colonia}} {{infoUser.domicilio.calle}} {{infoUser.domicilio.numero}}</span>
+                            <span>{{infoUser?.domicilio?.colonia}} {{infoUser?.domicilio?.calle}} {{infoUser?.domicilio?.numero}}</span>
                         </div>
 
                     </div>

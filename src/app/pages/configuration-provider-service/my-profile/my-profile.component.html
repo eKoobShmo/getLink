@@ -11,10 +11,10 @@
                 <!--nombre-->
                 <div class="row m-t-20" >
                   <div class="offset-1 col-2">
-                      <span>Nombre:</span>
+                      <span class=" {{ errorNombre? 'errorColorRed' : '' }} ">Nombre:</span>
                   </div>
                   <div class="col-6">
-                      <span *ngIf="!isEdit">{{infoUser.nombre}}</span>
+                      <span *ngIf="!isEdit">{{infoUser?.nombre}}</span>
                       <input type="text" class="form-control-line form-control"
                              *ngIf="isEdit" [(ngModel)]="fieldNombre">
                       <i class="form-group__bar"></i>
@@ -35,28 +35,15 @@
                 <!--telefono-->
                 <div class="row m-t-20" >
                   <div class="offset-1 col-2">
-                      <span>Teléfono:</span>
+                      <span class="{{ errorTelefono? 'errorColorRed' : '' }}">Teléfono:</span>
                   </div>
                   <div class="col-6">
-                      <span *ngIf="!isEdit">{{infoUser.telefono}}</span>
+                      <span *ngIf="!isEdit">{{infoUser?.telefono}}</span>
                       <input type="text" class="form-control-line form-control"
                              *ngIf="isEdit" [(ngModel)]="fieldTelefono">
                       <i class="form-group__bar"></i>
                   </div>
                 </div>
-                <!--&lt;!&ndash;whats&ndash;&gt;-->
-                <!--<div class="row m-t-20" >-->
-                  <!--<div class="offset-1 col-2">-->
-                      <!--<span>Whatsapp:</span>-->
-                  <!--</div>-->
-                  <!--<div class="col-6">-->
-                      <!--<span *ngIf="!isEdit">{{infoUser.telefono}}</span>-->
-                      <!--<input type="text" class="form-control-line form-control"-->
-                             <!--*ngIf="isEdit">-->
-                      <!--<i class="form-group__bar"></i>-->
-                  <!--</div>-->
-                <!--</div>-->
-
             </div>
         </div>
 
@@ -70,10 +57,10 @@
             <!--calle-->
             <div class="row m-t-20" >
                 <div class="offset-1 col-2">
-                    <span>Calle:</span>
+                    <span class="{{ errorCalle? 'errorColorRed' : '' }}">Calle:</span>
                 </div>
                 <div class="col-6">
-                    <span *ngIf="!isEdit">{{infoUser.domicilio.calle}}</span>
+                    <span *ngIf="!isEdit">{{infoUser?.domicilio?.calle}}</span>
                     <input type="text" class="form-control-line form-control"
                            *ngIf="isEdit" [(ngModel)]="fieldCalle">
                     <i class="form-group__bar"></i>
@@ -82,10 +69,10 @@
             <!--numero-->
             <div class="row m-t-20" >
                 <div class="offset-1 col-2">
-                    <span>No.:</span>
+                    <span class="{{ errorNumero? 'errorColorRed' : '' }}">#:</span>
                 </div>
                 <div class="col-6">
-                    <span *ngIf="!isEdit">{{infoUser.domicilio.numero}}</span>
+                    <span *ngIf="!isEdit">{{infoUser?.domicilio?.numero}}</span>
                     <input type="text" class="form-control-line form-control"
                            *ngIf="isEdit" [(ngModel)]="fieldNumero">
                     <i class="form-group__bar"></i>
@@ -94,10 +81,10 @@
             <!--colonia-->
             <div class="row m-t-20" >
                 <div class="offset-1 col-2">
-                    <span>Colonia:</span>
+                    <span class="{{ errorColonia? 'errorColorRed' : '' }}">Colonia:</span>
                 </div>
                 <div class="col-6">
-                    <span *ngIf="!isEdit">{{infoUser.domicilio.colonia}}</span>
+                    <span *ngIf="!isEdit">{{infoUser?.domicilio?.colonia}}</span>
                     <input type="text" class="form-control-line form-control"
                            *ngIf="isEdit" [(ngModel)]="fieldColonia">
                     <i class="form-group__bar"></i>
@@ -106,10 +93,10 @@
             <!--cp-->
             <div class="row m-t-20" >
                 <div class="offset-1 col-2">
-                    <span>CP:</span>
+                    <span class="{{ errorCP? 'errorColorRed' : '' }}">CP:</span>
                 </div>
                 <div class="col-6">
-                    <span *ngIf="!isEdit">{{infoUser.domicilio.cp}}</span>
+                    <span *ngIf="!isEdit">{{infoUser?.domicilio?.cp}}</span>
                     <input type="text" class="form-control-line form-control"
                            *ngIf="isEdit" [(ngModel)]="fieldCP">
                     <i class="form-group__bar"></i>

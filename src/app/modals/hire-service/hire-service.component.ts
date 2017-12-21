@@ -51,8 +51,6 @@ export class HireServiceComponent implements OnInit {
 
     ngOnInit() {
 
-        console.log("llave enviada desde perfil-ps: " +this.keyPrestador);
-
         this._userProviderService.getProviderInfoHire(this.keyPrestador).subscribe((result: any) => {
             this.infoProviderTemp = result;
         });
