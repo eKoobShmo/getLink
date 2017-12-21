@@ -1,8 +1,7 @@
 <section>
-  <div class="row m-l-0 m-r-0" style="margin-top: 100px; width: 1380px;
-    height: 628px;">
+  <div class="row m-l-0 m-r-0 cardProfile">
 
-    <div class="col-12 card" style=" margin-left: 30px;">
+    <div class="col-12 card" style=" ">
 
       <div class="card-header">
         <ul class="nav nav-tabs">
@@ -19,15 +18,10 @@
             <a class="nav-link" routerLinkActive="active" (click)="tab='cargarImagenes'"
                [routerLink]="['cargarImagenes']">Cargar imagenes</a>
           </li>
-          <!--<li class="nav-item" routerLinkActive="active">-->
-          <!--<a class="nav-link" routerLinkActive="active"-->
-          <!--(click)="tab='ubicacion'" [routerLink]="['ubicacion']"-->
-          <!--&gt;Ubicación</a>-->
-          <!--</li>-->
         </ul>
       </div>
       <div class="card-body"
-           style="overflow-y: auto; overflow-x: hidden; height: 500px; width: 100%; padding-right: 5%" id="scrollbar">
+           style="overflow-y: auto; overflow-x: hidden; height: 455px; width: 100%; padding-right: 5%" id="scrollbar">
         <router-outlet></router-outlet>
       </div>
     </div>

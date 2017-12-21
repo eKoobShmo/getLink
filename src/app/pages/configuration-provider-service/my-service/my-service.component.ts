@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {TrabajosRealizadosComponent} from "../../../modals/trabajos-realizados/trabajos-realizados.component";
 
 @Component({
   selector: 'app-my-service',
@@ -18,7 +19,7 @@ export class MyServiceComponent implements OnInit {
     errorColonia: boolean = false;
     errorNumero: boolean = false;
 
-  constructor(private _activeModal:NgbActiveModal) { }
+  constructor(private _modalService: NgbModal) { }
 
   ngOnInit() {
   }
@@ -28,13 +29,13 @@ export class MyServiceComponent implements OnInit {
         this.isUpdating = true;
     }
 
-    closeModal() {
-        this._activeModal.dismiss();
-    }
-
     cancelEdit(){
         this.isEdit=false;
         this.isUpdating=false;
+    }
+
+    openModalTrabajosR(){
+      this._modalService.open(TrabajosRealizadosComponent);
     }
 
 }

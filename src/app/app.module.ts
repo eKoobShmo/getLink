@@ -25,13 +25,15 @@ import { ConfigurationProviderServiceComponent } from './pages/configuration-pro
 import { MyProfileComponent } from './pages/configuration-provider-service/my-profile/my-profile.component';
 import { MyServiceComponent } from './pages/configuration-provider-service/my-service/my-service.component';
 import { LoadImagesComponent } from './pages/configuration-provider-service/load-images/load-images.component';
+import { TrabajosRealizadosComponent } from './modals/trabajos-realizados/trabajos-realizados.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        TerminosCondicionesComponent
+        TerminosCondicionesComponent,
+        TrabajosRealizadosComponent
 
     ],
     imports: [
