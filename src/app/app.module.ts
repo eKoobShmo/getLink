@@ -32,8 +32,7 @@ import { TrabajosRealizadosComponent } from './modals/trabajos-realizados/trabaj
     declarations: [
         AppComponent,
         LoginComponent,
-        TerminosCondicionesComponent,
-        TrabajosRealizadosComponent
+        TerminosCondicionesComponent
 
     ],
     imports: [

@@ -39,23 +39,72 @@
                         <span>Descripción:</span>
                     </div>
                     <div class="col-6">
-            <span *ngIf="!isEdit">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloremque ducimus est in iure quaerat quia temporibus totam! Animi consequatur
-              ducimus eligendi eveniet expedita laborum, odio quis ratione rem tenetur.</span>
+                        <span *ngIf="!isEdit">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloremque ducimus est in iure quaerat quia temporibus totam! Animi consequatur
+                                ducimus eligendi eveniet expedita laborum, odio quis ratione rem tenetur.</span>
                         <input type="text" class="form-control-line form-control"
                                *ngIf="isEdit">
                         <i class="form-group__bar"></i>
                     </div>
                 </div>
+                <!--Dias de trabajo-->
+                <div class="row m-t-20">
+                    <div class="offset-1 col-2">
+                        <span>Dias de trabajo:</span>
+                    </div>
+                    <div class="col-6" *ngIf="isEdit">
+                        <!--<input type="text" class="form-control-line form-control"-->
+                        <!--*ngIf="isEdit">-->
+                        <span>Seleccione los dias de trabajo</span><br>
+                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                            <input class="custom-control-input" type="checkbox">
+                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                            <span class="custom-control-description" style="color: darkgray">Lunes</span>
+                        </label>
+                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                            <input class="custom-control-input" type="checkbox">
+                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                            <span class="custom-control-description" style="color: darkgray">Martes</span>
+                        </label>
+                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                            <input class="custom-control-input" type="checkbox">
+                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                            <span class="custom-control-description" style="color: darkgray">Miercoles</span>
+                        </label>
+                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                            <input class="custom-control-input" type="checkbox">
+                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                            <span class="custom-control-description" style="color: darkgray">Jueves</span>
+                        </label>
+                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                            <input class="custom-control-input" type="checkbox">
+                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                            <span class="custom-control-description" style="color: darkgray">Viernes</span>
+                        </label>
+                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                            <input class="custom-control-input" type="checkbox">
+                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                            <span class="custom-control-description" style="color: darkgray">Sabado</span>
+                        </label>
+                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                            <input class="custom-control-input" type="checkbox">
+                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                            <span class="custom-control-description" style="color: darkgray">Domingo</span>
+                        </label>
+
+                    </div>
+                </div>
                 <!--trabajos realizados-->
-                <div class="" align="center" style="margin-top: 50px; margin-left: 50px;">
+                <div class="" align="center" style="margin-top: 20px; margin-left: 50px;">
                     <div class="row" align="center" *ngIf="isUpdating">
                         <div class="col-3">
                             <!--save-->
-                            <button class="btn btn-success" style="background-color: #328bc7!important">Agregar trabajos realizados</button>
+                            <button class="btn btn-success" style="background-color: #328bc7!important" (click)="openModalTrabajosR()">Agregar trabajos
+                                realizados
+                            </button>
                         </div>
                     </div>
                 </div>
-                <!--&#45;&#45;-->
+
                 <div class="row m-t-20">
                     <div class="offset-1 col-2">
                         <span *ngIf="!isEdit">Trabajos realizados:</span>
