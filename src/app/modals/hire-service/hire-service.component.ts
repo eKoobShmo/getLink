@@ -34,7 +34,8 @@ export class HireServiceComponent implements OnInit {
             colonia: "",
             numero: null
         },
-        telefono: null
+        telefono: null,
+        isProvider:false
     };
 
     constructor(private _userProviderService: userProviderService,

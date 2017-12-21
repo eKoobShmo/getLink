@@ -46,6 +46,16 @@
                         <i class="form-group__bar"></i>
                     </div>
                 </div>
+                <!--es prestador-->
+                <div class="row" align="left" *ngIf="isEdit">
+                    <div class="col-12">
+                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 80px">
+                            <input class="custom-control-input" type="checkbox" [(ngModel)]="isProvider">
+                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                            <span class="custom-control-description" style="font-size: 18px; color: darkgray">¿Quieres ser prestador de servicio?</span>
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -116,6 +126,8 @@
             </div>
         </div>
 
+
+
     </div>
 
     <div class="" align="center" style="margin-top: 80px;">
@@ -139,6 +151,9 @@
                 <button class="btn btn-danger" (click)="cancelEdit()">Cancelar</button>
             </div>
         </div>
+
+
+
     </div>
 
 </section>

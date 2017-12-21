@@ -32,7 +32,8 @@ export class UpdateInfoComponent implements OnInit {
             colonia: '',
             numero: null
         },
-        telefono: null
+        telefono: null,
+        isProvider:false
     };
 
 

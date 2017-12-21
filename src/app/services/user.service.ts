@@ -13,7 +13,7 @@ export class UserService {
 
     constructor(private af: AngularFireAuth,
                 private db: AngularFireDatabase,
-                private _cargaMultimediaService:CargaMultimediaService) {
+                private _cargaMultimediaService: CargaMultimediaService) {
 
 
     }
@@ -35,19 +35,23 @@ export class UserService {
         this.db.list('usuarios/').update(uid, infoUser)
     }
 
+    updateDataUser(uid: string, infoUser: userInfoInterface) {
+        this.db.list('usuarios/').update(uid, infoUser)
+
+    }
+
     getUserFavorites(uid: string) {
         return this.db.list('usuarios/' + uid + '/favoritos')
     }
 
     getInfoUser(uid: string) {
-        debugger
         return this.db.object('usuarios/' + uid)
     }
 
 
     // metodo para generar el reporte
-    sendReport(optionInapropiate: boolean, optionBadService: boolean, optionNotDone: boolean, description?: string, images?:any) {
-        return new Promise((resolve,reject) => {
+    sendReport(optionInapropiate: boolean, optionBadService: boolean, optionNotDone: boolean, description?: string, images?: any) {
+        return new Promise((resolve, reject) => {
 
             let report = {
                 lenguajeInapropiate: optionInapropiate,
@@ -57,7 +61,7 @@ export class UserService {
             };
             let keyReport: string = this.Reports.push(report).key;
             this.Reports.update(keyReport, {key: keyReport});
-            this._cargaMultimediaService.cargarImagenesReportesFirebase(images,keyReport);
+            this._cargaMultimediaService.cargarImagenesReportesFirebase(images, keyReport);
 
             resolve();
         })

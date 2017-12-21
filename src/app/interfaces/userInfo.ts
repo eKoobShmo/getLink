@@ -5,4 +5,5 @@ export interface userInfoInterface{
     domicilio:DomicilioInterface;
     email?:string;
     telefono:number;
+    isProvider:boolean;
 }

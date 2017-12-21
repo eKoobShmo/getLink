@@ -3,6 +3,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from '../../../services/user.service';
 import {userInfoInterface} from '../../../interfaces/userInfo';
 import {ValidationService} from '../../../services/validation.service';
+import {Globals} from "../../../services/globals.service";
 
 @Component({
     selector: 'app-my-profile',
@@ -27,6 +28,7 @@ export class MyProfileComponent implements OnInit {
     errorCP: boolean = false;
     errorColonia: boolean = false;
     errorNumero: boolean = false;
+    isProvider: boolean=false;
     infoUser: userInfoInterface = {
         nombre: '',
         domicilio: {
@@ -35,7 +37,8 @@ export class MyProfileComponent implements OnInit {
             colonia: '',
             numero: null
         },
-        telefono: null
+        telefono: null,
+        isProvider:false
     };
 
     constructor(private _activeModal: NgbActiveModal,
@@ -64,6 +67,12 @@ export class MyProfileComponent implements OnInit {
                     this.infoUser.nombre = response.nombre;
                     this.fieldNombre = response.nombre;
                 }
+                if(response.isProvider!=null && response.isProvider){
+                    this.isProvider = true;
+                }else{
+                    this.isProvider = false;
+                }
+
                 this.fieldEmail = this.email;
                 if (response.telefono != null) {
                     this.infoUser.telefono = response.telefono;
@@ -125,6 +134,7 @@ export class MyProfileComponent implements OnInit {
                                 this.errorCP = true;
                             } else {
                                 infoUser.domicilio.cp = this.fieldCP;
+                                infoUser.isProvider = this.isProvider;
                                 this.updateInfo(infoUser);
                             }
                         }
@@ -136,8 +146,10 @@ export class MyProfileComponent implements OnInit {
     }
 
     updateInfo(infoUser: userInfoInterface) {
-        this._usrService.updateUserInfo(this.uid, infoUser);
+        this._usrService.updateDataUser(this.uid, infoUser);
         this.isEdit=false;
         this.isUpdating = false;
     }
+
+
 }

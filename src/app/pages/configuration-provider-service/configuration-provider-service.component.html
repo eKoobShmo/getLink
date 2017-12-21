@@ -1,29 +1,40 @@
 <section>
-  <div class="row m-l-0 m-r-0 cardProfile" >
+    <div class="row m-l-0 m-r-0 cardProfile">
 
-    <div class="col-12 card" >
+        <div class="col-12 card">
 
-      <div class="card-header">
-        <ul class="nav nav-tabs">
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLinkActive="active" (click)="tab='miPerfil'"
-               [routerLink]="['miPerfil']">Mi perfil</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLinkActive="active"
-               (click)="tab='miServicio'"
-               [routerLink]="['miServicio']">Mi servicio</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLinkActive="active" (click)="tab='cargarImagenes'"
-               [routerLink]="['cargarImagenes']">Cargar imagenes</a>
-          </li>
-        </ul>
-      </div>
-      <div class="card-body"
-           style="overflow-y: auto; overflow-x: hidden; height: 455px; width: 100%; padding-right: 5%" id="scrollbar">
-        <router-outlet></router-outlet>
-      </div>
+            <div class="card-header">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item" routerLinkActive="active">
+                        <a class="nav-link" routerLinkActive="active" (click)="tab='miPerfil'"
+                           [routerLink]="['miPerfil']">Mi perfil</a>
+                    </li>
+                    <div *ngIf="enableTabProvider">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link" routerLinkActive="active"
+                               (click)="tab='miServicio'"
+                               [routerLink]="['miServicio']">Mi servicio</a>
+                            <!--<a class="nav-link disabled" >Mi servicio</a>-->
+                        </li>
+                    </div>
+                    <div *ngIf="enableTabProvider">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a class="nav-link" routerLinkActive="active" (click)="tab='cargarImagenes'"
+                               [routerLink]="['cargarImagenes']">Cargar imagenes</a>
+                        </li>
+                    </div>
+
+                </ul>
+            </div>
+            <div class="card-body"
+                 style="overflow-y: auto; overflow-x: hidden; height: 455px; width: 100%; padding-right: 5%"
+                 id="scrollbar">
+                <router-outlet></router-outlet>
+
+            </div>
+            <!--&#45;&#45;-->
+
+            <!--&#45;&#45;-->
+        </div>
     </div>
-  </div>
 </section>

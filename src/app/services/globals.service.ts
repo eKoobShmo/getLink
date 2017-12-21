@@ -5,6 +5,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 @Injectable()
 export class Globals {
 
+
     constructor(public _activeModal: NgbActiveModal) {
     }
 
