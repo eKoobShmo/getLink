@@ -83,7 +83,7 @@ export class userProviderService {
                 id: 'herreria2',
                 titulo: 'Soporte de escalera',
                 tipo: MULTIMEDIA.IMAGE
-            }]
+            }];
 
         return galeriaFotos;
     }
@@ -104,6 +104,10 @@ export class userProviderService {
 
     removeUserProviderToFavorites(uidUser: string, providerKey: string) {
         this.db.object('usuarios/' + uidUser + '/favoritos/' + providerKey).remove();
+    }
+
+    pushComment(keyProvider:string){
+        return this.db.list('prestadoresServicios/' + keyProvider + '/servicios/comentarios')
     }
 
 }

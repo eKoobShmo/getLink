@@ -24,7 +24,7 @@ export class TabComentarioComponent implements OnInit {
 
     ngOnInit() {
 
-           this.comments=this.af.list('prestadoresServicios/'+ ProviderInfo.serviceProviderKey +'/servicios/0/comentarios');
+           this.comments=this.af.list('prestadoresServicios/'+ ProviderInfo.serviceProviderKey +'/servicios/comentarios');
            this.comments.subscribe((response)=>{
                this.lenghtComments=response.length;
            })

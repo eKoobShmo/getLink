@@ -10,6 +10,7 @@ import {Broadcaster} from '../../../../assets/js/broadcaster';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {UserService} from '../../../services/user.service';
 import {providerInterface} from "../../../interfaces/perfil_ps.interface";
+import {PerfilPSComponent} from "../../perfil-ps/perfil-ps.component";
 
 @Component({
     selector: 'app-lista-prestadores-servicios',
@@ -113,11 +114,11 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
 
     goToService(key: string) {
         this.router.navigate([`/perfil-ps/${key}/acercaDe`]);
+
     }
 
     openHire(keyPrestador: string) {
         //mandando un input a ReportComponent
-
         const modalRef = this.modalService.open(HireServiceComponent);
         modalRef.componentInstance.keyPrestador = keyPrestador;
 

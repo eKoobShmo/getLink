@@ -14,6 +14,7 @@ import {AcercaDeComponent} from './acerca-de/acerca-de.component';
 import {UserService} from '../../services/user.service';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap'
+import {Broadcaster} from "../../../assets/js/broadcaster";
 
 @Component({
     selector: 'app-perfil-ps',
@@ -35,7 +36,8 @@ export class PerfilPSComponent implements OnInit {
                 private modalService: NgbModal,
                 private route: ActivatedRoute,
                 private userService: UserService,
-                private afAuth: AngularFireAuth) {
+                private afAuth: AngularFireAuth,
+                private broadcaster:Broadcaster) {
 
 
     }
@@ -44,6 +46,7 @@ export class PerfilPSComponent implements OnInit {
         this.route.params.subscribe(params => {
             ProviderInfo.serviceProviderKey = params['serviceProviderKey'];
             this.keyPrestador = ProviderInfo.serviceProviderKey;
+            sessionStorage.setItem('keyPrestador',this.keyPrestador);
         });
         this.psService.getProviderInfo(ProviderInfo.serviceProviderKey)
             .subscribe((result: any) => {
@@ -82,6 +85,11 @@ export class PerfilPSComponent implements OnInit {
             })
     }
 
+    goToComments(){
+        this.tab='comentarios';
+
+    }
+
     openReport() {
         //mandando un input a ReportComponent
         const modalReportRef = this.modalService.open(ReportComponent);
@@ -90,7 +98,6 @@ export class PerfilPSComponent implements OnInit {
 
     openHire() {
         //mandando un input a ReportComponent
-
         const modalHireService = this.modalService.open(HireServiceComponent);
         modalHireService.componentInstance.keyPrestador = this.keyPrestador;
     }
