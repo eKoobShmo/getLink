@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TrabajosRealizadosComponent} from "../../../modals/trabajos-realizados/trabajos-realizados.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CalificarServicioComponent} from "../../../modals/calificar-servicio/calificar-servicio.component";
 
 @Component({
   selector: 'app-load-images',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadImagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _modalService: NgbModal) { }
 
   ngOnInit() {
   }
 
+  openModalCalificarServicio(){
+      this._modalService.open(CalificarServicioComponent);
+  }
 }

@@ -79,7 +79,7 @@ export class MyServiceComponent implements OnInit {
 
         setTimeout(() => {
             this._userService.getInfoUser(this.uid).subscribe((response: any) => {
-                debugger;
+
                 if (this._validationService.errorInField(this.myServiceInfo.nombre)) {
                     this.myServiceInfo.nombre = response.nombre;
                 }

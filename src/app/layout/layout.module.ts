@@ -53,6 +53,7 @@ import {MyProfileComponent} from "../pages/configuration-provider-service/my-pro
 import {MyServiceComponent} from "../pages/configuration-provider-service/my-service/my-service.component";
 import {LoadImagesComponent} from "../pages/configuration-provider-service/load-images/load-images.component";
 import {TrabajosRealizadosComponent} from "../modals/trabajos-realizados/trabajos-realizados.component";
+import {CalificarServicioComponent} from "../modals/calificar-servicio/calificar-servicio.component";
 
 
 
@@ -93,7 +94,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         MyProfileComponent,
         MyServiceComponent,
         LoadImagesComponent,
-        TrabajosRealizadosComponent
+        TrabajosRealizadosComponent,
+        CalificarServicioComponent
 
     ],
     imports: [
@@ -128,7 +130,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ],
     entryComponents:[
         UpdateInfoComponent,
-        TrabajosRealizadosComponent
+        TrabajosRealizadosComponent,
+        CalificarServicioComponent
     ]
 })
 
