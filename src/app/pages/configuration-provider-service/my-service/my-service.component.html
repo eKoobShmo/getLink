@@ -9,18 +9,18 @@
                         <strong>Información del servicio</strong>
                     </div>
                 </div>
-                <!--nombre del servicio-->
-                <div class="row m-t-20">
-                    <div class="offset-1 col-2">
-                        <span>Nombre del servicio:</span>
-                    </div>
-                    <div class="col-6">
-                        <span *ngIf="!isEdit">Albañilería</span>
-                        <input type="text" class="form-control-line form-control"
-                               *ngIf="isEdit">
-                        <i class="form-group__bar"></i>
-                    </div>
-                </div>
+                <!--&lt;!&ndash;nombre del servicio&ndash;&gt;-->
+                <!--<div class="row m-t-20">-->
+                    <!--<div class="offset-1 col-2">-->
+                        <!--<span>Nombre del servicio:</span>-->
+                    <!--</div>-->
+                    <!--<div class="col-6">-->
+                        <!--<span *ngIf="!isEdit">Albañilería</span>-->
+                        <!--<input type="text" class="form-control-line form-control"-->
+                               <!--*ngIf="isEdit">-->
+                        <!--<i class="form-group__bar"></i>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <!--Titulo-->
                 <div class="row m-t-20">
                     <div class="offset-1 col-2">
@@ -29,7 +29,7 @@
                     <div class="col-6">
                         <span *ngIf="!isEdit">Arreglo tuberias gratis</span>
                         <input type="text" class="form-control-line form-control"
-                               *ngIf="isEdit">
+                               *ngIf="isEdit" [(ngModel)]="fieldTitulo">
                         <i class="form-group__bar"></i>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                         <span *ngIf="!isEdit">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta doloremque ducimus est in iure quaerat quia temporibus totam! Animi consequatur
                                 ducimus eligendi eveniet expedita laborum, odio quis ratione rem tenetur.</span>
                         <input type="text" class="form-control-line form-control"
-                               *ngIf="isEdit">
+                               *ngIf="isEdit" [(ngModel)]="fieldDescripcion">
                         <i class="form-group__bar"></i>
                     </div>
                 </div>
@@ -56,37 +56,51 @@
                         <!--*ngIf="isEdit">-->
                         <span>Seleccione los dias de trabajo</span><br>
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox">
+                            <input class="custom-control-input" type="checkbox"
+                                   [(ngModel)]="HORARIO.LUNES"
+                            >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Lunes</span>
                         </label>
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox">
+                            <input class="custom-control-input" type="checkbox"
+                                   [(ngModel)]="HORARIO.MARTES"
+                            >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Martes</span>
                         </label>
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox">
+                            <input class="custom-control-input" type="checkbox"
+                                   [(ngModel)]="HORARIO.MIERCOLES"
+                            >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Miercoles</span>
                         </label>
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox">
+                            <input class="custom-control-input" type="checkbox"
+                                   [(ngModel)]="HORARIO.JUEVES"
+                            >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Jueves</span>
                         </label>
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox">
+                            <input class="custom-control-input" type="checkbox"
+                                   [(ngModel)]="HORARIO.VIERNES"
+                            >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Viernes</span>
                         </label>
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox">
+                            <input class="custom-control-input" type="checkbox"
+                                   [(ngModel)]="HORARIO.SABADO"
+                            >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Sabado</span>
                         </label>
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox">
+                            <input class="custom-control-input" type="checkbox"
+                                   [(ngModel)]="HORARIO.DOMINGO"
+                            >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Domingo</span>
                         </label>
@@ -130,7 +144,7 @@
         <div class="row" align="center" *ngIf="isUpdating">
             <div class="col-3">
                 <!--save-->
-                <button class="btn btn-success">Guardar cambios</button>
+                <button class="btn btn-success" (click)="verifyFields(fieldTitulo,fieldDescripcion)">Guardar cambios</button>
             </div>
             <!--button Close-->
             <div class="col-1">

@@ -1,9 +1,12 @@
+import {HORARIO} from "../enums/horario";
+import {DomicilioInterface} from "./domicilio";
+
 export interface providerInterface {
     nombre?: string;
-    puntuacion?: string;
+    puntuacion?: number;
     telefono?: number;
-    horario?: object;
-    direccion?:object;
+    horario?: HORARIO;
+    direccion?:DomicilioInterface;
     descripcion?:string;
     email?:string;
     fotoUrl?:string;

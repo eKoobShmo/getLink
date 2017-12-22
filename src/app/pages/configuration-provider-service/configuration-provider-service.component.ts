@@ -23,6 +23,7 @@ export class ConfigurationProviderServiceComponent implements OnInit {
     ngOnInit() {
         setTimeout(() => {
             this._usrService.getInfoUser(this.uid).subscribe((response: any) => {
+
                 if(response.isProvider){
                     this.enableTabProvider = true;
                 }else{

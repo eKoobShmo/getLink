@@ -6,6 +6,7 @@ import {AngularFireDatabase} from "angularfire2/database";
 import {MULTIMEDIA} from "../enums/enums";
 import {Observable} from "rxjs/Observable";
 import {Globals} from "./globals.service";
+import {HORARIO} from "../enums/horario";
 
 @Injectable()
 export class userProviderService {
@@ -36,6 +37,10 @@ export class userProviderService {
             });
             resolve(Globals.arrayProvidersFound);
         })
+
+    }
+
+    registerProviderService(titulo:string,descripcion:string){
 
     }
 
