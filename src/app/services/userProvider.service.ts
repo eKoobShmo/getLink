@@ -44,7 +44,7 @@ export class userProviderService {
         this.db.list('servicios/').set(
             uid,
             {
-                descipcion: infoService.descripcion,
+                descripcion: infoService.descripcion,
                 imagenUrl: infoService.fotoUrl,
                 key: uid,
                 nombre:infoService.nombre,
