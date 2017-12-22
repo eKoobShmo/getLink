@@ -6,13 +6,16 @@ import {AngularFireDatabase} from "angularfire2/database";
 import {MULTIMEDIA} from "../enums/enums";
 import {Observable} from "rxjs/Observable";
 import {Globals} from "./globals.service";
+import {UserService} from "./user.service";
+import {setTime} from "ngx-bootstrap/timepicker/timepicker.utils";
 
 @Injectable()
 export class userProviderService {
+    uid:string;
 
-
-    constructor(private db: AngularFireDatabase) {
-
+    constructor(private db: AngularFireDatabase,
+                private _userService:UserService) {
+        this.uid = sessionStorage.getItem('uid');
     }
 
     getProviderInfo(key: string) {
@@ -124,6 +127,35 @@ export class userProviderService {
 
     pushComment(keyProvider:string){
         return this.db.list('prestadoresServicios/' + keyProvider + '/servicios/comentarios')
+    }
+
+    getNotifications(uid:string){
+
+        return new Promise((resolve)=>{
+            debugger;
+            let ruta:string;
+            let searchProvider:boolean=false;
+            this._userService.getInfoUser(this.uid).subscribe((response:any)=>{
+
+                if(response.isProvider){
+                    debugger;
+                    searchProvider = true;
+                    resolve (this.db.list('prestadoresServicios/'+uid+'/notificaciones'));
+                }else{
+                    debugger;
+                    resolve(this.db.list('usuarios/'+uid+'/notificaciones'));
+                }
+            });
+
+        })
+
+
+
+    }
+
+    deleteNotification(index : number){
+        debugger;
+        this.db.list('prestadoresServicios/'+this.uid+'/notificaciones/'+index).remove();
     }
 
 }

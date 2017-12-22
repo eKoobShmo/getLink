@@ -260,6 +260,25 @@
   margin-top: 10px;
   margin-left: 10px;
 }
+
+
+.iconNotification{
+  font-size: 25px;
+  color: #328bc7!important;
+}
+
+.deleteNotificationIcon{
+  cursor: pointer;
+  color: red;
+  font-size: 15px;
+}
+
+.alertNotification{
+  margin-left: 30px;
+  background-color: red;
+  border-radius: 100%;
+  text-align: center;
+}
 //----------------------
 
 // Top Navigation

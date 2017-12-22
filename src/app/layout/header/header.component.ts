@@ -5,6 +5,9 @@ import * as firebase from 'firebase';
 import{Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {window} from "rxjs/operator/window";
+import {userProviderService} from "../../services/userProvider.service";
+import {unescapeIdentifier} from "@angular/compiler";
+import {notificationInterface} from "../../interfaces/notificationInterface";
 
 @Component({
     selector: 'app-header',
@@ -14,6 +17,8 @@ import {window} from "rxjs/operator/window";
     ]
 })
 export class HeaderComponent implements OnInit {
+    uid:string;
+    numberNotifications:number;
     messagesData: Array<any>;
     tasksData: Array<any>;
     maThemeModel: string = 'green';
@@ -22,22 +27,35 @@ export class HeaderComponent implements OnInit {
     userName: string;
     userPhoto: string;
     userLogged: boolean;
+    // notification:notificationInterface;
+    notifications:any[];
     // userLogged:boolean=false;
     existPhoto: boolean = false;
 
     constructor(private sharedService: SharedService,
                 private afAuth: AngularFireAuth,
-                private userService: UserService,
-                private router:Router) {
+                private _userService: UserService,
+                private _providerService: userProviderService,
+                private router:Router
+    ) {
         this.showHeader();
+        this.uid = sessionStorage.getItem('uid');
+        this._providerService.getNotifications(this.uid).then((response:any)=>{
+            debugger;
+            response.subscribe((result:any)=>{
+                this.numberNotifications = result.length;
+                this.notifications = result;
+            })
+        })
+    }
+
+    ngOnInit() {
+
     }
 
     setTheme() {
         this.sharedService.setTheme(this.maThemeModel)
     }
-
-
-
 
 
     userSignOut() {
@@ -69,7 +87,7 @@ export class HeaderComponent implements OnInit {
     }
 
     showHeader() {
-        this.userService.isAuthenticated()
+        this._userService.isAuthenticated()
             .then((response:any) => {
                 this.userLogged = true;
                 this.userEmail = response.email;
@@ -93,6 +111,9 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/login']);
     }
 
-    ngOnInit() {
+    goToDeleteNotification(index:number){
+        this._providerService.deleteNotification(index);
     }
+
+
 }
