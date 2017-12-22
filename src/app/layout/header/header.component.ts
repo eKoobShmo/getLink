@@ -18,6 +18,7 @@ import {notificationInterface} from "../../interfaces/notificationInterface";
 })
 export class HeaderComponent implements OnInit {
     uid:string;
+    numberNotifications:number;
     messagesData: Array<any>;
     tasksData: Array<any>;
     maThemeModel: string = 'green';
@@ -42,6 +43,7 @@ export class HeaderComponent implements OnInit {
         this._providerService.getNotifications(this.uid).then((response:any)=>{
             debugger;
             response.subscribe((result:any)=>{
+                this.numberNotifications = result.length;
                 this.notifications = result;
             })
         })
