@@ -45,7 +45,7 @@ export class MyProfileComponent implements OnInit {
                 private _usrService: UserService,
                 public _validationService:ValidationService) {
 
-        // obtener uid mediante una promesa
+        // obtener uid mediante una promesa y obteniendo el nombre si es que tiene alguno
         this._usrService.isAuthenticated().then((response: any) => {
             this.uid = response.uid;
             if (response.displayName != null) {

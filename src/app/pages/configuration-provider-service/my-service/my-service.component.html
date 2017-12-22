@@ -9,19 +9,7 @@
                         <strong>Información del servicio</strong>
                     </div>
                 </div>
-                <!--&lt;!&ndash;nombre del servicio&ndash;&gt;-->
-                <!--<div class="row m-t-20">-->
-                    <!--<div class="offset-1 col-2">-->
-                        <!--<span>Nombre del servicio:</span>-->
-                    <!--</div>-->
-                    <!--<div class="col-6">-->
-                        <!--<span *ngIf="!isEdit">Albañilería</span>-->
-                        <!--<input type="text" class="form-control-line form-control"-->
-                               <!--*ngIf="isEdit">-->
-                        <!--<i class="form-group__bar"></i>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--Titulo-->
+
                 <div class="row m-t-20">
                     <div class="offset-1 col-2">
                         <span>Titulo:</span>
@@ -55,51 +43,64 @@
                         <!--<input type="text" class="form-control-line form-control"-->
                         <!--*ngIf="isEdit">-->
                         <span>Seleccione los dias de trabajo</span><br>
+                        <!--Lunes-->
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
                             <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="HORARIO.LUNES"
+                                   [(ngModel)]="radiobtnLunes"
                             >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Lunes</span>
                         </label>
+
+                        <!--Martes-->
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
                             <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="HORARIO.MARTES"
+                                   [(ngModel)]="radiobtnMartes"
                             >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Martes</span>
                         </label>
+
+                        <!--Miercoles-->
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
                             <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="HORARIO.MIERCOLES"
+                                   [(ngModel)]="radiobtnMiercoles"
                             >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Miercoles</span>
                         </label>
+
+                        <!--Jueves-->
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
                             <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="HORARIO.JUEVES"
+                                   [(ngModel)]="radiobtnJueves"
                             >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Jueves</span>
                         </label>
+
+                        <!--Viernes-->
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
                             <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="HORARIO.VIERNES"
+                                   [(ngModel)]="radiobtnViernes"
                             >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Viernes</span>
                         </label>
+
+                        <!--Sabado-->
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
                             <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="HORARIO.SABADO"
+                                   [(ngModel)]="radiobtnSabado"
                             >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Sabado</span>
                         </label>
+
+                        <!--Domingo-->
                         <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
                             <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="HORARIO.DOMINGO"
+                                   [(ngModel)]="radiobtnDomingo"
                             >
                             <span class="custom-control-indicator" style="margin-top: 5px;"></span>
                             <span class="custom-control-description" style="color: darkgray">Domingo</span>
@@ -112,7 +113,8 @@
                     <div class="row" align="center" *ngIf="isUpdating">
                         <div class="col-3">
                             <!--save-->
-                            <button class="btn btn-success" style="background-color: #328bc7!important" (click)="openModalTrabajosR()">Agregar trabajos
+                            <button class="btn btn-success" style="background-color: #328bc7!important"
+                                    (click)="openModalTrabajosR()">Agregar trabajos
                                 realizados
                             </button>
                         </div>
@@ -144,7 +146,8 @@
         <div class="row" align="center" *ngIf="isUpdating">
             <div class="col-3">
                 <!--save-->
-                <button class="btn btn-success" (click)="verifyFields(fieldTitulo,fieldDescripcion)">Guardar cambios</button>
+                <button class="btn btn-success" (click)="verifyFields(fieldTitulo,fieldDescripcion)">Guardar cambios
+                </button>
             </div>
             <!--button Close-->
             <div class="col-1">

@@ -76,6 +76,7 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
     getListOfProviders() {
 
         this._userProvider.getServices().subscribe((result: any) => {
+            debugger;
             this.servicesProviders = result;
             this.servicesProvidersTmp = result;
 

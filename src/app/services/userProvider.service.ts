@@ -6,7 +6,6 @@ import {AngularFireDatabase} from "angularfire2/database";
 import {MULTIMEDIA} from "../enums/enums";
 import {Observable} from "rxjs/Observable";
 import {Globals} from "./globals.service";
-import {HORARIO} from "../enums/horario";
 
 @Injectable()
 export class userProviderService {
@@ -17,7 +16,7 @@ export class userProviderService {
     }
 
     getProviderInfo(key: string) {
-        let respuesta = this.db.object(`prestadoresServicios/${key}/informacionBasica`);
+        let respuesta = this.db.object(`prestadoresServicios/${key}/informacionBasica/${key}`);
 
         return respuesta;
     }
@@ -40,8 +39,20 @@ export class userProviderService {
 
     }
 
-    registerProviderService(titulo:string,descripcion:string){
-
+    registerProviderService(uid:string,infoService:providerInterface){
+        this.db.list('prestadoresServicios/'+uid+'/informacionBasica').set(uid,infoService);
+        this.db.list('servicios/').set(
+            uid,
+            {
+                descipcion: infoService.descripcion,
+                imagenUrl: infoService.fotoUrl,
+                key: uid,
+                nombre:infoService.nombre,
+                puntuacion: infoService.puntuacion,
+                titulo: infoService.titulo,
+                trabajosRealizados: infoService.trabajosRealizados
+            }
+        )
     }
 
     getProviderInfoHire(key: string){
