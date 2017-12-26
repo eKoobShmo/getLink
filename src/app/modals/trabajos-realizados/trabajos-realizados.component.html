@@ -1,8 +1,10 @@
 <section>
+
     <div class="row card" style="margin: 0px; width: 600px; height: 300px; font-size: 18px">
+
         <div class="col-12 ">
             <div class="m-t-30 m-l-20">
-                <strong>Da clic en el botón  <i class="zmdi zmdi-upload"></i>  cada que ingreses un trabajo realizado</strong>
+                <strong>Da clic en el botón  <i class="zmdi zmdi-upload" style="color: #328bc7"></i>  cada que ingreses un trabajo realizado</strong>
             </div>
 
             <!--&#45;&#45;-->
@@ -13,11 +15,15 @@
                             <span>Trabajos realizados: </span>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control-line form-control">
-                            <i class="form-group__bar"></i>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-line "
+                                       [(ngModel)]="trabajo"
+                                >
+                                <i class="form-group__bar"></i>
+                            </div>
                         </div>
-                        <i class="zmdi zmdi-upload cursor-pointer zmdi-hc-lg animated infinite pulse zmdi-hc-fw m-t-10"
-                        style="color: #328bc7"></i>
+                        <i (click)="validateJob(trabajo)" class="zmdi zmdi-upload cursor-pointer zmdi-hc-lg animated infinite pulse zmdi-hc-fw m-t-10"
+                        style="font-size: 40px;color: #328bc7" ></i>
                     </div>
                 </div>
             </div>

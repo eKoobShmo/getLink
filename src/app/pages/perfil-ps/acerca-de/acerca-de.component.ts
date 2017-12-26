@@ -12,7 +12,7 @@ import {providerInterface} from "../../../interfaces/perfil_ps.interface";
     styleUrls: ['./acerca-de.component.scss']
 })
 export class AcercaDeComponent implements OnInit {
-
+    arrayTrabajosRealzados:any[];
     serviceProviderInfo:Observable<providerInterface>;
     info:any;
     constructor(private infoProvider:ProviderInfo,
@@ -22,8 +22,13 @@ export class AcercaDeComponent implements OnInit {
     ngOnInit() {
         this.psService.getProviderInfo(ProviderInfo.serviceProviderKey)
             .subscribe((result: any) => {
+                debugger;
                this.serviceProviderInfo=result;
             });
+
+        this.psService.getJobs(ProviderInfo.serviceProviderKey).subscribe((result:any)=>{
+            this.arrayTrabajosRealzados = result;
+        })
 
     }
 

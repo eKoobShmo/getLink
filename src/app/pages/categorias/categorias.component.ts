@@ -20,6 +20,7 @@ export class CategoriasComponent implements OnInit {
                private _userService:UserService) {
 
     this._userService.isAuthenticated().then((response:any)=>{
+      debugger;
       this.uid = response.uid;
       sessionStorage.setItem('uid' , this.uid);
     });

@@ -20,7 +20,6 @@ export class userProviderService {
 
     getProviderInfo(key: string) {
         let respuesta = this.db.object(`prestadoresServicios/${key}/informacionBasica/${key}`);
-
         return respuesta;
     }
 
@@ -132,30 +131,38 @@ export class userProviderService {
     getNotifications(uid:string){
 
         return new Promise((resolve)=>{
-            debugger;
             let ruta:string;
             let searchProvider:boolean=false;
             this._userService.getInfoUser(this.uid).subscribe((response:any)=>{
 
                 if(response.isProvider){
-                    debugger;
                     searchProvider = true;
                     resolve (this.db.list('prestadoresServicios/'+uid+'/notificaciones'));
                 }else{
-                    debugger;
                     resolve(this.db.list('usuarios/'+uid+'/notificaciones'));
                 }
             });
 
         })
 
-
-
     }
 
     deleteNotification(index : number){
-        debugger;
         this.db.list('prestadoresServicios/'+this.uid+'/notificaciones/'+index).remove();
+    }
+
+    insertJob(trabajo:string){
+
+        this.db.list('prestadoresServicios/'+this.uid+'/informacionBasica/'+this.uid+'/trabajosRealizados').push(
+            {
+                trabajo: trabajo
+            }
+        );
+
+    }
+
+    getJobs(key:string){
+         return this.db.list('prestadoresServicios/'+key+'/informacionBasica/'+key+'/trabajosRealizados');
     }
 
 }

@@ -40,13 +40,18 @@ export class HeaderComponent implements OnInit {
     ) {
         this.showHeader();
         this.uid = sessionStorage.getItem('uid');
-        this._providerService.getNotifications(this.uid).then((response:any)=>{
-            debugger;
-            response.subscribe((result:any)=>{
-                this.numberNotifications = result.length;
-                this.notifications = result;
+
+        setTimeout(()=>{
+            this._providerService.getNotifications(this.uid).then((response:any)=>{
+                debugger;
+                response.subscribe((result:any)=>{
+                    debugger;
+                    this.numberNotifications = result.length;
+                    this.notifications = result;
+                })
             })
-        })
+        },300);
+
     }
 
     ngOnInit() {

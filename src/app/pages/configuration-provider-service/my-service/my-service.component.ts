@@ -5,6 +5,7 @@ import {ValidationService} from '../../../services/validation.service';
 import {userProviderService} from '../../../services/userProvider.service';
 import {providerInterface} from '../../../interfaces/perfil_ps.interface';
 import {UserService} from '../../../services/user.service';
+import {Globals} from '../../../services/globals.service';
 
 @Component({
     selector: 'app-my-service',
@@ -132,7 +133,8 @@ export class MyServiceComponent implements OnInit {
     }
 
     openModalTrabajosR() {
-        this._modalService.open(TrabajosRealizadosComponent);
+        this._modalService.open(TrabajosRealizadosComponent, Globals.optionModalLg);
+
     }
 
 }
