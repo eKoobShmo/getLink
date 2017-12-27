@@ -63,9 +63,9 @@ export class MyServiceComponent implements OnInit {
                 private _validationService: ValidationService,
                 private _userProviderService: userProviderService,
                 private _userService: UserService) {
-        this.uid =sessionStorage.getItem('uid');
 
         this._userService.isAuthenticated().then((response: any) => {
+            this.uid = response.uid;
             if (!this._validationService.errorInField(response.displayName)) {
                 this.myServiceInfo.nombre = response.displayName;
             }
@@ -81,55 +81,66 @@ export class MyServiceComponent implements OnInit {
 
     ngOnInit() {
 
+        setTimeout(()=>{
+
+            // this._userProviderService.getJobs(this.uid).subscribe((response:any)=>{
+            //     if(response!=null){
+            //         // algo
+            //     }
+            // });
+
+            this._userProviderService.myServiceInfo(this.uid).subscribe((response:any)=>{
+                this.fieldTitulo = response.titulo;
+                this.fieldDescripcion = response.descripcion;
+                this.fieldTrabajosRealizados = response.trabajosRealizados;
+                this.fieldPuntuacion = response.puntuacion;
+
+            });
+
+            this._userProviderService.getHorary(this.uid).subscribe((horario:any)=>{
+
+                if(horario.Lunes){
+                    this.radiobtnLunes = true;
+                }
+                if(horario.Martes){
+                    this.radiobtnMartes = true;
+                }
+                if(horario.Miercoles){
+                    this.radiobtnMiercoles = true;
+                }
+                if(horario.Jueves){
+                    this.radiobtnJueves = true;
+                }
+                if(horario.Viernes){
+                    this.radiobtnViernes = true;
+                }
+                if(horario.Sabado){
+                    this.radiobtnSabado = true;
+                }
+                if(horario.Domingo){
+                    this.radiobtnDomingo = true;
+                }
+
+            });
 
 
-        this._userProviderService.myServiceInfo(this.uid).subscribe((response:any)=>{
-            this.fieldTitulo = response.titulo;
-            this.fieldDescripcion = response.descripcion;
-            this.fieldTrabajosRealizados = response.trabajosRealizados;
-            this.fieldPuntuacion = response.puntuacion;
+            this._userService.getInfoUser(this.uid).subscribe((response: any) => {
 
-        });
+                if (this._validationService.errorInField(this.myServiceInfo.nombre)) {
+                    this.myServiceInfo.nombre = response.nombre;
+                }
+                this.myServiceInfo.telefono = response.telefono;
+                this.myServiceInfo.direccion.calle = response.domicilio.calle;
+                this.myServiceInfo.direccion.colonia = response.domicilio.colonia;
+                this.myServiceInfo.direccion.numero = response.domicilio.numero;
+                this.myServiceInfo.direccion.cp = response.domicilio.cp;
 
-        this._userProviderService.getHorary(this.uid).subscribe((horario:any)=>{
+            });
 
-            if(horario.Lunes){
-                this.radiobtnLunes = true;
-            }
-            if(horario.Martes){
-                this.radiobtnMartes = true;
-            }
-            if(horario.Miercoles){
-                this.radiobtnMiercoles = true;
-            }
-            if(horario.Jueves){
-                this.radiobtnJueves = true;
-            }
-            if(horario.Viernes){
-                this.radiobtnViernes = true;
-            }
-            if(horario.Sabado){
-                this.radiobtnSabado = true;
-            }
-            if(horario.Domingo){
-                this.radiobtnDomingo = true;
-            }
-
-        });
+        },300);
 
 
-        this._userService.getInfoUser(this.uid).subscribe((response: any) => {
 
-            if (this._validationService.errorInField(this.myServiceInfo.nombre)) {
-                this.myServiceInfo.nombre = response.nombre;
-            }
-            this.myServiceInfo.telefono = response.telefono;
-            this.myServiceInfo.direccion.calle = response.domicilio.calle;
-            this.myServiceInfo.direccion.colonia = response.domicilio.colonia;
-            this.myServiceInfo.direccion.numero = response.domicilio.numero;
-            this.myServiceInfo.direccion.cp = response.domicilio.cp;
-
-        });
 
 
         // utilizando timeOuts por si acaso XD
@@ -163,11 +174,9 @@ export class MyServiceComponent implements OnInit {
 
     }
 
-    checkRegisterService(){
-        // this._userProviderService.
-    }
 
     verifyFields(titulo: string, descripcion: string) {
+        debugger;
         if (this._validationService.errorInField(titulo)) {
             this.errorTitulo = true;
         } else {
@@ -189,6 +198,9 @@ export class MyServiceComponent implements OnInit {
                 if(this.fieldTrabajosRealizados != 0){
                     this.myServiceInfo.trabajosRealizados = this.fieldTrabajosRealizados;
                 }
+
+
+
                 this.goToRegisterProviderService(this.myServiceInfo);
             }
         }

@@ -92,6 +92,7 @@ export class HeaderComponent implements OnInit {
     showHeader() {
         this._userService.isAuthenticated()
             .then((response:any) => {
+                sessionStorage.setItem('uid',response.uid);
                 this.userLogged = true;
                 this.userEmail = response.email;
                 this.userName = response.displayName;
