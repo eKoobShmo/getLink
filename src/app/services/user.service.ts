@@ -49,6 +49,8 @@ export class UserService {
     }
 
 
+
+
     // metodo para generar el reporte
     sendReport(optionInapropiate: boolean, optionBadService: boolean, optionNotDone: boolean, description?: string, images?: any) {
         return new Promise((resolve, reject) => {

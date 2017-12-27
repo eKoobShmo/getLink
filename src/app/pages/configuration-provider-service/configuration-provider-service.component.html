@@ -1,7 +1,7 @@
 <section>
-    <div class="row m-l-0 m-r-0 cardProfile">
+    <div class="row m-l-0 m-r-0 cardProfile" style="overflow-y: auto;">
 
-        <div class="col-12 card">
+        <div class="col-12 card" style="margin-bottom: 90px!important;">
 
             <div class="card-header">
                 <ul class="nav nav-tabs">
@@ -26,15 +26,9 @@
 
                 </ul>
             </div>
-            <div class="card-body"
-                 style="overflow-y: auto; overflow-x: hidden; height: 455px; width: 100%; padding-right: 5%"
-                 id="scrollbar">
+            <div class="card-body bodyConfiguraton" id="scrollbar">
                 <router-outlet></router-outlet>
-
             </div>
-            <!--&#45;&#45;-->
-
-            <!--&#45;&#45;-->
         </div>
     </div>
 </section>

@@ -131,7 +131,6 @@ export class userProviderService {
     getNotifications(uid:string){
 
         return new Promise((resolve)=>{
-            let ruta:string;
             let searchProvider:boolean=false;
             this._userService.getInfoUser(this.uid).subscribe((response:any)=>{
 
@@ -163,6 +162,14 @@ export class userProviderService {
 
     getJobs(key:string){
          return this.db.list('prestadoresServicios/'+key+'/informacionBasica/'+key+'/trabajosRealizados');
+    }
+
+    getHorary(key:string){
+        return this.db.object('prestadoresServicios/'+key+'/informacionBasica/'+key+'/horario');
+    }
+
+    myServiceInfo(uid:string){
+        return this.db.object('servicios/'+uid);
     }
 
 }

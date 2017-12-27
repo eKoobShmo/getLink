@@ -45,9 +45,11 @@ export class MyProfileComponent implements OnInit {
                 private _usrService: UserService,
                 public _validationService:ValidationService) {
 
+        this.uid = sessionStorage.getItem('uid');
+
         // obtener uid mediante una promesa y obteniendo el nombre si es que tiene alguno
         this._usrService.isAuthenticated().then((response: any) => {
-            this.uid = response.uid;
+            // this.uid = response.uid;
             if (response.displayName != null) {
                 this.infoUser.nombre = response.displayName;
                 this.fieldNombre = this.infoUser.nombre;
@@ -60,37 +62,66 @@ export class MyProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        this._usrService.getInfoUser(this.uid).subscribe((response: any) => {
+            if (response.nombre != null) {
+                this.infoUser.nombre = response.nombre;
+                this.fieldNombre = response.nombre;
+            }
+            if(response.isProvider!=null && response.isProvider){
+                this.isProvider = true;
+            }else{
+                this.isProvider = false;
+            }
+
+            this.fieldEmail = this.email;
+            if (response.telefono != null) {
+                this.infoUser.telefono = response.telefono;
+                this.fieldTelefono = this.infoUser.telefono.toString();
+            }
+            if (response.domicilio != null) {
+                this.infoUser.domicilio.calle = response.domicilio.calle;
+                this.fieldCalle = this.infoUser.domicilio.calle;
+                this.infoUser.domicilio.numero = response.domicilio.numero;
+                this.fieldNumero = this.infoUser.domicilio.numero;
+                this.infoUser.domicilio.cp = response.domicilio.cp;
+                this.fieldCP = this.infoUser.domicilio.cp;
+                this.infoUser.domicilio.colonia = response.domicilio.colonia;
+                this.fieldColonia = this.infoUser.domicilio.colonia;
+            }
+
+        });
         // obtener la informacion que contiene el usuario
-        setTimeout(() => {
-            this._usrService.getInfoUser(this.uid).subscribe((response: any) => {
-                if (response.nombre != null) {
-                    this.infoUser.nombre = response.nombre;
-                    this.fieldNombre = response.nombre;
-                }
-                if(response.isProvider!=null && response.isProvider){
-                    this.isProvider = true;
-                }else{
-                    this.isProvider = false;
-                }
-
-                this.fieldEmail = this.email;
-                if (response.telefono != null) {
-                    this.infoUser.telefono = response.telefono;
-                    this.fieldTelefono = this.infoUser.telefono.toString();
-                }
-                if (response.domicilio != null) {
-                    this.infoUser.domicilio.calle = response.domicilio.calle;
-                    this.fieldCalle = this.infoUser.domicilio.calle;
-                    this.infoUser.domicilio.numero = response.domicilio.numero;
-                    this.fieldNumero = this.infoUser.domicilio.numero;
-                    this.infoUser.domicilio.cp = response.domicilio.cp;
-                    this.fieldCP = this.infoUser.domicilio.cp;
-                    this.infoUser.domicilio.colonia = response.domicilio.colonia;
-                    this.fieldColonia = this.infoUser.domicilio.colonia;
-                }
-
-            })
-        }, 300)
+        // setTimeout(() => {
+        //     this._usrService.getInfoUser(this.uid).subscribe((response: any) => {
+        //         if (response.nombre != null) {
+        //             this.infoUser.nombre = response.nombre;
+        //             this.fieldNombre = response.nombre;
+        //         }
+        //         if(response.isProvider!=null && response.isProvider){
+        //             this.isProvider = true;
+        //         }else{
+        //             this.isProvider = false;
+        //         }
+        //
+        //         this.fieldEmail = this.email;
+        //         if (response.telefono != null) {
+        //             this.infoUser.telefono = response.telefono;
+        //             this.fieldTelefono = this.infoUser.telefono.toString();
+        //         }
+        //         if (response.domicilio != null) {
+        //             this.infoUser.domicilio.calle = response.domicilio.calle;
+        //             this.fieldCalle = this.infoUser.domicilio.calle;
+        //             this.infoUser.domicilio.numero = response.domicilio.numero;
+        //             this.fieldNumero = this.infoUser.domicilio.numero;
+        //             this.infoUser.domicilio.cp = response.domicilio.cp;
+        //             this.fieldCP = this.infoUser.domicilio.cp;
+        //             this.infoUser.domicilio.colonia = response.domicilio.colonia;
+        //             this.fieldColonia = this.infoUser.domicilio.colonia;
+        //         }
+        //
+        //     })
+        // }, 300)
 
     }
 
