@@ -29,7 +29,6 @@ export class TrabajosRealizadosComponent implements OnInit {
     }
 
     validateJob(job:string){
-        debugger;
         if( this._validationService.errorInField(job)){
             this.errorField = true;
         }else{
@@ -40,6 +39,7 @@ export class TrabajosRealizadosComponent implements OnInit {
 
     goToInsertJob(job:string) {
         this._userProvider.insertJob(job);
+        this.trabajo = null;
     }
 
 
