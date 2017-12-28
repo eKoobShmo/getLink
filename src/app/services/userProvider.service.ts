@@ -164,7 +164,8 @@ export class userProviderService {
     }
 
     getJobs(key: string) {
-        return this.db.list('prestadoresServicios/' + key + '/informacionBasica/' + key + '/trabajosRealizados');
+        debugger;
+        return this.db.list('prestadoresServicios/' + key + '/informacionBasica/' + key + '/trabajos');
     }
 
     getHorary(key: string) {
