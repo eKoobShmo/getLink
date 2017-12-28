@@ -38,28 +38,26 @@ export class HeaderComponent implements OnInit {
         this.showHeader();
         this.uid = sessionStorage.getItem('uid');
 
-        setTimeout(()=>{
-            this._providerService.getNotifications(this.uid).then((response:any)=>{
-                response.subscribe((result:any)=>{
-                    debugger;
-                    this.numberNotifications = result.length;
-                    this.userNotifications = result;
-                    // for (let i=0; i<result.length ; i++) {
-                    //     if(result[i].tipo =="contratar"){
-                    //         this.userNotifications = result[i];
-                    //     }else{
-                    //         this.providerNotifications = result[i];
-                    //     }
-                    // }
 
-                })
-            })
-        },300);
 
     }
 
     ngOnInit() {
+        this._providerService.getNotifications(this.uid).then((response:any)=>{
+            response.subscribe((result:any)=>{
+                debugger;
+                this.numberNotifications = result.length;
+                this.userNotifications = result;
+                // for (let i=0; i<result.length ; i++) {
+                //     if(result[i].tipo =="contratar"){
+                //         this.userNotifications = result[i];
+                //     }else{
+                //         this.providerNotifications = result[i];
+                //     }
+                // }
 
+            })
+        })
     }
 
     setTheme() {
@@ -128,11 +126,12 @@ export class HeaderComponent implements OnInit {
             nombreProveedor = response.nombre;
             telefono = response.telefono;
             this._providerService.sendFinishNotificationToUser(index ,nombreProveedor,telefono);
+            debugger
         });
 
-        setTimeout(()=>{
-            this._providerService.deleteNotification(index);
-        },500)
+        // setTimeout(()=>{
+        //     this._providerService.deleteNotification(index);
+        // },500)
 
 
     }

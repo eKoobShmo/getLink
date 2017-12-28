@@ -47,9 +47,13 @@ export class UserService {
     getInfoUser(uid: string) {
         return this.db.object('usuarios/' + uid)
     }
-
-
-
+    getInfoUser2(uid: string) {
+        return new Promise(resolve => {
+            this.db.object('usuarios/' + uid).subscribe(snapshot=>{
+                resolve(snapshot)
+            })
+        })
+    }
 
     // metodo para generar el reporte
     sendReport(optionInapropiate: boolean, optionBadService: boolean, optionNotDone: boolean, description?: string, images?: any) {
@@ -66,7 +70,6 @@ export class UserService {
             if(images!=null){
                 this._cargaMultimediaService.cargarImagenesReportesFirebase(images, keyReport);
             }
-
             resolve();
         })
 

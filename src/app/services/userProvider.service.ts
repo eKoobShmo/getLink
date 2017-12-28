@@ -8,13 +8,15 @@ import {Observable} from 'rxjs/Observable';
 import {Globals} from './globals.service';
 import {UserService} from './user.service';
 import {setTime} from 'ngx-bootstrap/timepicker/timepicker.utils';
+import {ValidationService} from "./validation.service";
 
 @Injectable()
 export class userProviderService {
     uid: string;
 
     constructor(private db: AngularFireDatabase,
-                private _userService: UserService) {
+                private _userService: UserService,
+                private _validationService: ValidationService) {
         this.uid = sessionStorage.getItem('uid');
     }
 
@@ -89,36 +91,41 @@ export class userProviderService {
 
         this.db.object('prestadoresServicios/' + this.uid + '/notificaciones/' + keyNotification)
             .subscribe((response: any) => {
-                debugger;
+
                 uidUser = response.keyUsuario;
-                this._userService.getInfoUser(uidUser).subscribe((response: any) => {
+                if(!this._validationService.errorInField(uidUser)) {
+                    this._userService.getInfoUser2(uidUser).then((response: any) => {
 
-                    if (response.isProvider) {
+                        if (response.isProvider) {
 
-                        this.db.list('prestadoresServicios/' + uidUser + '/notificaciones')
-                            .push(
-                                {
-                                    nombreProveedor: nombreProveedor,
-                                    telefonoProveedor: telProveedor,
-                                    mensaje:'Necesita que califiques su servicio',
-                                    titulo:'El prestador de servicios',
-                                    tipo:'calificar'
-                                }
-                            )
-                    } else {
-                        this.db.list('usuarios/' + uidUser + '/notificaciones')
-                            .push(
-                                {
-                                    nombreProveedor: nombreProveedor,
-                                    telefonoProveedor: telProveedor,
-                                    mensaje:'Necesita que califiques su servicio',
-                                    titulo:'El prestador de servicios',
-                                    tipo:'calificar'
-                                }
-                            )
-                    }
-                });
+                            this.db.list('prestadoresServicios/' + uidUser + '/notificaciones')
+                                .push(
+                                    {
+                                        nombreProveedor: nombreProveedor,
+                                        telefonoProveedor: telProveedor,
+                                        mensaje: 'Necesita que califiques su servicio',
+                                        titulo: 'El prestador de servicios',
+                                        tipo: 'calificar'
+                                    }
+                                )
+                        } else if (!response.isProvider) {
+                            this.db.list('usuarios/' + uidUser + '/notificaciones')
+                                .push(
+                                    {
+                                        nombreProveedor: nombreProveedor,
+                                        telefonoProveedor: telProveedor,
+                                        mensaje: 'Necesita que califiques su servicio',
+                                        titulo: 'El prestador de servicios',
+                                        tipo: 'calificar'
+                                    }
+                                )
+                        }
+                        this.deleteNotification(keyNotification);
+
+                    });
+                }
             });
+
 
 
     }
