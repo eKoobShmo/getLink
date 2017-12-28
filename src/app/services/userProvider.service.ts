@@ -84,7 +84,7 @@ export class userProviderService {
     }
 
     sendFinishNotificationToUser(keyNotification: string, nombreProveedor:string, telProveedor:number) {
-        debugger;
+
         let uidUser: string;
 
         this.db.object('prestadoresServicios/' + this.uid + '/notificaciones/' + keyNotification)
@@ -123,7 +123,7 @@ export class userProviderService {
 
     }
 
-    deleteNotification(index: number) {
+    deleteNotification(index: string) {
         this.db.list('prestadoresServicios/' + this.uid + '/notificaciones/' + index).remove();
     }
 

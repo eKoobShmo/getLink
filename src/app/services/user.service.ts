@@ -80,7 +80,9 @@ export class UserService {
                 servicioSolicitado: servicio,
                 telefono: userInfo.telefono,
                 keyUsuario: userKey,
-                tipo:'contratar'
+                tipo:'contratar',
+                mensaje:'El usuario',
+                titulo:'Quiere contratar tu servicio contactalo al: '
 
             }
         )

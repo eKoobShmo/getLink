@@ -8,6 +8,7 @@ import {window} from "rxjs/operator/window";
 import {userProviderService} from "../../services/userProvider.service";
 import {unescapeIdentifier} from "@angular/compiler";
 import {notificationInterface} from "../../interfaces/notificationInterface";
+import {stringDistance} from "codelyzer/util/utils";
 
 @Component({
     selector: 'app-header',
@@ -129,12 +130,16 @@ export class HeaderComponent implements OnInit {
             this._providerService.sendFinishNotificationToUser(index ,nombreProveedor,telefono);
         });
 
+        setTimeout(()=>{
+            this._providerService.deleteNotification(index);
+        },500)
+
 
     }
 
-    goToDeleteNotification(index:number){
-        this._providerService.deleteNotification(index);
-    }
+    // goToDeleteNotification(index:number){
+    //     this._providerService.deleteNotification(index);
+    // }
 
 
 }
