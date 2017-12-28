@@ -63,9 +63,11 @@ export class MyServiceComponent implements OnInit {
                 private _validationService: ValidationService,
                 private _userProviderService: userProviderService,
                 private _userService: UserService) {
-        this.uid =sessionStorage.getItem('uid');
+
+        this.uid=sessionStorage.getItem('uid');
 
         this._userService.isAuthenticated().then((response: any) => {
+            // this.uid = response.uid;
             if (!this._validationService.errorInField(response.displayName)) {
                 this.myServiceInfo.nombre = response.displayName;
             }
@@ -80,9 +82,7 @@ export class MyServiceComponent implements OnInit {
     }
 
     ngOnInit() {
-
-
-
+        
         this._userProviderService.myServiceInfo(this.uid).subscribe((response:any)=>{
             this.fieldTitulo = response.titulo;
             this.fieldDescripcion = response.descripcion;
@@ -132,21 +132,44 @@ export class MyServiceComponent implements OnInit {
         });
 
 
-        // utilizando timeOuts por si acaso XD
-
         // setTimeout(()=>{
+        //
+        //
         //     this._userProviderService.myServiceInfo(this.uid).subscribe((response:any)=>{
-        //         debugger;
         //         this.fieldTitulo = response.titulo;
         //         this.fieldDescripcion = response.descripcion;
         //         this.fieldTrabajosRealizados = response.trabajosRealizados;
         //         this.fieldPuntuacion = response.puntuacion;
         //
-        //     })
-        // },300);
-
-
-        // setTimeout(() => {
+        //     });
+        //
+        //     this._userProviderService.getHorary(this.uid).subscribe((horario:any)=>{
+        //
+        //         if(horario.Lunes){
+        //             this.radiobtnLunes = true;
+        //         }
+        //         if(horario.Martes){
+        //             this.radiobtnMartes = true;
+        //         }
+        //         if(horario.Miercoles){
+        //             this.radiobtnMiercoles = true;
+        //         }
+        //         if(horario.Jueves){
+        //             this.radiobtnJueves = true;
+        //         }
+        //         if(horario.Viernes){
+        //             this.radiobtnViernes = true;
+        //         }
+        //         if(horario.Sabado){
+        //             this.radiobtnSabado = true;
+        //         }
+        //         if(horario.Domingo){
+        //             this.radiobtnDomingo = true;
+        //         }
+        //
+        //     });
+        //
+        //
         //     this._userService.getInfoUser(this.uid).subscribe((response: any) => {
         //
         //         if (this._validationService.errorInField(this.myServiceInfo.nombre)) {
@@ -158,16 +181,16 @@ export class MyServiceComponent implements OnInit {
         //         this.myServiceInfo.direccion.numero = response.domicilio.numero;
         //         this.myServiceInfo.direccion.cp = response.domicilio.cp;
         //
-        //     })
-        // }, 300);
+        //     });
+        //
+        // },300);
+
 
     }
 
-    checkRegisterService(){
-        // this._userProviderService.
-    }
 
     verifyFields(titulo: string, descripcion: string) {
+        debugger;
         if (this._validationService.errorInField(titulo)) {
             this.errorTitulo = true;
         } else {
@@ -189,6 +212,9 @@ export class MyServiceComponent implements OnInit {
                 if(this.fieldTrabajosRealizados != 0){
                     this.myServiceInfo.trabajosRealizados = this.fieldTrabajosRealizados;
                 }
+
+
+
                 this.goToRegisterProviderService(this.myServiceInfo);
             }
         }

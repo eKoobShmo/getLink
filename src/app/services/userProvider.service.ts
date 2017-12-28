@@ -24,7 +24,7 @@ export class userProviderService {
     }
 
     searchProviderServiceByTittle(tittle: string) {
-        debugger
+
         return new Promise((resolve, reject) => {
             let providerServicesFound: Observable<any[]>;
             this.db.list('servicios/').subscribe((result: any) => {
@@ -42,8 +42,10 @@ export class userProviderService {
     }
 
     registerProviderService(uid: string, infoService: providerInterface) {
-        this.db.list('prestadoresServicios/' + uid + '/informacionBasica').set(uid, infoService);
-        this.db.list('servicios/').set(
+
+        this.db.list('prestadoresServicios/'+uid+'/informacionBasica').update(uid,infoService);
+        this.db.list('servicios/').update(
+
             uid,
             {
                 descripcion: infoService.descripcion,
@@ -152,8 +154,8 @@ export class userProviderService {
     }
 
     insertJob(trabajo: string) {
+        this.db.list('prestadoresServicios/'+this.uid+'/informacionBasica/'+this.uid+'/trabajos').push(
 
-        this.db.list('prestadoresServicios/' + this.uid + '/informacionBasica/' + this.uid + '/trabajosRealizados').push(
             {
                 trabajo: trabajo
             }
