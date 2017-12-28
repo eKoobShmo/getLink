@@ -22,12 +22,11 @@ export class userProviderService {
         let respuesta = this.db.object(`prestadoresServicios/${key}/informacionBasica/${key}`);
         return respuesta;
     }
-    
+
     registerProviderService(uid: string, infoService: providerInterface) {
 
-        this.db.list('prestadoresServicios/'+uid+'/informacionBasica').update(uid,infoService);
+        this.db.list('prestadoresServicios/' + uid + '/informacionBasica').update(uid, infoService);
         this.db.list('servicios/').update(
-
             uid,
             {
                 descripcion: infoService.descripcion,
@@ -84,13 +83,52 @@ export class userProviderService {
 
     }
 
+    sendFinishNotificationToUser(keyNotification: string, nombreProveedor:string, telProveedor:number) {
+        debugger;
+        let uidUser: string;
+
+        this.db.object('prestadoresServicios/' + this.uid + '/notificaciones/' + keyNotification)
+            .subscribe((response: any) => {
+                debugger;
+                uidUser = response.keyUsuario;
+                this._userService.getInfoUser(uidUser).subscribe((response: any) => {
+
+                    if (response.isProvider) {
+
+                        this.db.list('prestadoresServicios/' + uidUser + '/notificaciones')
+                            .push(
+                                {
+                                    nombreProveedor: nombreProveedor,
+                                    telefonoProveedor: telProveedor,
+                                    mensaje:'Necesita que califiques su servicio',
+                                    titulo:'El prestador de servicios',
+                                    tipo:'calificar'
+                                }
+                            )
+                    } else {
+                        this.db.list('usuarios/' + uidUser + '/notificaciones')
+                            .push(
+                                {
+                                    nombreProveedor: nombreProveedor,
+                                    telefonoProveedor: telProveedor,
+                                    mensaje:'Necesita que califiques su servicio',
+                                    titulo:'El prestador de servicios',
+                                    tipo:'calificar'
+                                }
+                            )
+                    }
+                });
+            });
+
+
+    }
+
     deleteNotification(index: number) {
         this.db.list('prestadoresServicios/' + this.uid + '/notificaciones/' + index).remove();
     }
 
     insertJob(trabajo: string) {
-        this.db.list('prestadoresServicios/'+this.uid+'/informacionBasica/'+this.uid+'/trabajos').push(
-
+        this.db.list('prestadoresServicios/' + this.uid + '/informacionBasica/' + this.uid + '/trabajos').push(
             {
                 trabajo: trabajo
             }

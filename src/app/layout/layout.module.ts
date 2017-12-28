@@ -57,9 +57,9 @@ import {CalificarServicioComponent} from "../modals/calificar-servicio/calificar
 
 
 
-const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-    suppressScrollX: true
-}
+// const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+//     suppressScrollX: true
+// }
 
 @NgModule ({
     declarations: [
@@ -106,7 +106,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         BsDropdownModule.forRoot(),
         ProgressbarModule.forRoot(),
         ButtonsModule.forRoot(),
-        PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
+        PerfectScrollbarModule.forChild(),
         NgbModule.forRoot(),
         NgbModule
     ],

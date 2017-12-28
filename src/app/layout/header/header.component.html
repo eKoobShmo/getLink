@@ -1,6 +1,4 @@
-
-
-<div >
+<div>
     <header class="header" style="background-color: #328bc7!important">
         <navigation-trigger></navigation-trigger>
 
@@ -17,39 +15,43 @@
             <li class="hidden-xl-up"><a (click)="search.searchActive = true"><i class="zmdi zmdi-search"></i></a></li>
 
             <!--<li dropdown>-->
-                <!--<a dropdownToggle><i class="zmdi zmdi-email"></i></a>-->
-                <!--<div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu&#45;&#45;block" role="menu">-->
-                    <!--<div class="listview listview&#45;&#45;hover">-->
-                        <!--<div class="listview__header">-->
-                            <!--Messages-->
+            <!--<a dropdownToggle><i class="zmdi zmdi-email"></i></a>-->
+            <!--<div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-menu&#45;&#45;block" role="menu">-->
+            <!--<div class="listview listview&#45;&#45;hover">-->
+            <!--<div class="listview__header">-->
+            <!--Messages-->
 
-                            <!--<div class="actions">-->
-                                <!--<a href="messages.html" class="actions__item zmdi zmdi-plus"></a>-->
-                            <!--</div>-->
-                        <!--</div>-->
+            <!--<div class="actions">-->
+            <!--<a href="messages.html" class="actions__item zmdi zmdi-plus"></a>-->
+            <!--</div>-->
+            <!--</div>-->
 
-                        <!--<a *ngFor="let message of messagesData" href="" class="listview__item">-->
-                            <!--<img [src]="message.image" class="listview__img" alt="">-->
+            <!--<a *ngFor="let message of messagesData" href="" class="listview__item">-->
+            <!--<img [src]="message.image" class="listview__img" alt="">-->
 
-                            <!--<div class="listview__content">-->
-                                <!--<h3 class="listview__heading">-->
-                                    <!--{{ message.name }}-->
-                                    <!--<small>{{ message.date }}</small>-->
-                                <!--</h3>-->
-                                <!--<p>{{ message.message }}</p>-->
-                            <!--</div>-->
-                        <!--</a>-->
+            <!--<div class="listview__content">-->
+            <!--<h3 class="listview__heading">-->
+            <!--{{ message.name }}-->
+            <!--<small>{{ message.date }}</small>-->
+            <!--</h3>-->
+            <!--<p>{{ message.message }}</p>-->
+            <!--</div>-->
+            <!--</a>-->
 
-                        <!--<a href="" class="view-more">Mirar todos los mensajes</a>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--<a href="" class="view-more">Mirar todos los mensajes</a>-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</li>-->
 
             <li dropdown>
                 <div *ngIf="numberNotifications > 0" class="alertNotification">{{numberNotifications}}</div>
                 <a style="padding-top: 0" dropdownToggle class="top-nav__notify"><i class="zmdi zmdi-notifications"></i></a>
 
-                <div *dropdownMenu style="margin-top: 55px;" class="dropdown-menu dropdown-menu-right dropdown-menu--block cardNotifications" role="menu" id="scrollbar">
+                <!--abrir aqui-->
+
+                <div *dropdownMenu style="margin-top: 55px;"
+                     class="dropdown-menu dropdown-menu-right dropdown-menu--block cardNotifications" role="menu"
+                     id="scrollbar">
 
                     <div class="listview listview--hover">
                         <div class="listview__header">
@@ -61,25 +63,59 @@
                             </div>
                         </div>
 
-                        <div *ngFor="let notification of notifications; let i = index " href="" class="listview__item">
+                        <!--notificaciones del usuario-->
+
+                        <div *ngFor="let notification of userNotifications; let i = index "
+                             class="listview__item">
                             <!--<img [src]="message.image" class="listview__img" alt="">-->
 
                             <div class="listview__content">
 
                                 <div class="row">
-                                  <div class="col-12">
-                                      <div class="row">
-                                        <div class="col-10">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-10">
 
-                                            <i class="zmdi zmdi-notifications-active animated infinite pulse zmdi-hc-fw mdc-text-blue iconNotification"></i>
-                                            <h3 style="display:inline-block" class="listview__heading">El usuario: {{ notification?.usuario }}</h3>
-                                            <p>Quiere contratarte Contactalo al: {{ notification?.telefono }} </p>
+                                                <i class="zmdi zmdi-notifications-active animated infinite pulse zmdi-hc-fw mdc-text-blue iconNotification"></i>
+                                                <h3 style="display:inline-block" class="listview__heading">El usuario:
+                                                    {{ notification?.usuario }}</h3>
+                                                <p>Quiere contratarte Contactalo al: {{ notification?.telefono }} </p>
+                                            </div>
+                                            <div class="col-1" style="margin-top: 35px;">
+                                                <i class="zmdi zmdi-check-circle deleteNotificationIcon"
+                                                   (click)="goToFinishNotification(notification.$key)"></i>
+                                            </div>
                                         </div>
-                                        <div class="col-1" style="margin-top: 35px;">
-                                            <i class="zmdi zmdi-close-circle deleteNotificationIcon" (click)="goToDeleteNotification(notification.$key)"></i>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--notificaciones del prestador-->
+
+                        <div *ngFor="let notification of providerNotifications; let i = index "
+                             class="listview__item">
+                            <!--<img [src]="message.image" class="listview__img" alt="">-->
+
+                            <div class="listview__content">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-10">
+
+                                                <i class="zmdi zmdi-notifications-active animated infinite pulse zmdi-hc-fw mdc-text-blue iconNotification"></i>
+                                                <h3 style="display:inline-block" class="listview__heading">El usuario:
+                                                    {{ notification?.usuario }}</h3>
+                                                <p>Necesita que califiques su servicio </p>
+                                            </div>
+                                            <div class="col-1" style="margin-top: 35px;">
+                                                <i class="zmdi zmdi-check-circle deleteNotificationIcon"
+                                                   (click)="goToFinishNotification(notification.$key)"></i>
+                                            </div>
                                         </div>
-                                      </div>
-                                  </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -89,6 +125,8 @@
                     </div>
 
                 </div>
+
+                <!--cerrar aqui-->
 
             </li>
 
@@ -102,7 +140,8 @@
                                                        alt="" *ngIf="userPhoto!=null"></a>
 
 
-                <div class="card positionCard animated fadeIn fast" *ngIf="showMenu" style="color: black" align="center">
+                <div class="card positionCard animated fadeIn fast" *ngIf="showMenu" style="color: black"
+                     align="center">
                     <div class="row cursor-pointer itemHeaderMenu">
                         <div class="col-2">
                             <ul class="list-group">
@@ -132,7 +171,7 @@
                                 <!--</li>-->
                             </ul>
                         </div>
-                        <div class="col-10" (click)="goToMyProfile()" >
+                        <div class="col-10" (click)="goToMyProfile()">
                             <ul class="list-group">
                                 <li class="list-group-item m-l-20 m-t-5">Mi Perfil</li>
                             </ul>
@@ -150,7 +189,9 @@
                         </div>
                         <div class="col-10" (click)="goToHire()">
                             <ul class="list-group">
-                                <li class="list-group-item m-l-20 m-t-5" style="padding: 0px; padding-left: 26px; padding-top: 13px;">Contratar Un Servicio</li>
+                                <li class="list-group-item m-l-20 m-t-5"
+                                    style="padding: 0px; padding-left: 26px; padding-top: 13px;">Contratar Un Servicio
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -172,7 +213,7 @@
                     </div>
 
                     <!-- row Cerrar Sesión-->
-                    <div class="row cursor-pointer itemHeaderMenu p-b-10" >
+                    <div class="row cursor-pointer itemHeaderMenu p-b-10">
                         <div class="col-2">
                             <ul class="list-group">
                                 <!--<li class="list-group-item">-->

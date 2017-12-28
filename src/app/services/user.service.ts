@@ -79,7 +79,8 @@ export class UserService {
                 usuario: userInfo.nombre,
                 servicioSolicitado: servicio,
                 telefono: userInfo.telefono,
-                keyUsuario: userKey
+                keyUsuario: userKey,
+                tipo:'contratar'
 
             }
         )

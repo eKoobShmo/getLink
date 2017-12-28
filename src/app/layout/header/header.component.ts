@@ -19,18 +19,14 @@ import {notificationInterface} from "../../interfaces/notificationInterface";
 export class HeaderComponent implements OnInit {
     uid:string;
     numberNotifications:number;
-    messagesData: Array<any>;
-    tasksData: Array<any>;
     maThemeModel: string = 'green';
     showMenu: boolean = false;
     userEmail: string;
     userName: string;
     userPhoto: string;
     userLogged: boolean;
-    // notification:notificationInterface;
-    notifications:any[];
-    // userLogged:boolean=false;
-    existPhoto: boolean = false;
+    userNotifications:any[];
+    providerNotifications:any[];
 
     constructor(private sharedService: SharedService,
                 private afAuth: AngularFireAuth,
@@ -44,8 +40,17 @@ export class HeaderComponent implements OnInit {
         setTimeout(()=>{
             this._providerService.getNotifications(this.uid).then((response:any)=>{
                 response.subscribe((result:any)=>{
+                    debugger;
                     this.numberNotifications = result.length;
-                    this.notifications = result;
+                    this.userNotifications = result;
+                    // for (let i=0; i<result.length ; i++) {
+                    //     if(result[i].tipo =="contratar"){
+                    //         this.userNotifications = result[i];
+                    //     }else{
+                    //         this.providerNotifications = result[i];
+                    //     }
+                    // }
+
                 })
             })
         },300);
@@ -113,6 +118,18 @@ export class HeaderComponent implements OnInit {
 
     goToLogin(){
         this.router.navigate(['/login']);
+    }
+
+    goToFinishNotification(index:string){
+        let telefono:number;
+        let nombreProveedor:string;
+        this._userService.getInfoUser(this.uid).subscribe((response:any)=>{
+            nombreProveedor = response.nombre;
+            telefono = response.telefono;
+            this._providerService.sendFinishNotificationToUser(index ,nombreProveedor,telefono);
+        });
+
+
     }
 
     goToDeleteNotification(index:number){

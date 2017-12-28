@@ -27,7 +27,11 @@ import { MyServiceComponent } from './pages/configuration-provider-service/my-se
 import { LoadImagesComponent } from './pages/configuration-provider-service/load-images/load-images.component';
 import { TrabajosRealizadosComponent } from './modals/trabajos-realizados/trabajos-realizados.component';
 import { CalificarServicioComponent } from './modals/calificar-servicio/calificar-servicio.component';
+import {PerfectScrollbarConfigInterface, PerfectScrollbarModule} from "ngx-perfect-scrollbar";
 
+const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+    suppressScrollX: true
+}
 
 @NgModule({
     declarations: [
@@ -45,6 +49,7 @@ import { CalificarServicioComponent } from './modals/calificar-servicio/califica
         AngularFireDatabaseModule, // imports firebase/database, only needed for database features
         AngularFireAuthModule,
         NgbModule.forRoot(),
+        PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),
         NgbModule
 
 
