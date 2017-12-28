@@ -22,25 +22,7 @@ export class userProviderService {
         let respuesta = this.db.object(`prestadoresServicios/${key}/informacionBasica/${key}`);
         return respuesta;
     }
-
-    searchProviderServiceByTittle(tittle: string) {
-
-        return new Promise((resolve, reject) => {
-            let providerServicesFound: Observable<any[]>;
-            this.db.list('servicios/').subscribe((result: any) => {
-                if (!result) {
-                    providerServicesFound = null;
-                    reject()
-                } else {
-                    providerServicesFound = result.filter(it => it.titulo.toLowerCase().indexOf(tittle.toLowerCase()) >= 0);
-                    Globals.arrayProvidersFound = providerServicesFound;
-                }
-            });
-            resolve(Globals.arrayProvidersFound);
-        })
-
-    }
-
+    
     registerProviderService(uid: string, infoService: providerInterface) {
 
         this.db.list('prestadoresServicios/'+uid+'/informacionBasica').update(uid,infoService);
@@ -62,53 +44,6 @@ export class userProviderService {
     getProviderInfoHire(key: string) {
         return this.db.object('servicios/' + key)
     }
-
-    getServiceInfo(key: string) {
-        return this.db.object(`prestadoresServicios/${key}/trabajos`);
-    }
-
-    getGalleryPhotos() {
-        let galeriaFotos: photoGalleryInterface [] = [{
-            adjuntoUrl: '../../../../assets/images/trabajoAlbanileria2.JPG',
-            // ../../../assets/images/trabajoAlbanileria2.JPG
-            id: 'albanileria1',
-            titulo: 'Casa casi terminada',
-            tipo: MULTIMEDIA.IMAGE
-        },
-            {
-                adjuntoUrl: '../../../../assets/images/trabajoAlbanileria3.JPG',
-                id: 'albanileria2',
-                titulo: 'Cocina terminada',
-                tipo: MULTIMEDIA.IMAGE
-            },
-            {
-                adjuntoUrl: '../../../../assets/images/trabajoCarpinteria1.jpg',
-                id: 'carpinteria1',
-                titulo: 'Puertas terminadas ',
-                tipo: MULTIMEDIA.IMAGE
-            },
-            {
-                adjuntoUrl: '../../../../assets/images/ciudad.png',
-                id: 'costura1',
-                titulo: 'Ciudad?',
-                tipo: MULTIMEDIA.IMAGE
-            },
-            {
-                adjuntoUrl: '../../../../assets/images/trabajoHerreria.jpg',
-                id: 'herreria1',
-                titulo: 'Cerco',
-                tipo: MULTIMEDIA.IMAGE
-            },
-            {
-                adjuntoUrl: '../../../../assets/images/trabajoHerreria2.jpg',
-                id: 'herreria2',
-                titulo: 'Soporte de escalera',
-                tipo: MULTIMEDIA.IMAGE
-            }];
-
-        return galeriaFotos;
-    }
-
 
     getServices() {
         return this.db.list('servicios')
