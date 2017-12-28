@@ -10,6 +10,7 @@ export class CargaMultimediaService {
     //direccion donde se guardaran las imagenes del storage
     private CARPETA_IMAGENES: string = 'img';
     private CARPETA_REPORTES: string = 'img/reportes';
+    private CARPETA_TRABAJOS: string = 'img/imagenesTrabajos';
 
     // private  CARPETA_IMAGENES_COMENTARIOS:string="img/comentarios";
 
@@ -75,6 +76,37 @@ export class CargaMultimediaService {
 
         }
 
+    }
+
+    cargarImagenesTrabajosFirebase(archivos: FileItem[], key: string){
+        // haciendo referencia al storage de firebase
+
+        let storageRef = firebase.storage().ref('fotos/');
+        for (let item of archivos) {
+            //code
+            item.estaSubiendo = true;
+
+            // referencia a una tarea de carga de firebase
+            let uploadTask: firebase.storage.UploadTask =
+                storageRef.child(`${this.CARPETA_TRABAJOS}/${ item.nombreArchivo }`).put(item.archivo);
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+                (snapshot: any) => item.progreso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+                (error) => console.error('Error al subir', error),
+                () => {
+                    // obteniendo la url de la imagen ya que se subio
+                    item.url = uploadTask.snapshot.downloadURL;
+                    item.tamañoArchivo = uploadTask.snapshot.totalBytes;
+                    item.estaSubiendo = false;
+                    this.guardarImagenesTrabajos({nombre: item.nombreArchivo, adjuntoUrl: item.url, tipo: MULTIMEDIA.IMAGE}, key);
+                }
+            )
+
+        }
+    }
+
+    private guardarImagenesTrabajos(imagen:any ,uid:string){
+        debugger;
+        this.af.list(`prestadoresServicios/${uid}/informacionBasica/${uid}/fotosTrabajos`).push(imagen);
     }
 
     private guardarImagenReporte(imagen: any, key: string) {

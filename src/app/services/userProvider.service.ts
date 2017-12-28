@@ -1,20 +1,20 @@
-import {Injectable} from "@angular/core";
-import {providerInterface} from "../interfaces/perfil_ps.interface";
-import {aboutServiceProviderInterface} from "../interfaces/acerca_de.interface";
-import {photoGalleryInterface} from "../interfaces/galeria.interface";
-import {AngularFireDatabase} from "angularfire2/database";
-import {MULTIMEDIA} from "../enums/enums";
-import {Observable} from "rxjs/Observable";
-import {Globals} from "./globals.service";
-import {UserService} from "./user.service";
-import {setTime} from "ngx-bootstrap/timepicker/timepicker.utils";
+import {Injectable} from '@angular/core';
+import {providerInterface} from '../interfaces/perfil_ps.interface';
+import {aboutServiceProviderInterface} from '../interfaces/acerca_de.interface';
+import {photoGalleryInterface} from '../interfaces/galeria.interface';
+import {AngularFireDatabase} from 'angularfire2/database';
+import {MULTIMEDIA} from '../enums/enums';
+import {Observable} from 'rxjs/Observable';
+import {Globals} from './globals.service';
+import {UserService} from './user.service';
+import {setTime} from 'ngx-bootstrap/timepicker/timepicker.utils';
 
 @Injectable()
 export class userProviderService {
-    uid:string;
+    uid: string;
 
     constructor(private db: AngularFireDatabase,
-                private _userService:UserService) {
+                private _userService: UserService) {
         this.uid = sessionStorage.getItem('uid');
     }
 
@@ -25,7 +25,7 @@ export class userProviderService {
 
     searchProviderServiceByTittle(tittle: string) {
         debugger
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve, reject) => {
             let providerServicesFound: Observable<any[]>;
             this.db.list('servicios/').subscribe((result: any) => {
                 if (!result) {
@@ -41,15 +41,15 @@ export class userProviderService {
 
     }
 
-    registerProviderService(uid:string,infoService:providerInterface){
-        this.db.list('prestadoresServicios/'+uid+'/informacionBasica').set(uid,infoService);
+    registerProviderService(uid: string, infoService: providerInterface) {
+        this.db.list('prestadoresServicios/' + uid + '/informacionBasica').set(uid, infoService);
         this.db.list('servicios/').set(
             uid,
             {
                 descripcion: infoService.descripcion,
                 imagenUrl: infoService.fotoUrl,
                 key: uid,
-                nombre:infoService.nombre,
+                nombre: infoService.nombre,
                 puntuacion: infoService.puntuacion,
                 titulo: infoService.titulo,
                 trabajosRealizados: infoService.trabajosRealizados
@@ -57,10 +57,11 @@ export class userProviderService {
         )
     }
 
-    getProviderInfoHire(key: string){
-      return  this.db.object('servicios/'+key)
+    getProviderInfoHire(key: string) {
+        return this.db.object('servicios/' + key)
     }
-    getServiceInfo(key: string) { 
+
+    getServiceInfo(key: string) {
         return this.db.object(`prestadoresServicios/${key}/trabajos`);
     }
 
@@ -124,21 +125,21 @@ export class userProviderService {
         this.db.object('usuarios/' + uidUser + '/favoritos/' + providerKey).remove();
     }
 
-    pushComment(keyProvider:string){
+    pushComment(keyProvider: string) {
         return this.db.list('prestadoresServicios/' + keyProvider + '/servicios/comentarios')
     }
 
-    getNotifications(uid:string){
+    getNotifications(uid: string) {
 
-        return new Promise((resolve)=>{
-            let searchProvider:boolean=false;
-            this._userService.getInfoUser(this.uid).subscribe((response:any)=>{
+        return new Promise((resolve) => {
+            let searchProvider: boolean = false;
+            this._userService.getInfoUser(this.uid).subscribe((response: any) => {
 
-                if(response.isProvider){
+                if (response.isProvider) {
                     searchProvider = true;
-                    resolve (this.db.list('prestadoresServicios/'+uid+'/notificaciones'));
-                }else{
-                    resolve(this.db.list('usuarios/'+uid+'/notificaciones'));
+                    resolve(this.db.list('prestadoresServicios/' + uid + '/notificaciones'));
+                } else {
+                    resolve(this.db.list('usuarios/' + uid + '/notificaciones'));
                 }
             });
 
@@ -146,13 +147,13 @@ export class userProviderService {
 
     }
 
-    deleteNotification(index : number){
-        this.db.list('prestadoresServicios/'+this.uid+'/notificaciones/'+index).remove();
+    deleteNotification(index: number) {
+        this.db.list('prestadoresServicios/' + this.uid + '/notificaciones/' + index).remove();
     }
 
-    insertJob(trabajo:string){
+    insertJob(trabajo: string) {
 
-        this.db.list('prestadoresServicios/'+this.uid+'/informacionBasica/'+this.uid+'/trabajosRealizados').push(
+        this.db.list('prestadoresServicios/' + this.uid + '/informacionBasica/' + this.uid + '/trabajosRealizados').push(
             {
                 trabajo: trabajo
             }
@@ -160,16 +161,20 @@ export class userProviderService {
 
     }
 
-    getJobs(key:string){
-         return this.db.list('prestadoresServicios/'+key+'/informacionBasica/'+key+'/trabajosRealizados');
+    getJobs(key: string) {
+        return this.db.list('prestadoresServicios/' + key + '/informacionBasica/' + key + '/trabajosRealizados');
     }
 
-    getHorary(key:string){
-        return this.db.object('prestadoresServicios/'+key+'/informacionBasica/'+key+'/horario');
+    getHorary(key: string) {
+        return this.db.object('prestadoresServicios/' + key + '/informacionBasica/' + key + '/horario');
     }
 
-    myServiceInfo(uid:string){
-        return this.db.object('servicios/'+uid);
+    getJobPhotos(key: string) {
+        return this.db.list('prestadoresServicios/' + key + '/informacionBasica/' + key + '/fotosTrabajos');
+    }
+
+    myServiceInfo(uid: string) {
+        return this.db.object('servicios/' + uid);
     }
 
 }

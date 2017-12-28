@@ -20,14 +20,28 @@
 }
 
 .flotante {
-  position: fixed;
-  bottom: 13%;
-  right: 0px;
-  margin-right: 125px;
+  position: absolute;
+  right: 0;
 }
 
 .imageCard{
   width: 250px;
   height: 200px;
+}
+
+.deleteImageIcon{
+  font-size: 15px;
+  color: red;
+  top: 0;
+  cursor: pointer;
+  position: absolute;
+}
+
+.previousViewImages{
+  height: 60px;
+  width: 600px;
+  overflow-x: auto;
+  flex-wrap: unset;
+  margin-left: 60px;
 }
 

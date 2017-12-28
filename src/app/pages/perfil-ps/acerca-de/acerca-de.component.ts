@@ -22,7 +22,6 @@ export class AcercaDeComponent implements OnInit {
     ngOnInit() {
         this.psService.getProviderInfo(ProviderInfo.serviceProviderKey)
             .subscribe((result: any) => {
-                debugger;
                this.serviceProviderInfo=result;
             });
 

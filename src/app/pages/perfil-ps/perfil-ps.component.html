@@ -1,8 +1,9 @@
 <section class="content content-standard" style=" height:100vh">
+
     <div class="row">
         <div class="col-12">
             <div class="card-body style-CardBody card">
-                <div class="card provedorInfoLeft"
+                <div class="card"
                      style="width:265px !important; height: 598px;padding-top: 30px; position: absolute;    box-shadow: 1px 0px 2px rgba(0, 0, 0, 0.075)!important; ">
                     <div class="row">
 
@@ -109,44 +110,44 @@
                     </div>
                 </div>
 
-                <div class="card provedorInfoTop m-b-0 p-bn-">
-                    <div class="row m-t-15">
-                        <div class="col-12" align="center">
-                            <img src="../../../assets/images/userProfileWoman.png" alt="" style="width: 150px;">
-                            <div class="heartBackground">
+                <!--<div class="card provedorInfoTop m-b-0 p-bn-">-->
+                    <!--<div class="row m-t-15">-->
+                        <!--<div class="col-12" align="center">-->
+                            <!--<img src="../../../assets/images/userProfileWoman.png" alt="" style="width: 150px;">-->
+                            <!--<div class="heartBackground">-->
 
-                                <i class="zmdi zmdi-favorite heartPosition" align="center"
-                                   *ngIf="showHeartFull"></i>
-                                <i class="zmdi zmdi-favorite-outline heartPosition" align="center"
-                                   *ngIf="showHeart"></i>
+                                <!--<i class="zmdi zmdi-favorite heartPosition" align="center"-->
+                                   <!--*ngIf="showHeartFull"></i>-->
+                                <!--<i class="zmdi zmdi-favorite-outline heartPosition" align="center"-->
+                                   <!--*ngIf="showHeart"></i>-->
 
-                            </div>
+                            <!--</div>-->
 
-                            <div class="reportBackground">
+                            <!--<div class="reportBackground">-->
 
-                                <i class="zmdi zmdi-alert-circle heartPosition" align="center"></i>
+                                <!--<i class="zmdi zmdi-alert-circle heartPosition" align="center"></i>-->
 
-                            </div>
-                            <div align="center" style="font-size: 20px">
-                                {{datosPsServicio?.nombre}}
-                            </div>
-                            <div align="center">
-                                <i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>
-                                <i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>
-                                <i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>
-                                <i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>
-                                <i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>
-                            </div>
-                        </div>
-                    </div>
+                            <!--</div>-->
+                            <!--<div align="center" style="font-size: 20px">-->
+                                <!--{{datosPsServicio?.nombre}}-->
+                            <!--</div>-->
+                            <!--<div align="center">-->
+                                <!--<i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>-->
+                                <!--<i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>-->
+                                <!--<i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>-->
+                                <!--<i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>-->
+                                <!--<i class="zmdi zmdi-star zmdi-hc-2x" style="color: #ffe031"></i>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
-                </div>
+                <!--</div>-->
                 <!--Seccion de la derecha-->
-                <div class="row m-l-0 m-r-0 provedorInfoRight">
+                <div class="row m-l-0 m-r-0 ">
 
                     <div class="col-12">
 
-                        <div class="card-header">
+                        <div class="card-header" style="padding-left: 265px;">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item" routerLinkActive="active">
                                     <a class="nav-link" routerLinkActive="active" (click)="tab='acercaDe'"
@@ -169,7 +170,7 @@
                             </ul>
                         </div>
                         <div class="card-body"
-                             style="overflow-y: auto; overflow-x: hidden; height: 500px; width: 100%; padding-right: 5%" id="scrollbar">
+                             style="overflow-y: auto; overflow-x: hidden; height: 500px; width: 100%; padding-right: 5%;padding-left: 265px;" id="scrollbar">
                             <router-outlet></router-outlet>
                         </div>
                     </div>

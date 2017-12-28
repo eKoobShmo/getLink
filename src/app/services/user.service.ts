@@ -63,7 +63,9 @@ export class UserService {
             };
             let keyReport: string = this.Reports.push(report).key;
             this.Reports.update(keyReport, {key: keyReport});
-            this._cargaMultimediaService.cargarImagenesReportesFirebase(images, keyReport);
+            if(images!=null){
+                this._cargaMultimediaService.cargarImagenesReportesFirebase(images, keyReport);
+            }
 
             resolve();
         })
