@@ -14,15 +14,30 @@ import {ModalMultimediaService} from "../../../services/modal-multimedia.service
 
 
 export class GaleriaComponent implements OnInit {
-
-    galeriaFotos: photoGalleryInterface[] = [];
+    uid:string;
+    galeriaFotos:any [];
+    // galeriaFotos: photoGalleryInterface[] = [];
 
     constructor(private psService: userProviderService,
                 private modalService: NgbModal,
-                private multimediaService: ModalMultimediaService) {
+                private multimediaService: ModalMultimediaService,
+                private _userProviderService:userProviderService) {
+
+        this.uid = sessionStorage.getItem('uid');
 
     }
 
+
+
+
+    ngOnInit() {
+
+        this._userProviderService.getJobPhotos(this.uid).subscribe((response:any)=>{
+            this.galeriaFotos = response;
+        })
+        // this.galeriaFotos = this.psService.getGalleryPhotos();
+
+    }
 
     open(index: number) {
         let arrayImages = this.multimediaService.getMultimediaFromArray(this.galeriaFotos);
@@ -31,10 +46,5 @@ export class GaleriaComponent implements OnInit {
         modalRef.componentInstance.index = index;
         modalRef.componentInstance.arrayImages = arrayImages;
     }
-  ngOnInit() {
-      this.galeriaFotos=this.psService.getGalleryPhotos();
-      // console.log(this.galeriaFotos);
- 
-  }
 
 }

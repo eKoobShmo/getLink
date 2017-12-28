@@ -1,23 +1,14 @@
 <section>
 
-
-    <div class="row" id="scrollbar">
-        <div class="col-lg-4  col-md-6 col-sm-12 col-12 m-t-30" *ngFor="let imagen of jobsImages"  >
-            <div class="card m-l-50 cardGaleria" align="center">
-                <img class="card-img-top imageCard cursor-pointer" alt="Card image cap"
-                     src="{{imagen.adjuntoUrl}}" alt="">
-            </div>
-        </div>
-    </div>
-
-    <div class="row" style="margin-top: 55px;">
+    <div class="row flotante">
         <div class="col-12">
-            <i *ngIf="myJobsImages.length == 0"  class="zmdi zmdi-plus-circle-o zmdi-hc-5x flotante" style="color: #32c787; cursor:pointer;"
+            <i *ngIf="myJobsImages.length == 0"  class="zmdi zmdi-plus-circle-o zmdi-hc-5x" style="color: #32c787; cursor:pointer;"
                (click)="openLoadImagesModal()"></i>
 
-            <i *ngIf="myJobsImages.length > 0"  class="zmdi zmdi-upload zmdi-hc-5x flotante"  style="color: #3498db;cursor: pointer" (click)="uploadImages()"></i>
+            <i *ngIf="myJobsImages.length > 0"  class="zmdi zmdi-upload zmdi-hc-5x"  style="color: #3498db;cursor: pointer" (click)="uploadImages()"></i>
         </div>
     </div>
+
     <div class="row previousViewImages">
         <div class="col-2" style="padding: 0;margin: 0" align="center" *ngFor="let images of myJobsImages; let i = index">
 
@@ -31,5 +22,17 @@
             </div>
         </div>
     </div>
+
+    <div class="row" id="scrollbar">
+        <div class="col-lg-4  col-md-6 col-sm-12 col-12 m-t-30" *ngFor="let imagen of jobsImages"  >
+            <div class="card m-l-50 cardGaleria" align="center">
+                <img class="card-img-top imageCard cursor-pointer" alt="Card image cap"
+                     src="{{imagen.adjuntoUrl}}" alt="">
+            </div>
+        </div>
+    </div>
+
+
+
 
 </section>

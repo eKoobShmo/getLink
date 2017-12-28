@@ -12,12 +12,13 @@
 </div>
 <!--Trabajos realizados-->
 <div>
-    <span class="m-l-50" style="font-size: 18px">Trabajos realizados</span>
+    <span *ngIf="lengthItems == null" class="m-l-50" style="font-size: 18px; ">Por el momento no cuento con los tipos de trabajos que realizo</span>
+    <span *ngIf="lengthItems > 0" class="m-l-50" style="font-size: 18px">Trabajos realizados</span>
     <p class="m-l-50 m-t-10" *ngFor="let trabajo of arrayTrabajosRealzados ">{{'- '+ trabajo?.trabajo}}</p>
 </div>
 <!--Informacion de contacto-->
-<div>
-    <span class="m-l-50" style="font-size: 18px">Información de contacto</span>
+<div style="margin-top: 20px">
+    <span class="m-l-50" style="font-size: 18px;">Información de contacto</span>
     <div class="m-l-50 m-t-10" style="list-style: none">
         <div><i class="zmdi zmdi-email"></i>
             <label class="m-l-10">{{serviceProviderInfo?.email}}</label>

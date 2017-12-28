@@ -115,7 +115,6 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
 
     goToService(key: string) {
         this.router.navigate([`/perfil-ps/${key}/acercaDe`]);
-
     }
 
     openHire(keyPrestador: string) {

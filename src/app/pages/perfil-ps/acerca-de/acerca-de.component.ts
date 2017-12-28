@@ -13,6 +13,7 @@ import {providerInterface} from "../../../interfaces/perfil_ps.interface";
 })
 export class AcercaDeComponent implements OnInit {
     arrayTrabajosRealzados:any[];
+    lengthItems:number;
     serviceProviderInfo:Observable<providerInterface>;
     info:any;
     constructor(private infoProvider:ProviderInfo,
@@ -26,6 +27,8 @@ export class AcercaDeComponent implements OnInit {
             });
 
         this.psService.getJobs(ProviderInfo.serviceProviderKey).subscribe((result:any)=>{
+            debugger;
+            this.lengthItems = result.length;
             this.arrayTrabajosRealzados = result;
         })
 

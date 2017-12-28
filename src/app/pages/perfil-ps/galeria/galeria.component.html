@@ -2,15 +2,6 @@
     <div class="col-lg-4  col-md-6 col-sm-12 col-12 m-t-30" *ngFor="let galeria of galeriaFotos;let i=index">
         <div class="card m-l-50 cardGaleria"  align="center" (click)="open(i)">
             <img class="card-img-top imageCard cursor-pointer" src="{{galeria.adjuntoUrl}}" alt="Card image cap">
-            <div class="card-block">
-                <div class="row">
-                    <div class="col-12"> <h4 class="card-title">{{galeria.titulo}}</h4></div>
-                </div>
-                <div class="row cardDescription">
-                    <div class="col-12"><p class="card-text ">Some quick example text to build on the card title and make up </p> </div>
-                </div>
-
-            </div>
         </div>
     </div>
 </div>

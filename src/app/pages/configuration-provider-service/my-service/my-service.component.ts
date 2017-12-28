@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {TrabajosRealizadosComponent} from '../../../modals/trabajos-realizados/trabajos-realizados.component';
 import {ValidationService} from '../../../services/validation.service';
 import {userProviderService} from '../../../services/userProvider.service';
 import {providerInterface} from '../../../interfaces/perfil_ps.interface';
 import {UserService} from '../../../services/user.service';
 import {Globals} from '../../../services/globals.service';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-my-service',
@@ -16,7 +17,6 @@ export class MyServiceComponent implements OnInit {
     uid: string;
     isEdit: boolean = false;
     isUpdating: boolean = false;
-    diasLaborales : any[];
     fieldPuntuacion:number;
 
     fieldTitulo: string;
@@ -62,7 +62,8 @@ export class MyServiceComponent implements OnInit {
     constructor(private _modalService: NgbModal,
                 private _validationService: ValidationService,
                 private _userProviderService: userProviderService,
-                private _userService: UserService) {
+                private _userService: UserService,
+                private router: Router,) {
 
         this.uid=sessionStorage.getItem('uid');
 
@@ -82,7 +83,7 @@ export class MyServiceComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+
         this._userProviderService.myServiceInfo(this.uid).subscribe((response:any)=>{
             this.fieldTitulo = response.titulo;
             this.fieldDescripcion = response.descripcion;
@@ -130,61 +131,6 @@ export class MyServiceComponent implements OnInit {
             this.myServiceInfo.direccion.cp = response.domicilio.cp;
 
         });
-
-
-        // setTimeout(()=>{
-        //
-        //
-        //     this._userProviderService.myServiceInfo(this.uid).subscribe((response:any)=>{
-        //         this.fieldTitulo = response.titulo;
-        //         this.fieldDescripcion = response.descripcion;
-        //         this.fieldTrabajosRealizados = response.trabajosRealizados;
-        //         this.fieldPuntuacion = response.puntuacion;
-        //
-        //     });
-        //
-        //     this._userProviderService.getHorary(this.uid).subscribe((horario:any)=>{
-        //
-        //         if(horario.Lunes){
-        //             this.radiobtnLunes = true;
-        //         }
-        //         if(horario.Martes){
-        //             this.radiobtnMartes = true;
-        //         }
-        //         if(horario.Miercoles){
-        //             this.radiobtnMiercoles = true;
-        //         }
-        //         if(horario.Jueves){
-        //             this.radiobtnJueves = true;
-        //         }
-        //         if(horario.Viernes){
-        //             this.radiobtnViernes = true;
-        //         }
-        //         if(horario.Sabado){
-        //             this.radiobtnSabado = true;
-        //         }
-        //         if(horario.Domingo){
-        //             this.radiobtnDomingo = true;
-        //         }
-        //
-        //     });
-        //
-        //
-        //     this._userService.getInfoUser(this.uid).subscribe((response: any) => {
-        //
-        //         if (this._validationService.errorInField(this.myServiceInfo.nombre)) {
-        //             this.myServiceInfo.nombre = response.nombre;
-        //         }
-        //         this.myServiceInfo.telefono = response.telefono;
-        //         this.myServiceInfo.direccion.calle = response.domicilio.calle;
-        //         this.myServiceInfo.direccion.colonia = response.domicilio.colonia;
-        //         this.myServiceInfo.direccion.numero = response.domicilio.numero;
-        //         this.myServiceInfo.direccion.cp = response.domicilio.cp;
-        //
-        //     });
-        //
-        // },300);
-
 
     }
 
@@ -234,6 +180,10 @@ export class MyServiceComponent implements OnInit {
     cancelEdit() {
         this.isEdit = false;
         this.isUpdating = false;
+    }
+
+    goToService() {
+        this.router.navigate([`/perfil-ps/${this.uid}/acercaDe`]);
     }
 
     openModalTrabajosR() {
