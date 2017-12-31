@@ -1,7 +1,7 @@
 <section class="section-provedores">
 
     <perfect-scrollbar>
-        <div class="card p-20" *ngFor="let service of servicesProvidersTmp">
+        <div class="card p-20" *ngFor="let service of servicesProvidersTmp; let index = index">
 
             <div class="row" style="cursor: pointer;">
 
@@ -29,16 +29,16 @@
                     </div>
 
                     <div class="m-t-10 p-l-0 provedor-estrellas">
-                        <i class="zmdi zmdi-star"></i> {{service.puntuacion}}
+                        <i class="zmdi zmdi-star" ></i> {{service.puntuacion}}
                         <!--<i class="zmdi zmdi-star"></i>-->
                         <!--<i class="zmdi zmdi-star"></i>-->
                         <!--<i class="zmdi zmdi-star-half"></i>-->
                         <!--<i class="zmdi zmdi-star-outline"></i>-->
                     </div>
 
-                    <div class="m-t-10" style="color: #3498db;">
+                    <div class="m-t-10" style="color: #3498db;" >
 
-                        Trabajos realizados ({{ service.trabajosRealizados }})
+                        Trabajos realizados ({{ numbersJobs[index] }})
 
                     </div>
                 </div>

@@ -84,10 +84,13 @@ export class MyServiceComponent implements OnInit {
 
     ngOnInit() {
 
+
+
+
         this._userProviderService.myServiceInfo(this.uid).subscribe((response:any)=>{
             this.fieldTitulo = response.titulo;
             this.fieldDescripcion = response.descripcion;
-            this.fieldTrabajosRealizados = response.trabajosRealizados;
+            // this.fieldTrabajosRealizados = response.trabajosRealizados;
             this.fieldPuntuacion = response.puntuacion;
 
         });
@@ -135,8 +138,9 @@ export class MyServiceComponent implements OnInit {
     }
 
 
+
     verifyFields(titulo: string, descripcion: string) {
-        debugger;
+
         if (this._validationService.errorInField(titulo)) {
             this.errorTitulo = true;
         } else {
@@ -158,8 +162,6 @@ export class MyServiceComponent implements OnInit {
                 if(this.fieldTrabajosRealizados != 0){
                     this.myServiceInfo.trabajosRealizados = this.fieldTrabajosRealizados;
                 }
-
-
 
                 this.goToRegisterProviderService(this.myServiceInfo);
             }

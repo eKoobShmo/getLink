@@ -162,4 +162,16 @@ export class userProviderService {
         return this.db.object('servicios/' + uid);
     }
 
+    getScoreService(key:string){
+        return this.db.list(`prestadoresServicios/${key}/calificaciones`);
+    }
+
+    getScoreService2(key:string){
+        return new Promise(resolve=>{
+            this.db.list(`prestadoresServicios/${key}/calificaciones`).subscribe(snapshot=>{
+                resolve(snapshot)
+            })
+        })
+    }
+
 }

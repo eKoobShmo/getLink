@@ -20,6 +20,8 @@ import {PerfilPSComponent} from "../../perfil-ps/perfil-ps.component";
 export class ListaPrestadoresServiciosComponent implements OnInit {
     arrProviders: any[] = [];
     servicesProviders: any[];
+    puntuacion:number;
+    trabajosRealizados:number;
     // servicesProvidersTmp: providerInterface[];
     servicesProvidersTmp: any[];
     isFavorite: boolean;
@@ -27,9 +29,10 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
     keyFavoriteTemp: string;
     uid: string;
     myFavorites: any[];
+    numbersJobs:number[] = [];
 
     constructor(private db: AngularFireDatabase,
-                private _userProvider: userProviderService,
+                private _userProviderService: userProviderService,
                 private router: Router,
                 private modalService: NgbModal,
                 private broadcaster: Broadcaster,
@@ -70,15 +73,25 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
                 this.servicesProvidersTmp = this.servicesProvidersTmp.sort(comparar);
 
             });
+
+        // this._userProviderService.getScoreService(this.uid).subscribe((response:any)=>{
+        //     this.service.puntuacion = response.length;
+        // });
     }
 
 
     getListOfProviders() {
 
-        this._userProvider.getServices().subscribe((result: any) => {
-            debugger;
+        this._userProviderService.getServices().subscribe((result: any) => {
+
             this.servicesProviders = result;
             this.servicesProvidersTmp = result;
+
+            for(let i in this.servicesProviders){
+                this._userProviderService.getScoreService2(result[i].$key).then((response:any)=>{
+                    this.numbersJobs.push(response.length);
+                });
+            }
 
             this.afAuth.auth.onAuthStateChanged((user) => {
                 if (user) {
@@ -121,6 +134,15 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
         //mandando un input a ReportComponent
         const modalRef = this.modalService.open(HireServiceComponent);
         modalRef.componentInstance.keyPrestador = keyPrestador;
+
+    }
+
+    getNumberJobs(key:string):any {
+        this._userProviderService.getScoreService2(key).then((response:any)=>{
+            // debugger
+            return response.length;
+        });
+        // return "pedro"
 
     }
 
