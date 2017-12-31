@@ -21,14 +21,14 @@ export class AcercaDeComponent implements OnInit {
     }
 
     ngOnInit() {
-        debugger;
+
         this.psService.getProviderInfo(ProviderInfo.serviceProviderKey)
             .subscribe((result: any) => {
                this.serviceProviderInfo=result;
             });
 
         this.psService.getJobs(ProviderInfo.serviceProviderKey).subscribe((result:any)=>{
-            debugger;
+
             this.lengthItems = result.length;
             this.arrayTrabajosRealzados = result;
         })

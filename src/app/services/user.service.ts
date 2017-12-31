@@ -92,6 +92,26 @@ export class UserService {
 
     }
 
+    sendInfoProvider(key:string,puntuacion:number,atencion:string){
+
+        this.db.list(`prestadoresServicios/${key}/calificaciones`)
+            .push(
+                {
+                    puntuacion:puntuacion,
+                    atencion:atencion
+                }
+            )
+    }
+
+    deleteNotification(notificationKey:string, uidUser:string){
+        debugger;
+        this.getInfoUser2(uidUser).then((response:any)=>{
+            if(response.isProvider){
+                this.db.list(`prestadoresServicios/${uidUser}/notificaciones/${notificationKey}`).remove();
+            }
+        })
+    }
+
 
 
 

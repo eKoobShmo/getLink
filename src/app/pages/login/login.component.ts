@@ -94,15 +94,13 @@ export class LoginComponent implements OnInit {
         if (!this.errorInRegisterFields(user)) {
             this.isLoading = true;
             this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.pass).then((response: any) => {
-                this.afAuth.auth.currentUser.sendEmailVerification().then(response => {
-                    console.log("Resuelto " + response)
-                    // response.emailVerified=true;
-                }).catch(error => {
-                    console.log(error)
-                })
+                // this.afAuth.auth.currentUser.sendEmailVerification().then(response => {
+                //
+                // }).catch(error => {
+                //
+                // });
                 this.isLoading = false;
-                this.alertService.confirmSuccess("Usuario Registrado Correctamente", "Te hemos enviado un link a tu correo" +
-                    " da click en el para entrar a la app");
+                this.alertService.confirmSuccess("Usuario Registrado Correctamente", "Bienvenido a getLink");
                 this.userInfo.set(response.uid, {
                     'email': user.email,
                     'telefono': user.phone
@@ -191,7 +189,6 @@ export class LoginComponent implements OnInit {
 
             this.afAuth.auth.signInWithEmailAndPassword(user.email, user.pass)
                 .then((response: any) => {
-                    console.log(response);
                     window.location.href = '#/categorias';
                     this.isLoading = false;
                 })
@@ -225,9 +222,7 @@ export class LoginComponent implements OnInit {
     }
 
     showInfoTerms(user: userAuthInterface) {
-        // this.alertService.infoTerms('Terminos y Condiciones').then(response => {
-        //     user.terms = true;
-        // })
+
         this._modalService.open(TerminosCondicionesComponent, Globals.optionModalLg)
 
     }

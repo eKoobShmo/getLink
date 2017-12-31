@@ -85,7 +85,7 @@ export class userProviderService {
 
     }
 
-    sendFinishNotificationToUser(keyNotification: string, nombreProveedor:string, telProveedor:number) {
+    sendFinishNotificationToUser(keyNotification: string, nombreProveedor:string, telProveedor:number, uid:string) {
 
         let uidUser: string;
 
@@ -105,7 +105,8 @@ export class userProviderService {
                                         telefonoProveedor: telProveedor,
                                         mensaje: 'Necesita que califiques su servicio',
                                         titulo: 'El prestador de servicios',
-                                        tipo: 'calificar'
+                                        tipo: 'calificar',
+                                        keyPrestador: uid
                                     }
                                 )
                         } else if (!response.isProvider) {
@@ -116,7 +117,8 @@ export class userProviderService {
                                         telefonoProveedor: telProveedor,
                                         mensaje: 'Necesita que califiques su servicio',
                                         titulo: 'El prestador de servicios',
-                                        tipo: 'calificar'
+                                        tipo: 'calificar',
+                                        keyPrestador: uid
                                     }
                                 )
                         }
