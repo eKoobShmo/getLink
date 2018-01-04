@@ -9,6 +9,8 @@ import {Globals} from './globals.service';
 import {UserService} from './user.service';
 import {setTime} from 'ngx-bootstrap/timepicker/timepicker.utils';
 import {ValidationService} from "./validation.service";
+import {FileItem} from '../models/fileItem';
+import {CargaMultimediaService} from './carga-archivos.service.';
 
 @Injectable()
 export class userProviderService {
@@ -16,7 +18,9 @@ export class userProviderService {
 
     constructor(private db: AngularFireDatabase,
                 private _userService: UserService,
-                private _validationService: ValidationService) {
+                private _validationService: ValidationService,
+                private _cargaService:CargaMultimediaService
+    ) {
         this.uid = sessionStorage.getItem('uid');
     }
 
@@ -160,6 +164,11 @@ export class userProviderService {
 
     myServiceInfo(uid: string) {
         return this.db.object('servicios/' + uid);
+    }
+
+    updatePhotoProvider(uid:string, foto:FileItem){
+        debugger;
+        this._cargaService.actualizarImagenPerfil(foto,this.uid);
     }
 
     getScoreService(key:string){

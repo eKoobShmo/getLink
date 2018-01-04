@@ -2,6 +2,7 @@ import {DomicilioInterface} from "./domicilio";
 import {horarioInterface} from './horario';
 
 export interface providerInterface {
+
     nombre?: string;
     titulo?:string;
     puntuacion?: number;

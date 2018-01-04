@@ -6,7 +6,10 @@ import {userProviderService} from '../../../services/userProvider.service';
 import {providerInterface} from '../../../interfaces/perfil_ps.interface';
 import {UserService} from '../../../services/user.service';
 import {Globals} from '../../../services/globals.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {alertService} from '../../../services/alert.service';
+import {CargaComponent} from '../../../modals/carga/carga.component';
+import {FileItem} from '../../../models/fileItem';
 
 @Component({
     selector: 'app-my-service',
@@ -17,11 +20,11 @@ export class MyServiceComponent implements OnInit {
     uid: string;
     isEdit: boolean = false;
     isUpdating: boolean = false;
-    fieldPuntuacion:number;
-
+    fieldPuntuacion: number;
+    photoUserProvider: string;
     fieldTitulo: string;
     fieldDescripcion: string;
-    fieldTrabajosRealizados:number;
+    fieldTrabajosRealizados: number;
     radiobtnLunes: boolean = false;
     radiobtnMartes: boolean = false;
     radiobtnMiercoles: boolean = false;
@@ -30,6 +33,7 @@ export class MyServiceComponent implements OnInit {
     radiobtnSabado: boolean = false;
     radiobtnDomingo: boolean = false;
     myServiceInfo: providerInterface = {
+
         nombre: '',
         titulo: '',
         puntuacion: 0,
@@ -61,61 +65,68 @@ export class MyServiceComponent implements OnInit {
 
     constructor(private _modalService: NgbModal,
                 private _validationService: ValidationService,
+                private _alertService: alertService,
                 private _userProviderService: userProviderService,
                 private _userService: UserService,
                 private router: Router,) {
 
-        this.uid=sessionStorage.getItem('uid');
+        this.uid = sessionStorage.getItem('uid');
 
+        this._userProviderService.myServiceInfo(this.uid).subscribe((response: any) => {
+            debugger;
+            if (!this._validationService.errorInField(response.imagenUrl)) {
+                this.myServiceInfo.fotoUrl = response.imagenUrl;
+            } else if (this.myServiceInfo.fotoUrl != '') {
+                this._userService.isAuthenticated().then((snapshot: any) => {
+                    this.myServiceInfo.fotoUrl = snapshot.photoURL;
+                });
+            }
+
+        });
         this._userService.isAuthenticated().then((response: any) => {
             // this.uid = response.uid;
-            if (!this._validationService.errorInField(response.displayName)) {
+            if (this._validationService.errorInField(response.displayName)) {
                 this.myServiceInfo.nombre = response.displayName;
             }
             if (!this._validationService.errorInField(response.email)) {
                 this.myServiceInfo.email = response.email;
             }
-            if (!this._validationService.errorInField(response.photoURL)) {
-                this.myServiceInfo.fotoUrl = response.photoURL;
-            }
+
         })
 
     }
 
     ngOnInit() {
 
-
-
-
-        this._userProviderService.myServiceInfo(this.uid).subscribe((response:any)=>{
+        this._userProviderService.myServiceInfo(this.uid).subscribe((response: any) => {
             this.fieldTitulo = response.titulo;
             this.fieldDescripcion = response.descripcion;
-            // this.fieldTrabajosRealizados = response.trabajosRealizados;
+            this.fieldTrabajosRealizados = response.trabajosRealizados;
             this.fieldPuntuacion = response.puntuacion;
 
         });
 
-        this._userProviderService.getHorary(this.uid).subscribe((horario:any)=>{
+        this._userProviderService.getHorary(this.uid).subscribe((horario: any) => {
 
-            if(horario.Lunes){
+            if (horario.Lunes) {
                 this.radiobtnLunes = true;
             }
-            if(horario.Martes){
+            if (horario.Martes) {
                 this.radiobtnMartes = true;
             }
-            if(horario.Miercoles){
+            if (horario.Miercoles) {
                 this.radiobtnMiercoles = true;
             }
-            if(horario.Jueves){
+            if (horario.Jueves) {
                 this.radiobtnJueves = true;
             }
-            if(horario.Viernes){
+            if (horario.Viernes) {
                 this.radiobtnViernes = true;
             }
-            if(horario.Sabado){
+            if (horario.Sabado) {
                 this.radiobtnSabado = true;
             }
-            if(horario.Domingo){
+            if (horario.Domingo) {
                 this.radiobtnDomingo = true;
             }
 
@@ -138,9 +149,7 @@ export class MyServiceComponent implements OnInit {
     }
 
 
-
     verifyFields(titulo: string, descripcion: string) {
-
         if (this._validationService.errorInField(titulo)) {
             this.errorTitulo = true;
         } else {
@@ -156,20 +165,25 @@ export class MyServiceComponent implements OnInit {
                 this.myServiceInfo.horario.Viernes = this.radiobtnViernes;
                 this.myServiceInfo.horario.Sabado = this.radiobtnSabado;
                 this.myServiceInfo.horario.Domingo = this.radiobtnDomingo;
-                if(this.fieldPuntuacion!=0){
+                if (this.fieldPuntuacion != 0) {
                     this.myServiceInfo.puntuacion = this.fieldPuntuacion;
                 }
-                if(this.fieldTrabajosRealizados != 0){
+                if (this.fieldTrabajosRealizados != 0) {
                     this.myServiceInfo.trabajosRealizados = this.fieldTrabajosRealizados;
                 }
 
-                this.goToRegisterProviderService(this.myServiceInfo);
+                if(this.myServiceInfo.fotoUrl == ''){
+                    this._alertService.error("Seleccione almenos una foto","");
+                }else{
+                    this.goToRegisterProviderService(this.myServiceInfo);
+                }
+
             }
         }
     }
 
     goToRegisterProviderService(infoService: providerInterface) {
-        this._userProviderService.registerProviderService(this.uid,infoService);
+        this._userProviderService.registerProviderService(this.uid, infoService);
         this.isEdit = false;
         this.isUpdating = false;
     }
@@ -191,6 +205,24 @@ export class MyServiceComponent implements OnInit {
     openModalTrabajosR() {
         this._modalService.open(TrabajosRealizadosComponent, Globals.optionModalLg);
 
+    }
+
+    updatePhoto() {
+        let foto: FileItem;
+        this._modalService.open(CargaComponent).result.then((result) => {
+
+            if (result.length > 1) {
+                this._alertService.error('Error al actualizar la foto', 'Solo se puede subir una foto')
+            } else {
+                // foto = result[0].archivo;
+                foto = result[0];
+                this._userProviderService.updatePhotoProvider(this.uid, foto);
+            }
+
+
+        }, (error) => {
+            console.log('ocurrio un error en : ' + error);
+        })
     }
 
 }

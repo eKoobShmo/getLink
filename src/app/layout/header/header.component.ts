@@ -44,7 +44,6 @@ export class HeaderComponent implements OnInit {
         setTimeout(()=>{
             this._providerService.getNotifications(this.uid).then((response:any)=>{
                 response.subscribe((result:any)=>{
-                    debugger;
                     this.numberNotifications = result.length;
                     this.userNotifications = result;
                 })

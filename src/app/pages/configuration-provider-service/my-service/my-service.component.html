@@ -1,153 +1,174 @@
-<section >
+<section>
 
-    <div class="row" >
+    <div class="row">
         <div class="col-12">
-            <div class="" style="margin-top: 10px;font-size: 18px">
+            <div class="row">
 
-                <!--inf del servicio-->
-                <div class="row m-t-20">
-                    <div class="offset-1 col-4">
-                        <strong>Información del servicio</strong>
-                    </div>
-                </div>
-
-                <div class="row m-t-20">
-                    <div class="offset-1 col-2">
-                        <span>Titulo:</span>
-                    </div>
-                    <div class="col-6">
-                        <span *ngIf="!isEdit">{{fieldTitulo}}</span>
-                        <input type="text" class="form-control-line form-control"
-                               *ngIf="isEdit" [(ngModel)]="fieldTitulo">
-                        <i class="form-group__bar"></i>
-                    </div>
-                </div>
-                <!--descripcion-->
-                <div class="row m-t-20">
-                    <div class="offset-1 col-2">
-                        <span>Descripción:</span>
-                    </div>
-                    <div class="col-6">
-                        <span *ngIf="!isEdit">{{fieldDescripcion}}</span>
-                        <input type="text" class="form-control-line form-control"
-                               *ngIf="isEdit" [(ngModel)]="fieldDescripcion">
-                        <i class="form-group__bar"></i>
-                    </div>
-                </div>
-                <!--Dias de trabajo-->
-                <div class="row m-t-20">
-                    <div class="offset-1 col-2">
-                        <span>Trabajos Realizados:</span>
-                    </div>
-                    <div class="col-6" *ngIf="!isEdit">
-                        <span>{{fieldTrabajosRealizados}}</span>
-                    </div>
-                    <div class="col-6" *ngIf="isEdit">
-                        <!--<input type="text" class="form-control-line form-control"-->
-                        <!--*ngIf="isEdit">-->
-                        <span>Seleccione los dias de trabajo</span><br>
-                        <!--Lunes-->
-                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="radiobtnLunes"
-                            >
-                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                            <span class="custom-control-description" style="color: darkgray">Lunes</span>
-                        </label>
-
-                        <!--Martes-->
-                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="radiobtnMartes"
-                            >
-                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                            <span class="custom-control-description" style="color: darkgray">Martes</span>
-                        </label>
-
-                        <!--Miercoles-->
-                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="radiobtnMiercoles"
-                            >
-                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                            <span class="custom-control-description" style="color: darkgray">Miercoles</span>
-                        </label>
-
-                        <!--Jueves-->
-                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="radiobtnJueves"
-                            >
-                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                            <span class="custom-control-description" style="color: darkgray">Jueves</span>
-                        </label>
-
-                        <!--Viernes-->
-                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="radiobtnViernes"
-                            >
-                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                            <span class="custom-control-description" style="color: darkgray">Viernes</span>
-                        </label>
-
-                        <!--Sabado-->
-                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="radiobtnSabado"
-                            >
-                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                            <span class="custom-control-description" style="color: darkgray">Sabado</span>
-                        </label>
-
-                        <!--Domingo-->
-                        <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                            <input class="custom-control-input" type="checkbox"
-                                   [(ngModel)]="radiobtnDomingo"
-                            >
-                            <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                            <span class="custom-control-description" style="color: darkgray">Domingo</span>
-                        </label>
-
-                    </div>
-                </div>
-
-                <div class="row m-t-20" *ngIf="!isEdit">
-                  <div class="col-12">
-                      <div class="row">
-
-                        <div class="offset-1 col-2">
-                            <span>Puntuacion:</span>
+                <!--lo demas-->
+                <div class="col-8" style="font-size: 18px;margin-top: 10px;">
+                    <!--inf del servicio-->
+                    <div class="row m-t-20">
+                        <div class="offset-1 col-4">
+                            <strong>Información del servicio</strong>
                         </div>
+                    </div>
 
-                        <div class="col-6 ">
-                            <i class="zmdi zmdi-star provedor-estrellas"></i> {{fieldPuntuacion}}
+                    <div class="row m-t-20">
+                        <div class="offset-1 col-3">
+                            <span>Titulo:</span>
                         </div>
+                        <div class="col-6">
+                            <span *ngIf="!isEdit">{{fieldTitulo}}</span>
+                            <input type="text" class="form-control-line form-control"
+                                   *ngIf="isEdit" [(ngModel)]="fieldTitulo">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <!--descripcion-->
+                    <div class="row m-t-20">
+                        <div class="offset-1 col-3">
+                            <span>Descripción:</span>
+                        </div>
+                        <div class="col-6">
+                            <span *ngIf="!isEdit">{{fieldDescripcion}}</span>
+                            <input type="text" class="form-control-line form-control"
+                                   *ngIf="isEdit" [(ngModel)]="fieldDescripcion">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+                    <!--Dias de trabajo-->
+                    <div class="row m-t-20">
+                        <div class="offset-1 col-3">
+                            <span>Trabajos Realizados:</span>
+                        </div>
+                        <div class="col-6" *ngIf="!isEdit && fieldTrabajosRealizados > 0">
+                            <span>{{fieldTrabajosRealizados}}</span>
+                        </div>
+                        <div class="col-6" *ngIf="!isEdit && fieldTrabajosRealizados == null">
+                            <span>No has realizado ningun trabajo por el momento</span>
+                        </div>
+                        <div class="col-6" *ngIf="isEdit">
+                            <!--<input type="text" class="form-control-line form-control"-->
+                            <!--*ngIf="isEdit">-->
+                            <span>Seleccione los dias de trabajo</span><br>
+                            <!--Lunes-->
+                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                <input class="custom-control-input" type="checkbox"
+                                       [(ngModel)]="radiobtnLunes"
+                                >
+                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                <span class="custom-control-description" style="color: darkgray">Lunes</span>
+                            </label>
+
+                            <!--Martes-->
+                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                <input class="custom-control-input" type="checkbox"
+                                       [(ngModel)]="radiobtnMartes"
+                                >
+                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                <span class="custom-control-description" style="color: darkgray">Martes</span>
+                            </label>
+
+                            <!--Miercoles-->
+                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                <input class="custom-control-input" type="checkbox"
+                                       [(ngModel)]="radiobtnMiercoles"
+                                >
+                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                <span class="custom-control-description" style="color: darkgray">Miercoles</span>
+                            </label>
+
+                            <!--Jueves-->
+                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                <input class="custom-control-input" type="checkbox"
+                                       [(ngModel)]="radiobtnJueves"
+                                >
+                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                <span class="custom-control-description" style="color: darkgray">Jueves</span>
+                            </label>
+
+                            <!--Viernes-->
+                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                <input class="custom-control-input" type="checkbox"
+                                       [(ngModel)]="radiobtnViernes"
+                                >
+                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                <span class="custom-control-description" style="color: darkgray">Viernes</span>
+                            </label>
+
+                            <!--Sabado-->
+                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                <input class="custom-control-input" type="checkbox"
+                                       [(ngModel)]="radiobtnSabado"
+                                >
+                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                <span class="custom-control-description" style="color: darkgray">Sabado</span>
+                            </label>
+
+                            <!--Domingo-->
+                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                <input class="custom-control-input" type="checkbox"
+                                       [(ngModel)]="radiobtnDomingo"
+                                >
+                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                <span class="custom-control-description" style="color: darkgray">Domingo</span>
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20" *ngIf="!isEdit">
+                        <div class="col-12">
+                            <div class="row">
+
+                                <div class="offset-1 col-3">
+                                    <span>Puntuacion:</span>
+                                </div>
+
+                                <div class="col-6 ">
+                                    <i class="zmdi zmdi-star provedor-estrellas"></i> {{fieldPuntuacion}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--trabajos realizados-->
+                    <div class="" align="center" style="margin-top: 20px; margin-left: 50px;">
+                        <div class="row" align="center" *ngIf="isUpdating">
+                            <div class="col-3">
+                                <!--save-->
+                                <button class="btn btn-success" style="background-color: #328bc7!important"
+                                        (click)="openModalTrabajosR()">Agregar trabajos
+                                    realizados
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--imagen-->
+                <div class="col-4" *ngIf="myServiceInfo.fotoUrl == '' ">
+                    <img class=" imagen-prestador"  src="../../../../assets/images/user.png">
+
+                    <div class="row" *ngIf="isEdit">
+                      <div class="col-12">
+                          <button class="btn btn-info btnUpdatePhoto" (click)="updatePhoto()">Actualizar foto del servicio</button>
                       </div>
-                  </div>
+                    </div>
+
                 </div>
 
-                <!--trabajos realizados-->
-                <div class="" align="center" style="margin-top: 20px; margin-left: 50px;">
-                    <div class="row" align="center" *ngIf="isUpdating">
-                        <div class="col-3">
-                            <!--save-->
-                            <button class="btn btn-success" style="background-color: #328bc7!important"
-                                    (click)="openModalTrabajosR()">Agregar trabajos
-                                realizados
-                            </button>
+                <div class="col-4" *ngIf="myServiceInfo.fotoUrl != '' ">
+                    <img class=" imagen-prestador"  src="{{myServiceInfo.fotoUrl}}">
+
+                    <div class="row" *ngIf="isEdit">
+                        <div class="col-12">
+                            <button class="btn btn-info btnUpdatePhoto" (click)="updatePhoto()">Actualizar foto del servicio</button>
                         </div>
                     </div>
+
                 </div>
 
-                <!--<div class="row m-t-20">-->
-                    <!--<div class="offset-1 col-2">-->
-                        <!--<span *ngIf="!isEdit">Trabajos realizados:</span>-->
-                    <!--</div>-->
-                    <!--<div class="col-6">-->
-                        <!--<span *ngIf="!isEdit">Muchos</span>-->
-                    <!--</div>-->
-                <!--</div>-->
+
 
             </div>
         </div>

@@ -3,6 +3,7 @@ import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database
 import {FileItem} from '../models/fileItem';
 import * as firebase from 'firebase';
 import {MULTIMEDIA} from '../enums/enums';
+import {FILE} from 'dns';
 
 @Injectable()
 export class CargaMultimediaService {
@@ -10,6 +11,7 @@ export class CargaMultimediaService {
     //direccion donde se guardaran las imagenes del storage
     private CARPETA_IMAGENES: string = 'img';
     private CARPETA_REPORTES: string = 'img/reportes';
+    private CARPETA_USUARIOS_PRESTADORES: string = 'img/usuariosPrestadores';
     private CARPETA_TRABAJOS: string = 'img/imagenesTrabajos';
 
     // private  CARPETA_IMAGENES_COMENTARIOS:string="img/comentarios";
@@ -78,14 +80,11 @@ export class CargaMultimediaService {
 
     }
 
-    cargarImagenesTrabajosFirebase(archivos: FileItem[], key: string){
+    cargarImagenesTrabajosFirebase(archivos: FileItem[], key: string) {
         // haciendo referencia al storage de firebase
 
         let storageRef = firebase.storage().ref('fotos/');
         for (let item of archivos) {
-            //code
-            item.estaSubiendo = true;
-
             // referencia a una tarea de carga de firebase
             let uploadTask: firebase.storage.UploadTask =
                 storageRef.child(`${this.CARPETA_TRABAJOS}/${ item.nombreArchivo }`).put(item.archivo);
@@ -104,8 +103,43 @@ export class CargaMultimediaService {
         }
     }
 
-    private guardarImagenesTrabajos(imagen:any ,uid:string){
+    actualizarImagenPerfil(archivo: FileItem, key: string) {
+
         debugger;
+        let storageRef = firebase.storage().ref('fotos/');
+        let uploadTask: firebase.storage.UploadTask =
+            storageRef.child(`${this.CARPETA_USUARIOS_PRESTADORES}/${archivo.nombreArchivo}`).put(archivo.archivo);
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+            (snapshot: any) => console.log('algo'),
+            (error) => console.log('error'),
+            () => {
+                archivo.url = uploadTask.snapshot.downloadURL;
+                this.actualizarImgPerfil(archivo.url, key);
+            }
+        )
+
+
+        // // haciendo referencia al storage de firebase
+        // let storageRef = firebase.storage().ref('fotos/');
+        //
+        //     // referencia a una tarea de carga de firebase
+        //     let uploadTask: firebase.storage.UploadTask =
+        //         storageRef.child(`${this.CARPETA_USUARIOS_PRESTADORES}/${ archivo.nombreArchivo }`).put(archivo.archivo);
+        //     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        //         (snapshot: any) => console.log("se esta subiendo ... "),
+        //         (error) => console.error('Error al subir', error),
+        //         () => {
+        //             // obteniendo la url de la imagen ya que se subio
+        //             archivo.url = uploadTask.snapshot.downloadURL;
+        //             archivo.tamañoArchivo = uploadTask.snapshot.totalBytes;
+        //
+        //             this.actualizarImgPerfil({nombre: archivo.nombreArchivo, adjuntoUrl: archivo.url, tipo: MULTIMEDIA.IMAGE}, key);
+        //         }
+        //     )
+
+    }
+
+    private guardarImagenesTrabajos(imagen: any, uid: string) {
         this.af.list(`prestadoresServicios/${uid}/informacionBasica/${uid}/fotosTrabajos`).push(imagen);
     }
 
@@ -115,6 +149,17 @@ export class CargaMultimediaService {
 
     private guardarImagen(imagen: any, key: string) {
         this.af.list('prestadoresServicios/0/servicios/0/comentarios/' + key + '/adjuntos/').push(imagen);
+    }
+
+    private actualizarImgPerfil(imagen: string, uid: string) {
+        debugger;
+        this.af.list(`servicios/`)
+            .update(
+                uid,
+                {
+                    imagenUrl: imagen
+                }
+            )
     }
 
 

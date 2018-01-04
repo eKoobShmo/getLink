@@ -68,7 +68,6 @@ export class DropImagesDirective {
             this.archivos.push(nuevoArchivo);
           }
       }
-      console.log(this.archivos)
   }
 
 
