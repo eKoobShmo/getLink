@@ -54,7 +54,6 @@ export class FavoritosComponent implements OnInit {
     getListOfProviders() {
 
         this._userProvider.getServices().subscribe(result => {
-            debugger
             this.servicesProviders = result;
             this.servicesProvidersTmp = result;
 
