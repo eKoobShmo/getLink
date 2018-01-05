@@ -110,33 +110,13 @@ export class CargaMultimediaService {
         let uploadTask: firebase.storage.UploadTask =
             storageRef.child(`${this.CARPETA_USUARIOS_PRESTADORES}/${archivo.nombreArchivo}`).put(archivo.archivo);
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-            (snapshot: any) => console.log('algo'),
+            (snapshot: any) => console.log('se esta subiendo ...'),
             (error) => console.log('error'),
             () => {
                 archivo.url = uploadTask.snapshot.downloadURL;
                 this.actualizarImgPerfil(archivo.url, key);
             }
         )
-
-
-        // // haciendo referencia al storage de firebase
-        // let storageRef = firebase.storage().ref('fotos/');
-        //
-        //     // referencia a una tarea de carga de firebase
-        //     let uploadTask: firebase.storage.UploadTask =
-        //         storageRef.child(`${this.CARPETA_USUARIOS_PRESTADORES}/${ archivo.nombreArchivo }`).put(archivo.archivo);
-        //     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-        //         (snapshot: any) => console.log("se esta subiendo ... "),
-        //         (error) => console.error('Error al subir', error),
-        //         () => {
-        //             // obteniendo la url de la imagen ya que se subio
-        //             archivo.url = uploadTask.snapshot.downloadURL;
-        //             archivo.tamañoArchivo = uploadTask.snapshot.totalBytes;
-        //
-        //             this.actualizarImgPerfil({nombre: archivo.nombreArchivo, adjuntoUrl: archivo.url, tipo: MULTIMEDIA.IMAGE}, key);
-        //         }
-        //     )
-
     }
 
     private guardarImagenesTrabajos(imagen: any, uid: string) {

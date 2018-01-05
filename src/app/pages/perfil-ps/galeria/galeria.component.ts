@@ -23,7 +23,7 @@ export class GaleriaComponent implements OnInit {
                 private multimediaService: ModalMultimediaService,
                 private _userProviderService:userProviderService) {
 
-        this.uid = sessionStorage.getItem('uid');
+        this.uid = sessionStorage.getItem('keyPrestador');
 
     }
 

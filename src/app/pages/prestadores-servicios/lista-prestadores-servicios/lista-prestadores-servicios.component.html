@@ -28,19 +28,21 @@
                         {{service.descripcion}}
                     </div>
 
-                    <div class="m-t-10 p-l-0 provedor-estrellas">
+                    <div class="m-t-10 p-l-0 provedor-estrellas" *ngIf="service.puntuacion != 0 ">
                         <i class="zmdi zmdi-star" ></i> {{service.puntuacion}}
-                        <!--<i class="zmdi zmdi-star"></i>-->
-                        <!--<i class="zmdi zmdi-star"></i>-->
-                        <!--<i class="zmdi zmdi-star-half"></i>-->
-                        <!--<i class="zmdi zmdi-star-outline"></i>-->
+                    </div>
+                    <div class="m-t-10 p-l-0 provedor-estrellas" *ngIf="service.puntuacion == 0 ">
+                        <span>No tiene calificacion por el momento</span>
                     </div>
 
-                    <div class="m-t-10" style="color: #3498db;" >
+                    <div class="m-t-10" style="color: #3498db;" *ngIf="numbersJobs[index] == 0" >
+                        Trabajos realizados (Ninguno por el momento)
+                    </div>
 
+                    <div class="m-t-10" style="color: #3498db;" *ngIf="numbersJobs[index] != 0" >
                         Trabajos realizados ({{ numbersJobs[index] }})
-
                     </div>
+
                 </div>
 
                 <div class="col-3">
@@ -50,10 +52,6 @@
                             <i *ngIf="!checkFavorite(service.$key)" class="zmdi zmdi-favorite-outline"></i>
                             <i *ngIf="checkFavorite(service.$key)" class="zmdi zmdi-favorite"></i>
                         </div>
-                    </div>
-
-                    <div style="font-size: 24px; color: #535353; font-weight: 400;" align="right">
-                        Desde $100
                     </div>
 
                     <div class="" align="right">

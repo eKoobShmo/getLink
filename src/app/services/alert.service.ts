@@ -17,6 +17,14 @@ export class alertService {
         )
     }
 
+    infoMessage(tittle:string,message:string){
+        swal(
+            tittle,
+            message,
+            'info'
+        )
+    }
+
     error(title:string, message:string){
         swal(
             title,
