@@ -26,7 +26,7 @@ export class CargaMultimediaService {
 
 
     // cargar imagenes a firebase
-    cargarImagenesFirebase(archivos: FileItem[], key: string) {
+    cargarImagenesFirebase(archivos: FileItem[], keyComment: string, keyPrestador:string) {
         // haciendo referencia al storage de firebase
 
         let storageRef = firebase.storage().ref('fotos/');
@@ -45,7 +45,7 @@ export class CargaMultimediaService {
                     item.url = uploadTask.snapshot.downloadURL;
                     item.tamañoArchivo = uploadTask.snapshot.totalBytes;
                     item.estaSubiendo = false;
-                    this.guardarImagen({nombre: item.nombreArchivo, adjuntoUrl: item.url, tipo: MULTIMEDIA.IMAGE}, key);
+                    this.guardarImagen({nombre: item.nombreArchivo, adjuntoUrl: item.url, tipo: MULTIMEDIA.IMAGE}, keyComment, keyPrestador);
                 }
             )
 
@@ -110,7 +110,7 @@ export class CargaMultimediaService {
         let uploadTask: firebase.storage.UploadTask =
             storageRef.child(`${this.CARPETA_USUARIOS_PRESTADORES}/${archivo.nombreArchivo}`).put(archivo.archivo);
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-            (snapshot: any) => console.log('se esta subiendo ...'),
+            (snapshot: any) => console.log(''),
             (error) => console.log('error'),
             () => {
                 archivo.url = uploadTask.snapshot.downloadURL;
@@ -127,8 +127,8 @@ export class CargaMultimediaService {
         this.af.list('admin/reports/' + key + '/imagenes/').push(imagen);
     }
 
-    private guardarImagen(imagen: any, key: string) {
-        this.af.list('prestadoresServicios/0/servicios/0/comentarios/' + key + '/adjuntos/').push(imagen);
+    private guardarImagen(imagen: any, keyComment: string, keyPrestador:string) {
+        this.af.list(`prestadoresServicios/${keyPrestador}/servicios/${keyPrestador}/comentarios/${keyComment}/comentarios`).push(imagen);
     }
 
     private actualizarImgPerfil(imagen: string, uid: string) {

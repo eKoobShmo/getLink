@@ -96,7 +96,7 @@ export class EnviarComentarioComponent implements OnInit {
             };
         let keyComment: string = this.comments.push(comment).key;
         this.comments.update(keyComment, {key: keyComment});
-        this._cargaMultimediaService.cargarImagenesFirebase(this.imagenesComentarios, keyComment);
+        this._cargaMultimediaService.cargarImagenesFirebase(this.imagenesComentarios, keyComment, this.keyPrestador);
         this.imagenesComentarios = [];
 
     }
