@@ -44,75 +44,86 @@
                         <div class="col-6" *ngIf="!isEdit && fieldTrabajosRealizados > 0">
                             <span>{{fieldTrabajosRealizados}}</span>
                         </div>
-                        <div class="col-6" *ngIf="!isEdit && myServiceInfo.trabajosRealizados == 0">
+                        <div class="col-6" *ngIf="!isEdit && fieldTrabajosRealizados == 0">
                             <span>No has realizado ningun trabajo por el momento</span>
                         </div>
                         <div class="col-6" *ngIf="isEdit">
                             <!--<input type="text" class="form-control-line form-control"-->
                             <!--*ngIf="isEdit">-->
                             <span>Seleccione los dias de trabajo</span><br>
-                            <!--Lunes-->
-                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                                <input class="custom-control-input" type="checkbox"
-                                       [(ngModel)]="radiobtnLunes"
-                                >
-                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                                <span class="custom-control-description" style="color: darkgray">Lunes</span>
-                            </label>
 
-                            <!--Martes-->
-                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                                <input class="custom-control-input" type="checkbox"
-                                       [(ngModel)]="radiobtnMartes"
-                                >
-                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                                <span class="custom-control-description" style="color: darkgray">Martes</span>
-                            </label>
+                            <div class="row">
 
-                            <!--Miercoles-->
-                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                                <input class="custom-control-input" type="checkbox"
-                                       [(ngModel)]="radiobtnMiercoles"
-                                >
-                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                                <span class="custom-control-description" style="color: darkgray">Miercoles</span>
-                            </label>
+                              <div class="col-6">
+                                  <!--Lunes-->
+                                  <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                      <input class="custom-control-input" type="checkbox"
+                                             [(ngModel)]="radiobtnLunes"
+                                      >
+                                      <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                      <span class="custom-control-description" style="color: darkgray">Lunes</span>
+                                  </label>
 
-                            <!--Jueves-->
-                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                                <input class="custom-control-input" type="checkbox"
-                                       [(ngModel)]="radiobtnJueves"
-                                >
-                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                                <span class="custom-control-description" style="color: darkgray">Jueves</span>
-                            </label>
+                                  <!--Martes-->
+                                  <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                      <input class="custom-control-input" type="checkbox"
+                                             [(ngModel)]="radiobtnMartes"
+                                      >
+                                      <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                      <span class="custom-control-description" style="color: darkgray">Martes</span>
+                                  </label>
 
-                            <!--Viernes-->
-                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                                <input class="custom-control-input" type="checkbox"
-                                       [(ngModel)]="radiobtnViernes"
-                                >
-                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                                <span class="custom-control-description" style="color: darkgray">Viernes</span>
-                            </label>
+                                  <!--Miercoles-->
+                                  <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                      <input class="custom-control-input" type="checkbox"
+                                             [(ngModel)]="radiobtnMiercoles"
+                                      >
+                                      <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                      <span class="custom-control-description" style="color: darkgray">Miercoles</span>
+                                  </label>
 
-                            <!--Sabado-->
-                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                                <input class="custom-control-input" type="checkbox"
-                                       [(ngModel)]="radiobtnSabado"
-                                >
-                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                                <span class="custom-control-description" style="color: darkgray">Sabado</span>
-                            </label>
+                                  <!--Jueves-->
+                                  <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                      <input class="custom-control-input" type="checkbox"
+                                             [(ngModel)]="radiobtnJueves"
+                                      >
+                                      <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                      <span class="custom-control-description" style="color: darkgray">Jueves</span>
+                                  </label>
 
-                            <!--Domingo-->
-                            <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
-                                <input class="custom-control-input" type="checkbox"
-                                       [(ngModel)]="radiobtnDomingo"
-                                >
-                                <span class="custom-control-indicator" style="margin-top: 5px;"></span>
-                                <span class="custom-control-description" style="color: darkgray">Domingo</span>
-                            </label>
+                              </div>
+
+                              <div class="col-6">
+                                  <!--Viernes-->
+                                  <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                      <input class="custom-control-input" type="checkbox"
+                                             [(ngModel)]="radiobtnViernes"
+                                      >
+                                      <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                      <span class="custom-control-description" style="color: darkgray">Viernes</span>
+                                  </label>
+
+                                  <!--Sabado-->
+                                  <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                      <input class="custom-control-input" type="checkbox"
+                                             [(ngModel)]="radiobtnSabado"
+                                      >
+                                      <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                      <span class="custom-control-description" style="color: darkgray">Sabado</span>
+                                  </label>
+
+                                  <!--Domingo-->
+                                  <label class="custom-control custom-checkbox" style="margin-left: 35px; margin-top: 10px">
+                                      <input class="custom-control-input" type="checkbox"
+                                             [(ngModel)]="radiobtnDomingo"
+                                      >
+                                      <span class="custom-control-indicator" style="margin-top: 5px;"></span>
+                                      <span class="custom-control-description" style="color: darkgray">Domingo</span>
+                                  </label>
+                              </div>
+
+                            </div>
+
 
                         </div>
                     </div>
