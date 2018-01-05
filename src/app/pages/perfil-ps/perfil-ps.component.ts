@@ -24,12 +24,10 @@ import {Broadcaster} from "../../../assets/js/broadcaster";
 export class PerfilPSComponent implements OnInit {
     keyPrestador: string;
     datosPsServicio: providerInterface;
-
-    showHeart: boolean = false;
-    showHeartFull: boolean = false;
     tab: string = 'acercaDe';
     idUser: string;
     isFavorite: boolean;
+    puntuacion:number;
     arrayFavorites: any[] = [];
 
     constructor(private psService: userProviderService,
@@ -48,6 +46,12 @@ export class PerfilPSComponent implements OnInit {
             this.keyPrestador = ProviderInfo.serviceProviderKey;
             sessionStorage.setItem('keyPrestador',this.keyPrestador);
         });
+
+        this.psService.myServiceInfo(this.keyPrestador).subscribe((response:any)=>{
+            debugger;
+            this.puntuacion = response.puntuacion;
+        });
+
         this.psService.getProviderInfo(ProviderInfo.serviceProviderKey)
             .subscribe((result: any) => {
                 this.datosPsServicio = result;

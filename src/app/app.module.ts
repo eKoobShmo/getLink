@@ -17,16 +17,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
-import { DropImagesDirective } from './directives/drop-images.directive';
-import { HireServiceComponent } from './modals/hire-service/hire-service.component';
-import { UpdateInfoComponent } from './modals/update-info/update-info.component';
-import { FavoritosComponent } from './pages/favoritos/favoritos.component';
-import { ConfigurationProviderServiceComponent } from './pages/configuration-provider-service/configuration-provider-service.component';
-import { MyProfileComponent } from './pages/configuration-provider-service/my-profile/my-profile.component';
-import { MyServiceComponent } from './pages/configuration-provider-service/my-service/my-service.component';
-import { LoadImagesComponent } from './pages/configuration-provider-service/load-images/load-images.component';
-import { TrabajosRealizadosComponent } from './modals/trabajos-realizados/trabajos-realizados.component';
-import { CalificarServicioComponent } from './modals/calificar-servicio/calificar-servicio.component';
 import {PerfectScrollbarConfigInterface, PerfectScrollbarModule} from "ngx-perfect-scrollbar";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {

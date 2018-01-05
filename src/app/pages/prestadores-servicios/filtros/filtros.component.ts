@@ -49,10 +49,12 @@ export class FiltrosComponent {
     }
 
     filterProvidersByJobs() {
+        debugger;
         this.broadcaster.broadcast('filtroTrabajosRealizados')
     }
 
     filterProvidersByScore() {
+        debugger;
         this.broadcaster.broadcast('filterByScore')
     }
 

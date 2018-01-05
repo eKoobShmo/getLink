@@ -1,16 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
-import {Observable} from 'rxjs/Observable';
 import {userProviderService} from '../../../services/userProvider.service';
 import {Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {HireServiceComponent} from '../../../modals/hire-service/hire-service.component';
-import {Globals} from '../../../services/globals.service';
 import {Broadcaster} from '../../../../assets/js/broadcaster';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {UserService} from '../../../services/user.service';
-import {providerInterface} from "../../../interfaces/perfil_ps.interface";
-import {PerfilPSComponent} from "../../perfil-ps/perfil-ps.component";
+
 
 @Component({
     selector: 'app-lista-prestadores-servicios',
@@ -20,8 +17,8 @@ import {PerfilPSComponent} from "../../perfil-ps/perfil-ps.component";
 export class ListaPrestadoresServiciosComponent implements OnInit {
     arrProviders: any[] = [];
     servicesProviders: any[];
-    puntuacion:number;
-    trabajosRealizados:number;
+    puntuacion: number;
+    trabajosRealizados: number;
     // servicesProvidersTmp: providerInterface[];
     servicesProvidersTmp: any[];
     isFavorite: boolean;
@@ -29,7 +26,7 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
     keyFavoriteTemp: string;
     uid: string;
     myFavorites: any[];
-    numbersJobs:number[] = [];
+    numbersJobs: number[] = [];
 
     constructor(private db: AngularFireDatabase,
                 private _userProviderService: userProviderService,
@@ -73,10 +70,6 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
                 this.servicesProvidersTmp = this.servicesProvidersTmp.sort(comparar);
 
             });
-
-        // this._userProviderService.getScoreService(this.uid).subscribe((response:any)=>{
-        //     this.service.puntuacion = response.length;
-        // });
     }
 
 
@@ -87,10 +80,8 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
             this.servicesProviders = result;
             this.servicesProvidersTmp = result;
 
-            for(let i in this.servicesProviders){
-                this._userProviderService.getScoreService2(result[i].$key).then((response:any)=>{
-                    this.numbersJobs.push(response.length);
-                });
+            for (let i in this.servicesProviders) {
+                this._userProviderService.getScoreService2(result[i].$key)
             }
 
             this.afAuth.auth.onAuthStateChanged((user) => {
@@ -137,14 +128,14 @@ export class ListaPrestadoresServiciosComponent implements OnInit {
 
     }
 
-    getNumberJobs(key:string):any {
-        this._userProviderService.getScoreService2(key).then((response:any)=>{
-            // debugger
-            return response.length;
-        });
-        // return "pedro"
-
-    }
+    // getNumberJobs(key:string):any {
+    //     this._userProviderService.getScoreService2(key).then((response:any)=>{
+    //         // debugger
+    //         return response.length;
+    //     });
+    //     // return "pedro"
+    //
+    // }
 
 
 }

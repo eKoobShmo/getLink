@@ -19,8 +19,7 @@ export class userProviderService {
     constructor(private db: AngularFireDatabase,
                 private _userService: UserService,
                 private _validationService: ValidationService,
-                private _cargaService:CargaMultimediaService
-    ) {
+                private _cargaService: CargaMultimediaService) {
         this.uid = sessionStorage.getItem('uid');
     }
 
@@ -89,7 +88,7 @@ export class userProviderService {
 
     }
 
-    sendFinishNotificationToUser(keyNotification: string, nombreProveedor:string, telProveedor:number, uid:string) {
+    sendFinishNotificationToUser(keyNotification: string, nombreProveedor: string, telProveedor: number, uid: string) {
 
         let uidUser: string;
 
@@ -97,7 +96,7 @@ export class userProviderService {
             .subscribe((response: any) => {
 
                 uidUser = response.keyUsuario;
-                if(!this._validationService.errorInField(uidUser)) {
+                if (!this._validationService.errorInField(uidUser)) {
                     this._userService.getInfoUser2(uidUser).then((response: any) => {
 
                         if (response.isProvider) {
@@ -133,7 +132,6 @@ export class userProviderService {
             });
 
 
-
     }
 
     deleteNotification(index: string) {
@@ -166,21 +164,41 @@ export class userProviderService {
         return this.db.object('servicios/' + uid);
     }
 
-    updatePhotoProvider(uid:string, foto:FileItem){
+    updatePhotoProvider(uid: string, foto: FileItem) {
         debugger;
-        this._cargaService.actualizarImagenPerfil(foto,this.uid);
+        this._cargaService.actualizarImagenPerfil(foto, this.uid);
     }
 
-    getScoreService(key:string){
+    getScoreService(key: string) {
         return this.db.list(`prestadoresServicios/${key}/calificaciones`);
     }
 
-    getScoreService2(key:string){
-        return new Promise(resolve=>{
-            this.db.list(`prestadoresServicios/${key}/calificaciones`).subscribe(snapshot=>{
-                resolve(snapshot)
-            })
+    getScoreService2(key: string) {
+        debugger;
+        let score:number=0;
+        let auxScore:string;
+        this.db.list(`prestadoresServicios/${key}/calificaciones`).subscribe((snapshot: any) => {
+            debugger;
+
+            for (let i=0; i<snapshot.length ; i++) {
+                score = score + snapshot[i].puntuacion;
+            }
+
+            score = score / snapshot.length;
+            auxScore = score.toString().substr(0,3);
+            score = parseFloat(auxScore);
+
+            this.db.list(`servicios/`)
+                .update(
+                    key,
+                    {
+                        trabajosRealizados: snapshot.length,
+                        puntuacion: score
+                    }
+                )
         })
+
     }
+
 
 }
