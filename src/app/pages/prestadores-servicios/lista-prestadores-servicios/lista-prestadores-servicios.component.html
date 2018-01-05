@@ -7,9 +7,9 @@
 
                 <div class="col-2" align="center">
 
-                    <div  class="cursor-pointer" (click)="goToService(service.$key)">
+                    <div class="cursor-pointer" (click)="goToService(service.$key)">
 
-                        <img  [src]="service.imagenUrl" style="width: 100%;border-radius: 100%" alt="">
+                        <img [src]="service.imagenUrl" style="width: 100%;border-radius: 100%" alt="">
                         <!--<label>Ver perfil</label>-->
                         {{service.nombre}}
                     </div>
@@ -29,23 +29,22 @@
                     </div>
 
                     <div class="m-t-10 p-l-0 provedor-estrellas" *ngIf="service.puntuacion != 0 ">
-                        <i class="zmdi zmdi-star" ></i> {{service.puntuacion}}
+                        <i class="zmdi zmdi-star"></i> {{service.puntuacion}}
                     </div>
                     <div class="m-t-10 p-l-0 provedor-estrellas" *ngIf="service.puntuacion == 0 ">
                         <span>No tiene calificacion por el momento</span>
                     </div>
 
-                    <div class="m-t-10" style="color: #3498db;" *ngIf="numbersJobs[index] == 0" >
+                    <div class="m-t-10" style="color: #3498db;" *ngIf="service.puntuacion == 0">
                         Trabajos realizados (Ninguno por el momento)
                     </div>
 
-                        <!--Trabajos realizados ({{ numbersJobs[index] }})-->
-                        Trabajos realizados ({{ service.trabajosRealizados }})
-
-
+                    <div class="m-t-10" style="color: #3498db;" *ngIf="service.trabajosRealizados != 0 ">
+                        Trabajos realizados ({{service.trabajosRealizados}})
                     </div>
 
                 </div>
+
 
                 <div class="col-3">
 
@@ -66,8 +65,9 @@
                 </div>
 
             </div>
-
         </div>
+
+
     </perfect-scrollbar>
 </section>
 
