@@ -44,7 +44,7 @@
                         <div class="col-6" *ngIf="!isEdit && fieldTrabajosRealizados > 0">
                             <span>{{fieldTrabajosRealizados}}</span>
                         </div>
-                        <div class="col-6" *ngIf="!isEdit && fieldTrabajosRealizados == null">
+                        <div class="col-6" *ngIf="!isEdit && myServiceInfo.trabajosRealizados == 0">
                             <span>No has realizado ningun trabajo por el momento</span>
                         </div>
                         <div class="col-6" *ngIf="isEdit">

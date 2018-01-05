@@ -150,6 +150,7 @@ export class MyServiceComponent implements OnInit {
 
 
     verifyFields(titulo: string, descripcion: string) {
+        debugger;
         if (this._validationService.errorInField(titulo)) {
             this.errorTitulo = true;
         } else {
@@ -165,15 +166,21 @@ export class MyServiceComponent implements OnInit {
                 this.myServiceInfo.horario.Viernes = this.radiobtnViernes;
                 this.myServiceInfo.horario.Sabado = this.radiobtnSabado;
                 this.myServiceInfo.horario.Domingo = this.radiobtnDomingo;
-                if (this.fieldPuntuacion != 0) {
+                if (this.fieldPuntuacion != 0 && this.myServiceInfo.puntuacion != 0) {
                     this.myServiceInfo.puntuacion = this.fieldPuntuacion;
+                }else{
+                    this.myServiceInfo.puntuacion = 0;
                 }
-                if (this.fieldTrabajosRealizados != 0) {
+                if (this.fieldTrabajosRealizados != 0 && this.myServiceInfo.trabajosRealizados != 0) {
                     this.myServiceInfo.trabajosRealizados = this.fieldTrabajosRealizados;
+                }else{
+                    this.myServiceInfo.trabajosRealizados = 0;
                 }
 
                 if(this.myServiceInfo.fotoUrl == ''){
-                    this._alertService.error("Seleccione almenos una foto","");
+                    this._alertService.infoMessage("Foto no actualizada","Puede cambiar de foto cuando usted guste");
+                    this.myServiceInfo.fotoUrl = '../../../../assets/images/user.png';
+                    this.goToRegisterProviderService(this.myServiceInfo);
                 }else{
                     this.goToRegisterProviderService(this.myServiceInfo);
                 }
@@ -199,6 +206,7 @@ export class MyServiceComponent implements OnInit {
     }
 
     goToService() {
+        sessionStorage.setItem('keyPrestador' , this.uid);
         this.router.navigate([`/perfil-ps/${this.uid}/acercaDe`]);
     }
 
