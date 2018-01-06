@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {userProviderService} from '../../services/userProvider.service';
 import {ValidationService} from '../../services/validation.service';
+import {alertService} from "../../services/alert.service";
 
 @Component({
     selector: 'app-trabajos-realizados',
@@ -15,7 +16,8 @@ export class TrabajosRealizadosComponent implements OnInit {
 
     constructor(public activeModal: NgbActiveModal,
                 private _userProvider: userProviderService,
-                private _validationService:ValidationService) {
+                private _validationService:ValidationService,
+                private _alertService:alertService) {
 
         this.uid = sessionStorage.getItem('uid');
 
@@ -31,6 +33,7 @@ export class TrabajosRealizadosComponent implements OnInit {
     validateJob(job:string){
         if( this._validationService.errorInField(job)){
             this.errorField = true;
+            this._alertService.error("Campo vacio","Llene el campo correspondiente");
         }else{
             this.goToInsertJob(job);
         }
@@ -38,7 +41,7 @@ export class TrabajosRealizadosComponent implements OnInit {
     }
 
     goToInsertJob(job:string) {
-        this._userProvider.insertJob(job);
+        this._userProvider.insertJob(job,this.uid);
         this.trabajo = null;
     }
 

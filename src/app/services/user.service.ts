@@ -56,14 +56,15 @@ export class UserService {
     }
 
     // metodo para generar el reporte
-    sendReport(optionInapropiate: boolean, optionBadService: boolean, optionNotDone: boolean, description?: string, images?: any) {
+    sendReport(keyProvider:string,optionInapropiate: boolean, optionBadService: boolean, optionNotDone: boolean, description?: string, images?: any) {
         return new Promise((resolve, reject) => {
 
             let report = {
                 lenguajeInapropiate: optionInapropiate,
                 badService: optionBadService,
                 serviceNotDone: optionNotDone,
-                descripcion: description
+                descripcion: description,
+                keyPrestador:keyProvider
             };
             let keyReport: string = this.Reports.push(report).key;
             this.Reports.update(keyReport, {key: keyReport});

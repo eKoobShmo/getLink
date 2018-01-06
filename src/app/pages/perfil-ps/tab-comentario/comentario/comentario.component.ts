@@ -20,11 +20,15 @@ export class ComentarioComponent implements OnInit {
     response: FirebaseListObservable<any[]>;
     adjuntos:any[] = [];
     favorite:boolean=false;
+    keyPrestador:string;
 
     constructor(private af: AngularFireDatabase,
                 private multimediaService:ModalMultimediaService,
                 private modalService:NgbModal,
                 private afAuth:AngularFireAuth) {
+
+        this.keyPrestador = sessionStorage.getItem('keyPrestador');
+
     }
 
     ngOnInit() {
@@ -39,7 +43,8 @@ export class ComentarioComponent implements OnInit {
 
 
     getAttached(): Observable<any>{
-        return this.af.list('prestadoresServicios/0/servicios/0/comentarios/' + this.key + '/adjuntos/', {preserveSnapshot: true})
+        // return this.af.list('prestadoresServicios/0/servicios/0/comentarios/' + this.key + '/adjuntos/', {preserveSnapshot: true})
+        return this.af.list(`prestadoresServicios/${this.keyPrestador}/servicios/comentarios/${this.key}/adjuntos`, {preserveSnapshot: true})
     }
     openImageModal(index:number){
         // let arrayImages

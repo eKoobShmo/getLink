@@ -18,6 +18,7 @@ export class ReportComponent implements OnInit {
     optionBadService: boolean = false;
     optionServiceNotDone: boolean = false;
     description: string = '';
+    keyProvider:string;
     REPORTOPTIONS: any = reportOptions;
 
     constructor(public activeModal: NgbActiveModal,
@@ -26,7 +27,7 @@ export class ReportComponent implements OnInit {
                 private _alertService: alertService) {
 
 
-
+        this.keyProvider = sessionStorage.getItem('keyPrestador');
     }
 
     ngOnInit() {
@@ -38,7 +39,7 @@ export class ReportComponent implements OnInit {
         if (!this.optionBadService && !this.optionServiceNotDone && !this.optionBadService && this.description == '') {
             this._alertService.error('Verifique los campos', 'Seleccione almenos una opcion')
         } else {
-            this._userService.sendReport(this.optionInapropiate, this.optionBadService, this.optionServiceNotDone, this.description, this.imageReport)
+            this._userService.sendReport(this.keyProvider,this.optionInapropiate, this.optionBadService, this.optionServiceNotDone, this.description, this.imageReport)
                 .then((response) => {
                     this.optionServiceNotDone = false;
                     this.optionBadService = false;

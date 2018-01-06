@@ -138,8 +138,9 @@ export class userProviderService {
         this.db.list('prestadoresServicios/' + this.uid + '/notificaciones/' + index).remove();
     }
 
-    insertJob(trabajo: string) {
-        this.db.list('prestadoresServicios/' + this.uid + '/informacionBasica/' + this.uid + '/trabajos').push(
+    insertJob(trabajo: string, uid:string) {
+        // this.db.list('prestadoresServicios/' + this.uid + '/informacionBasica/' + this.uid + '/trabajos').push(
+        this.db.list(`prestadoresServicios/${uid}/informacionBasica/${uid}/trabajos`).push(
             {
                 trabajo: trabajo
             }

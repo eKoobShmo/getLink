@@ -27,6 +27,7 @@ export class CargaMultimediaService {
 
     // cargar imagenes a firebase
     cargarImagenesFirebase(archivos: FileItem[], keyComment: string, keyPrestador:string) {
+        debugger;
         // haciendo referencia al storage de firebase
 
         let storageRef = firebase.storage().ref('fotos/');
@@ -128,7 +129,7 @@ export class CargaMultimediaService {
     }
 
     private guardarImagen(imagen: any, keyComment: string, keyPrestador:string) {
-        this.af.list(`prestadoresServicios/${keyPrestador}/servicios/${keyPrestador}/comentarios/${keyComment}/comentarios`).push(imagen);
+        this.af.list(`prestadoresServicios/${keyPrestador}/servicios/comentarios/${keyComment}/adjuntos`).push(imagen);
     }
 
     private actualizarImgPerfil(imagen: string, uid: string) {
