@@ -174,28 +174,33 @@ export class userProviderService {
     }
 
     getScoreService2(key: string) {
-        debugger;
         let score:number=0;
         let auxScore:string;
         this.db.list(`prestadoresServicios/${key}/calificaciones`).subscribe((snapshot: any) => {
-            debugger;
 
             for (let i=0; i<snapshot.length ; i++) {
-                score = score + snapshot[i].puntuacion;
+                if(snapshot.length>0){
+                    score = score + snapshot[i].puntuacion;
+                }else{
+                    break;
+                }
             }
 
-            score = score / snapshot.length;
-            auxScore = score.toString().substr(0,3);
-            score = parseFloat(auxScore);
+            if(score != 0){
+                score = score / snapshot.length;
+                auxScore = score.toString().substr(0,3);
+                score = parseFloat(auxScore);
 
-            this.db.list(`servicios/`)
-                .update(
-                    key,
-                    {
-                        trabajosRealizados: snapshot.length,
-                        puntuacion: score
-                    }
-                )
+                this.db.list(`servicios/`)
+                    .update(
+                        key,
+                        {
+                            trabajosRealizados: snapshot.length,
+                            puntuacion: score
+                        }
+                    )
+            }
+
         })
 
     }
